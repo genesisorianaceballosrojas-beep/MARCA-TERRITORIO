@@ -947,9 +947,9 @@ html.gate-unlocked .gate-overlay{display:none !important;}
         </div>
         <div class="chips">
           <span class="chip"><span class="dot"></span>80 días</span>
-          <span class="chip"><span class="dot"></span>4 pilares</span>
-          <span class="chip"><span class="dot"></span>5 piezas / semana</span>
-          <span class="chip"><span class="dot"></span>3 plataformas</span>
+          <span class="chip"><span class="dot"></span>6 pilares</span>
+          <span class="chip"><span class="dot"></span>12 semanas</span>
+          <span class="chip"><span class="dot"></span>5 plataformas</span>
         </div>
       </div>
 
@@ -963,7 +963,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
         <p id="quoteTxt"></p>
       </div>
 
-      <div class="section-title"><h3>Línea de tiempo — 4 fases</h3></div>
+      <div class="section-title"><h3>Línea de tiempo — 3 fases</h3></div>
       <div class="timeline-wrap">
         <div class="timeline-track" id="tlTrack"></div>
         <div class="tl-legend" id="tlLegend"></div>
@@ -992,7 +992,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
 
       <div class="symbol-compare">
         <h4>Los tres símbolos que sostienen la marca</h4>
-        <p class="chart-sub">Pino Laso, Apamate y Bambú son los símbolos vegetales de la marca — cada uno aporta un matiz distinto a la misma historia de carácter.</p>
+        <p class="chart-sub">El Apamate (símbolo original), el Pino Lazo (símbolo sustituto propuesto en agosto de 2026, pendiente de aprobación) y el ícono del ave posada (pilar Hecho en Táchira) — ver la nota sobre la decisión pendiente en la sección Gobernación.</p>
         <div class="symbol-grid" id="symbolGrid"></div>
         <div class="symbol-diff">
           <span class="lbl">Diferencia clave</span>
@@ -1111,10 +1111,10 @@ html.gate-unlocked .gate-overlay{display:none !important;}
         </div>
       </div>
 
-      <div class="section-title first-title"><h3>KPI por pieza semanal</h3><span class="num">meta semana 4</span></div>
+      <div class="section-title first-title"><h3>KPI por plataforma</h3><span class="num">meta 80 días</span></div>
       <div class="grid grid-3" id="kpiWeekly"></div>
 
-      <div class="section-title"><h3>KPI por publicación especial</h3><span class="num">meta 72h</span></div>
+      <div class="section-title"><h3>KPI por cuenta prioritaria</h3><span class="num">indicadores de cuenta</span></div>
       <div class="grid grid-3" id="kpiSpecial"></div>
 
       <div class="section-title"><h3>Frecuencia de reporte</h3></div>
@@ -1320,81 +1320,151 @@ const LS_PREFIX = BRAND_SLUG + '_';
 /* ============ 1 · CONTENIDO POR DEFECTO (espejo del esquema Firestore) ============ */
 const DEFAULT_DATA = {
   "meta": {
-    "eyebrow": "[Marca] · [Responsable]",
+    "eyebrow": "Marca Territorio · Gobernación del Táchira",
     "periodStart": "2026-08-24",
     "periodEnd": "2026-11-11",
-    "heroSub": "[Descripción breve del plan: qué cubre, para quién, y qué queda fuera.]",
-    "introCard": "[Resumen de 3-4 líneas: qué insumos integra este plan y la regla principal que sigue cada pieza.]",
+    "heroSub": "Estrategia narrativa, de redacción, guion y producción de los 6 pilares de contenido de la Marca Territorio, ejecutada en un plan de 80 días (24 ago - 11 nov 2026), basada en el Análisis de Cuentas Digitales del Táchira (agosto 2026).",
+    "introCard": "Este plan traduce el Banco de Contenido de los 6 pilares y el Plan Maestro de Marca Territorio en una estrategia comunicacional ejecutable: que narrativa usar en cada pilar, como redactar cada pieza para redes, como estructurar el guion de cada formato y que tipo de producción corresponde a cada caso, organizado en un calendario de 80 días. El principio rector: el ecosistema digital tachirense ya reveló, con datos de interacción reales, que tipo de contenido funciona -- adoptar deliberadamente el lenguaje que la propia audiencia tachirense ya premió en cuentas como @tachira_natural, @tachiraextrema, @soytachirense y @TachiraMia, evitando la plantilla institucional impersonal.",
     "stats": [
       {
-        "num": "0",
-        "lbl": "[Estadística 1]"
+        "num": "120",
+        "lbl": "Ideas de contenido en el banco (6 pilares)"
       },
       {
-        "num": "0",
-        "lbl": "[Estadística 2]"
+        "num": "6",
+        "lbl": "Pilares de contenido"
       },
       {
-        "num": "0",
-        "lbl": "[Estadística 3]"
+        "num": "11",
+        "lbl": "Cuentas digitales analizadas"
       },
       {
-        "num": "0",
-        "lbl": "[Estadística 4]"
+        "num": "3",
+        "lbl": "Fases del plan de 80 días"
       }
     ],
-    "quote": "[Frase de posicionamiento interna — nunca se publica tal cual, es la brújula del equipo.]",
-    "diag1": "[Primer hallazgo del diagnóstico digital.]",
-    "diag2": "[Segundo hallazgo del diagnóstico digital.]",
-    "diag3": "[Tercer hallazgo del diagnóstico digital.]",
-    "resumenNote": "[Nota de pendientes antes de escalar el plan.]",
-    "symbolDiff": "[Diferencia clave entre los símbolos de marca, si aplica.]",
-    "symbolReflection": "[Reflexión de cierre que conecta los símbolos con la marca.]",
-    "pilaresNote": "[Nota sobre formatos transversales, si aplica.]",
-    "semanalNote": "[Nota operativa sobre producción semanal.]",
-    "metricHero": "[La métrica principal que define el éxito del plan.]",
-    "footer": "[NOMBRE DE LA MARCA] — PLAN COMUNICACIONAL INTEGRADO<br><b>Confidencial</b> · Para evaluación del equipo estratégico"
+    "quote": "La tierra que tampoco se rindió.",
+    "diag1": "Las narrativas de raíces y memoria familiar/generacional (casas centenarias, mercados municipales, oficios tradicionales) son el formato de mejor desempeño absoluto del estudio: 2.408 'me gusta' en la publicación líder, @tachira_natural (mercado municipal de Capacho).",
+    "diag2": "Las cuentas institucionales de gobierno (@inatur_tachira_ve, @culturatachira) logran el menor alcance relativo del ecosistema pese a cubrir temas de alto interés -- no por falta de interés del público, sino por comunicar en formato de plantilla institucional en vez de narrativa personal.",
+    "diag3": "La nostalgia y la añoranza son la emoción de mayor rendimiento detectada, con especial fuerza en la diáspora venezolana, que consume este contenido como sustituto simbólico del regreso a casa.",
+    "resumenNote": "Pendiente crítico: cerrar dentro de los primeros 30 días del plan la alianza cultural con un poeta, escritor o historiador tachirense (posiblemente vía la Biblioteca de Autores y Temas Tachirenses, BATT) que legitime culturalmente el símbolo territorial de la marca.",
+    "symbolDiff": "El Apamate representa la floración después de perderlo todo; el Pino Lazo (símbolo alternativo propuesto en agosto de 2026, pendiente de aprobación) representa la permanencia sin necesitar una tormenta que superar; el ícono del ave posada identifica específicamente al pilar 'Hecho en Táchira'.",
+    "symbolReflection": "Permanecer, no florecer tras la tragedia: esa es la idea que el momento actual del país necesita, y no depende de ningún calendario estacional para lanzarse.",
+    "pilaresNote": "Nota operativa: los elementos formales de identidad visual (logotipo, área de resguardo, tamaños mínimos) deben confirmarse en un Manual de Identidad Visual Corporativa formal -- señalado como pendiente en el Anexo 3 del Manual Estratégico de Comunicaciones.",
+    "semanalNote": "El Manual Estratégico (Anexo 3) señala explícitamente como pendiente el 'calendario editorial detallado — día a día'. Los documentos de marca entregados solo definen el calendario semana a semana (12 semanas, ver sección Calendario) y los mejores días/horarios por red social (ver Métricas y KPIs) -- no una grilla fija de miercoles a domingo con piezas específicas por día. No se completó esta sección para evitar inventar contenido que no está en los documentos entregados.",
+    "metricHero": "Consolidar la primera fase de posicionamiento digital de la Marca Territorio: crecimiento sostenido de seguidores (+8K a +20K según red, ~22% de las metas a 12 meses del Plan Maestro) con engagement >= 5% en piezas de narrativa testimonial y serial, y cierre de la alianza cultural BATT dentro de los primeros 30 días.",
+    "footer": "MARCA TERRITORIO · GOBERNACIÓN DEL TÁCHIRA — PLAN COMUNICACIONAL INTEGRADO<br><b>Confidencial</b> · Para evaluación del equipo estratégico"
   },
   "pillars": [
     {
       "id": "1",
       "order": 1,
       "num": 1,
-      "name": "[Nombre del pilar 1]",
-      "sub": "[Subtítulo / una línea que explica el pilar 1]",
+      "name": "El Táchira que no se rindió",
+      "sub": "Identidad y orgullo regional",
       "phase": "Fase 1",
-      "symbol": "[Símbolo o metáfora asociada a este pilar, si aplica]",
-      "extra": "",
+      "symbol": "El Apamate como hilo conductor: no como logo decorativo, sino como personaje-metáfora que 'cuenta' la historia del territorio. Cada pieza se ancla a un lugar real y, siempre que sea posible, a una familia o persona con nombre y apellido.",
+      "extra": "Narrativa dominante: raíces y memoria generacional + mítica-simbólica (Apamate) + serial/episódica. Emoción principal: nostalgia y añoranza + orgullo territorial. Plantillas de guion B (serial) y E (carrusel educativo). Plataforma prioritaria: Instagram + Facebook (+ YouTube para piezas documentales). Día recomendado: fin de semana (sábado/domingo).",
       "ideas": [
         {
-          "code": "C01",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F1",
+          "txt": "Retrato del gobernador junto a un apamate en floración, en una avenida o plaza reconocible de la ciudad.",
+          "note": "Alternativa: una abuela con su nieto de la mano frente al apamate."
         },
         {
-          "code": "C02",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F2",
+          "txt": "Paisaje del paramo o la cordillera andina al atardecer, sin texto, como imagen de marca pura.",
+          "note": "Sin persona (paisaje puro); opcional, silueta lejana de un campesino."
         },
         {
-          "code": "C03",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F3",
+          "txt": "Foto documental de un artesano o cultor popular tachirense trabajando en su oficio.",
+          "note": "El artesano o cultor mismo, protagonista natural de la escena."
         },
         {
-          "code": "C04",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F4",
+          "txt": "Comparación 'antes y ahora' de un lugar histórico (Capitolio, Casa Natal, plaza emblemática).",
+          "note": "Un vecino de toda la vida que recuerda como era el lugar."
         },
         {
-          "code": "C05",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F5",
+          "txt": "Foto de una fiesta patronal o tradición andina (ej. Feria de San Sebastián) con gente del pueblo.",
+          "note": "Niños vestidos con trajes típicos, o una pareja de bailarines andinos."
         },
         {
-          "code": "C06",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FLY-FL1",
+          "txt": "'Un símbolo que resurge' -- apamate en floración con la frase de la Big Idea.",
+          "note": "Sin persona, solo el símbolo."
+        },
+        {
+          "code": "FLY-FL2",
+          "txt": "Efeméride de un prócer o presidente nacido en el Táchira, con dato histórico breve.",
+          "note": "Voz en off de un historiador o cronista tachirense."
+        },
+        {
+          "code": "FLY-FL3",
+          "txt": "'Ruta del Apamate' -- mapa ilustrado de municipios con su arbol emblemático.",
+          "note": "Sin persona (mapa ilustrado)."
+        },
+        {
+          "code": "FLY-FL4",
+          "txt": "Cita del insight central ('El que se quedó tiene razón') en tipografía elegante sobre fondo territorial.",
+          "note": "Sin persona, solo tipografía sobre fondo."
+        },
+        {
+          "code": "FLY-FL5",
+          "txt": "Ficha de tradición cultural (gaita andina, comida típica, artesanía) explicando su origen.",
+          "note": "La artesana o cultora que explica el origen de la tradición."
+        },
+        {
+          "code": "REEL-R1",
+          "txt": "Recorrido en cámara del apamate floreciendo, con narración en off de la metáfora central.",
+          "note": "Voz en off de una abuela contando la metáfora como un cuento."
+        },
+        {
+          "code": "REEL-R2",
+          "txt": "Serie 'Historias del Táchira que no se rindió': testimonio real de 60-90 segundos.",
+          "note": "Un ciudadano común -- comerciante, ama de casa, alguien que 'se quedó'."
+        },
+        {
+          "code": "REEL-R3",
+          "txt": "Mini-documental de un lugar histórico con un dato curioso poco conocido.",
+          "note": "Un guía turístico o historiador local."
+        },
+        {
+          "code": "REEL-R4",
+          "txt": "Reel 'antes/después' de un espacio público restaurado, con música emotiva.",
+          "note": "Un vecino del sector reaccionando al espacio restaurado."
+        },
+        {
+          "code": "REEL-R5",
+          "txt": "Cultura viva: grupo de danza o música andina en formato vertical, sonido ambiente real.",
+          "note": "Jovenes bailarines o niños aprendices de música andina."
+        },
+        {
+          "code": "CARR-CR1",
+          "txt": "'5 cosas que no sabías del apamate' -- carrusel educativo y cultural.",
+          "note": "Voz de un profesor o investigador cultural."
+        },
+        {
+          "code": "CARR-CR2",
+          "txt": "'Tierra de presidentes': tachirenses que marcaron la historia de Venezuela.",
+          "note": "Un historiador narrando los datos."
+        },
+        {
+          "code": "CARR-CR3",
+          "txt": "'El Táchira en cifras culturales': patrimonio, tradiciones y fiestas del año.",
+          "note": "Sin persona, formato de datos."
+        },
+        {
+          "code": "CARR-CR4",
+          "txt": "Frases o fragmentos de poesía sobre el apamate (respaldo literario / BATT).",
+          "note": "El poeta o escritor tachirense identificado vía BATT, si se cuenta con uno."
+        },
+        {
+          "code": "CARR-CR5",
+          "txt": "'Rutas de identidad': lugares imperdibles del Táchira histórico.",
+          "note": "Un guía turístico."
         }
       ]
     },
@@ -1402,36 +1472,111 @@ const DEFAULT_DATA = {
       "id": "2",
       "order": 2,
       "num": 2,
-      "name": "[Nombre del pilar 2]",
-      "sub": "[Subtítulo / una línea que explica el pilar 2]",
+      "name": "Hecho en Táchira",
+      "sub": "Productivo y económico",
       "phase": "Fase 2",
-      "symbol": "[Símbolo o metáfora asociada a este pilar, si aplica]",
-      "extra": "",
+      "symbol": "Todo Reel de este pilar se graba con el productor hablando a cámara en su propio entorno de trabajo (finca, mercado, cocina), nunca en estudio ni con vocero institucional narrando por el. El sello 'Hecho en Táchira' se comunica mostrando el proceso completó antes que el logo solo.",
+      "extra": "Narrativa dominante: testimonial de oficio ('el protagonista real cuenta su propio proceso') + cadena/proceso ('de la mata a la taza'). Emoción principal: orgullo de logro y oficio + confianza. Plantillas de guion A (testimonial) y C (proceso). Plataforma prioritaria: Instagram + TikTok + WhatsApp Business (productores). Día recomendado: entre semana (martes/miercoles), horario de mañana.",
       "ideas": [
         {
-          "code": "C01",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F1",
+          "txt": "Retrato de un caficultor en su finca, con el grano de cafe en primer plano.",
+          "note": "El caficultor mismo."
         },
         {
-          "code": "C02",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F2",
+          "txt": "Foto tipo 'product shot' de un producto terminado (queso andino, cafe, panela) con el sello Hecho en Táchira.",
+          "note": "Manos del productor sosteniendo el producto (sin necesidad de rostro)."
         },
         {
-          "code": "C03",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F3",
+          "txt": "Toma aérea de fincas ganaderas o cultivos en la montaña.",
+          "note": "Sin persona (toma de dron)."
         },
         {
-          "code": "C04",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F4",
+          "txt": "Foto de un mercado o feria de productores con público comprando.",
+          "note": "Una señora comprando y el comerciante ofreciendo su producto."
         },
         {
-          "code": "C05",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F5",
+          "txt": "El gobernador en bota de campo, conversando con un productor en su finca o negocio.",
+          "note": "Alternativa: el productor solo hablando a cámara, o un técnico agrónomo."
+        },
+        {
+          "code": "FLY-FL1",
+          "txt": "Presentación del sello 'Hecho en Táchira' -- logo y que certifica.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "FLY-FL2",
+          "txt": "Producto destacado del mes (cafe, panela, queso) con cifras de producción.",
+          "note": "El productor sosteniendo su producto."
+        },
+        {
+          "code": "FLY-FL3",
+          "txt": "Convocatoria a una feria o evento agroindustrial próximo.",
+          "note": "El organizador de la feria invitando a cámara."
+        },
+        {
+          "code": "FLY-FL4",
+          "txt": "'De la finca a tu mesa' -- cadena productiva ilustrada paso a paso.",
+          "note": "Sin persona (infografía); opcional, voz de un chef."
+        },
+        {
+          "code": "FLY-FL5",
+          "txt": "Programa de apoyo o crédito para productores, explicado como beneficio directo.",
+          "note": "Funcionario del área agrícola explicando el beneficio."
+        },
+        {
+          "code": "REEL-R1",
+          "txt": "'De la mata a la taza': proceso del cafe en 30-60 segundos.",
+          "note": "El caficultor narrando su propio proceso."
+        },
+        {
+          "code": "REEL-R2",
+          "txt": "Testimonial de un productor contando como creció su negocio.",
+          "note": "El productor, protagonista de su propio testimonio."
+        },
+        {
+          "code": "REEL-R3",
+          "txt": "Time-lapse de una jornada de campo, del amanecer a la cosecha u ordeño.",
+          "note": "Un trabajador de finca (peón, ordeñador)."
+        },
+        {
+          "code": "REEL-R4",
+          "txt": "Receta rápida con un producto tachirense, formato ágil y visual.",
+          "note": "Un chef o un ama de casa cocinando."
+        },
+        {
+          "code": "REEL-R5",
+          "txt": "'Conoce tu producto': dato curioso sobre un rubro típico del estado.",
+          "note": "Un joven community manager o 'foodie' local."
+        },
+        {
+          "code": "CARR-CR1",
+          "txt": "'Los 5 productos que representan al Táchira en el mundo'.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "CARR-CR2",
+          "txt": "Mapa de producción por municipio: que se produce y donde.",
+          "note": "Sin persona (mapa)."
+        },
+        {
+          "code": "CARR-CR3",
+          "txt": "Historia de un emprendimiento local, contada foto a foto.",
+          "note": "El emprendedor mismo."
+        },
+        {
+          "code": "CARR-CR4",
+          "txt": "'Así respalda el gobierno al productor', con cifras y logros concretos.",
+          "note": "El productor beneficiario contando el respaldo recibido (en vez de que lo anuncie el gobernador)."
+        },
+        {
+          "code": "CARR-CR5",
+          "txt": "Recetas o usos cotidianos de productos tachirenses.",
+          "note": "Una cocinera tradicional."
         }
       ]
     },
@@ -1439,16 +1584,111 @@ const DEFAULT_DATA = {
       "id": "3",
       "order": 3,
       "num": 3,
-      "name": "[Nombre del pilar 3]",
-      "sub": "[Subtítulo / una línea que explica el pilar 3]",
-      "phase": "Fase 3",
-      "symbol": "[Símbolo o metáfora asociada a este pilar, si aplica]",
-      "extra": "",
+      "name": "Táchira Frontera y ZEB",
+      "sub": "Inversión y futuro",
+      "phase": "Fase 2",
+      "symbol": "Ningún copy de este pilar usa terminología jurídica o macroeconómica; todo mensaje se traduce al marco 'el Táchira abre puertas al mundo'. Se prioriza siempre protagonista real (transportista, comerciante, empresario) sobre piezas sin persona.",
+      "extra": "Narrativa dominante: aspiracional-explicativa (framing Lakoff, nunca técnico-jurídico) + flujo y movimiento. Emoción principal: esperanza económica y orgullo de proyección internacional. Plantillas de guion D (explicativo-aspiracional) y C (recorrido). Plataforma prioritaria: LinkedIn + Web institucional + Instagram. Día recomendado: entre semana (miercoles/jueves), horario de mañana.",
       "ideas": [
         {
-          "code": "C01",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F1",
+          "txt": "El paso o puente fronterizo en plena actividad comercial.",
+          "note": "Un comerciante o viajero cruzando."
+        },
+        {
+          "code": "FOTO-F2",
+          "txt": "Infraestructura nueva o en construcción vinculada a la ZEB.",
+          "note": "Sin persona; opcional, un obrero o ingeniero de la obra."
+        },
+        {
+          "code": "FOTO-F3",
+          "txt": "Firma de acuerdo o reunión con inversionistas y autoridades binacionales.",
+          "note": "El empresario inversionista firmando, con protagonismo compartido (no solo autoridades)."
+        },
+        {
+          "code": "FOTO-F4",
+          "txt": "Toma aérea de la zona fronteriza mostrando el flujo comercial.",
+          "note": "Sin persona (toma de dron)."
+        },
+        {
+          "code": "FOTO-F5",
+          "txt": "Camiones de carga cruzando la frontera, transmitiendo dinamismo económico.",
+          "note": "El transportista o camionero."
+        },
+        {
+          "code": "FLY-FL1",
+          "txt": "'Que es la ZEB?' -- explicación simple con beneficios para el ciudadano.",
+          "note": "Sin persona; opcional, vocero técnico de la ZEB."
+        },
+        {
+          "code": "FLY-FL2",
+          "txt": "Cifras de inversión o empleos proyectados por la Zona Económica Binacional.",
+          "note": "Sin persona (infografía)."
+        },
+        {
+          "code": "FLY-FL3",
+          "txt": "Invitación formal a inversionistas, con datos clave del territorio.",
+          "note": "El director de la ZEB o un representante de cámara de comercio."
+        },
+        {
+          "code": "FLY-FL4",
+          "txt": "Cronograma de obras y avances de la ZEB.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "FLY-FL5",
+          "txt": "'El Táchira, puerta de Venezuela al mundo' -- mapa de conexión regional.",
+          "note": "Sin persona (mapa)."
+        },
+        {
+          "code": "REEL-R1",
+          "txt": "Recorrido por la infraestructura fronteriza con datos en pantalla.",
+          "note": "Un ingeniero de la obra explicando en cámara."
+        },
+        {
+          "code": "REEL-R2",
+          "txt": "Entrevista corta a un empresario que ya invierte en la ZEB.",
+          "note": "El empresario inversionista."
+        },
+        {
+          "code": "REEL-R3",
+          "txt": "'En 60 segundos': que gana el ciudadano común con la ZEB.",
+          "note": "Un ciudadano común explicando en sus propias palabras."
+        },
+        {
+          "code": "REEL-R4",
+          "txt": "'Antes/después' de un punto fronterizo mejorado.",
+          "note": "El transportista o comerciante que cruza a diario."
+        },
+        {
+          "code": "REEL-R5",
+          "txt": "El gobernador en gira de promoción de inversión, estilo vlog de gestión.",
+          "note": "Alternativa: formato 'vlog del equipo técnico de la ZEB' documentando la gira."
+        },
+        {
+          "code": "CARR-CR1",
+          "txt": "'5 razones para invertir en el Táchira' (pensado para LinkedIn).",
+          "note": "Testimonio breve de un inversionista."
+        },
+        {
+          "code": "CARR-CR2",
+          "txt": "Avance de obra de la ZEB, paso a paso, mes a mes.",
+          "note": "El ingeniero residente de la obra."
+        },
+        {
+          "code": "CARR-CR3",
+          "txt": "Explicación de beneficios y marco para empresas interesadas.",
+          "note": "El director económico o de la ZEB."
+        },
+        {
+          "code": "CARR-CR4",
+          "txt": "Testimonios de empresarios y aliados de la zona binacional.",
+          "note": "Los empresarios y aliados mismos."
+        },
+        {
+          "code": "CARR-CR5",
+          "txt": "'El Táchira en 2030' -- proyección visual del territorio.",
+          "note": "Sin persona, visual conceptual."
         }
       ]
     },
@@ -1456,16 +1696,335 @@ const DEFAULT_DATA = {
       "id": "4",
       "order": 4,
       "num": 4,
-      "name": "[Nombre del pilar 4]",
-      "sub": "[Subtítulo / una línea que explica el pilar 4]",
-      "phase": "Fase 4",
-      "symbol": "[Símbolo o metáfora asociada a este pilar, si aplica]",
-      "extra": "",
+      "name": "Gestión que se siente, no se explica",
+      "sub": "El antídoto: 'esto cambio en tu comunidad' en vez de 'informe de gestión'",
+      "phase": "Fase 3",
+      "symbol": "Ninguna pieza de este pilar abre con cifras o lenguaje de informe; debe abrir con la persona beneficiada hablando de su propia experiencia. El gobernador aparece como acompañante de la escena, no como locutor de resultados.",
+      "extra": "Narrativa dominante: testimonio del beneficiario ('esto cambio en mi comunidad') + contraste 'antes/después'. Emoción principal: alivio, confianza y seguridad percibida. Plantillas de guion A (testimonial) y F (carrusel de gestión). Plataforma prioritaria: Facebook + Instagram. Día recomendado: lunes/martes.",
       "ideas": [
         {
-          "code": "C01",
-          "txt": "[Descripción de la idea de contenido]",
-          "note": "[Nota o restricción de esta idea]"
+          "code": "FOTO-F1",
+          "txt": "Una familia beneficiada por una obra o programa, en su entorno real.",
+          "note": "La familia beneficiada, protagonista central."
+        },
+        {
+          "code": "FOTO-F2",
+          "txt": "Inauguración de obra con el gobernador entregando o cortando cinta.",
+          "note": "Complemento: un vecino que usará la obra, en primer plano junto al acto."
+        },
+        {
+          "code": "FOTO-F3",
+          "txt": "Un funcionario de seguridad en el territorio, en tono cercano y humano.",
+          "note": "El funcionario de seguridad."
+        },
+        {
+          "code": "FOTO-F4",
+          "txt": "Escuela o centro de salud renovado, con niños o pacientes presentes.",
+          "note": "Los niños, un maestro, o un paciente."
+        },
+        {
+          "code": "FOTO-F5",
+          "txt": "Foto candid del gobernador escuchando a un ciudadano, sin pose forzada.",
+          "note": "El ciudadano que habla, protagonista de la escena."
+        },
+        {
+          "code": "FLY-FL1",
+          "txt": "Portada del carrusel mensual: 'Esto se hizo por ti este mes'.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "FLY-FL2",
+          "txt": "Logro puntual (ej. kilómetros de vía asfaltada) en lenguaje de beneficio directo.",
+          "note": "Un conductor o vecino de la vía."
+        },
+        {
+          "code": "FLY-FL3",
+          "txt": "Servicio ciudadano: líneas de atención, horarios, puntos de contacto.",
+          "note": "Vocero de atención ciudadana."
+        },
+        {
+          "code": "FLY-FL4",
+          "txt": "Agradecimiento público a un municipio por su participación o resultados.",
+          "note": "El alcalde o un líder comunal del municipio."
+        },
+        {
+          "code": "FLY-FL5",
+          "txt": "'Antes / Ahora' de un espacio público intervenido.",
+          "note": "El vecino de siempre del lugar intervenido."
+        },
+        {
+          "code": "REEL-R1",
+          "txt": "'24 horas con el gobernador', versión corta.",
+          "note": "Formato hermano: '24 horas con un maestro / medico / oficial', alternando con el del gobernador."
+        },
+        {
+          "code": "REEL-R2",
+          "txt": "Inauguración con reacciones reales y espontáneas de la comunidad.",
+          "note": "Niños, vecinos o ancianos reaccionando."
+        },
+        {
+          "code": "REEL-R3",
+          "txt": "Testimonial de un beneficiario directo de un programa social.",
+          "note": "El beneficiario del programa."
+        },
+        {
+          "code": "REEL-R4",
+          "txt": "Resumen mensual 'esto logramos juntos', ritmo rápido y musical.",
+          "note": "Mosaico de varios ciudadanos, sin protagonista único."
+        },
+        {
+          "code": "REEL-R5",
+          "txt": "Recorrido de un operativo de seguridad o atención social, con framing de tranquilidad familiar.",
+          "note": "El funcionario de seguridad o el trabajador social en terreno."
+        },
+        {
+          "code": "CARR-CR1",
+          "txt": "Carrusel mensual de gestión (6 laminas) organizado por eje temático.",
+          "note": "Sin persona, formato informe."
+        },
+        {
+          "code": "CARR-CR2",
+          "txt": "'Antes / Después' de 3 a 4 obras emblemáticas del mes.",
+          "note": "Los vecinos beneficiados."
+        },
+        {
+          "code": "CARR-CR3",
+          "txt": "Servicios disponibles por municipio, en formato de guía rápida.",
+          "note": "El alcalde o un funcionario municipal."
+        },
+        {
+          "code": "CARR-CR4",
+          "txt": "Logros por sector: salud, educación, seguridad, vialidad.",
+          "note": "Un representante por sector -- medico, docente, oficial, ingeniero vial."
+        },
+        {
+          "code": "CARR-CR5",
+          "txt": "'Preguntas frecuentes' sobre un programa de gobierno específico.",
+          "note": "El vocero técnico del programa."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "order": 5,
+      "num": 5,
+      "name": "El Táchira que se construye en comunidad",
+      "sub": "De espectador a embajador activo",
+      "phase": "Fase 1",
+      "symbol": "Se prioriza sistemáticamente el contenido enviado por ciudadanos sobre el contenido producido internamente; el gobernador aparece solo en la mecánica de respuesta, nunca como iniciador del contenido. La etiqueta y el hashtag funcionan como mecanismo de curaduría (modelo #tg_fotos de @tachiragram).",
+      "extra": "Narrativa dominante: participativa/UGC + reconocimiento y logro colectivo. Emoción principal: pertenencia activa y orgullo de protagonismo personal. Plantilla A adaptada a UGC + Plantilla G (flyer participativo). Plataforma prioritaria: TikTok + Instagram. Día recomendado: miercoles/jueves (formatos informativos) o fin de semana (formatos de participación).",
+      "ideas": [
+        {
+          "code": "FOTO-F1",
+          "txt": "Ciudadanos participando en el desafío mensual, mostrando su obra o comunidad.",
+          "note": "Los ciudadanos participantes."
+        },
+        {
+          "code": "FOTO-F2",
+          "txt": "Foto grupal del 'Municipio del mes' celebrando el reconocimiento.",
+          "note": "Los vecinos ganadores del municipio."
+        },
+        {
+          "code": "FOTO-F3",
+          "txt": "Jovenes creando contenido en la calle (detras de cámaras, estilo UGC).",
+          "note": "Los jovenes creadores de contenido."
+        },
+        {
+          "code": "FOTO-F4",
+          "txt": "Mesa de trabajo comunitaria o cabildo abierto en sesión.",
+          "note": "El líder comunal y los vecinos participantes."
+        },
+        {
+          "code": "FOTO-F5",
+          "txt": "Voluntarios o lideres comunitarios en plena acción.",
+          "note": "Los voluntarios."
+        },
+        {
+          "code": "FLY-FL1",
+          "txt": "Convocatoria al desafío mensual con instrucciones claras de participación.",
+          "note": "Un joven creador de contenido invitando, cara cercana y no institucional."
+        },
+        {
+          "code": "FLY-FL2",
+          "txt": "Anuncio del 'Municipio del mes' ganador.",
+          "note": "El representante del municipio ganador."
+        },
+        {
+          "code": "FLY-FL3",
+          "txt": "Versión estática del mapa de progreso para redes.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "FLY-FL4",
+          "txt": "Pregunta participativa del mes con llamado a la acción.",
+          "note": "Sin persona; rotar ocasionalmente con un funcionario o vocero comunitario."
+        },
+        {
+          "code": "FLY-FL5",
+          "txt": "Reglas y premios de la dinámica de gamificación vigente.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "REEL-R1",
+          "txt": "Tutorial rápido de como participar en el desafío mensual.",
+          "note": "Un joven del equipo de comunicación territorial."
+        },
+        {
+          "code": "REEL-R2",
+          "txt": "Compilado de videos enviados por ciudadanos (contenido generado por usuarios).",
+          "note": "Los mismos ciudadanos, en compilado."
+        },
+        {
+          "code": "REEL-R3",
+          "txt": "Anuncio del municipio ganador con reacción en vivo de la comunidad.",
+          "note": "Los vecinos del municipio ganador celebrando."
+        },
+        {
+          "code": "REEL-R4",
+          "txt": "El gobernador respondiendo en cámara la pregunta participativa del mes.",
+          "note": "Parte del diseño de la mecánica; alternar con un secretario de despacho respondiendo en su nombre."
+        },
+        {
+          "code": "REEL-R5",
+          "txt": "'Detras de cámaras' del equipo armando el mapa de progreso mensual.",
+          "note": "El equipo territorial (jovenes de comunicación) detras de cámaras."
+        },
+        {
+          "code": "CARR-CR1",
+          "txt": "Explicación completa de la mecánica de gamificación del mes.",
+          "note": "Un joven creador de contenido explicando."
+        },
+        {
+          "code": "CARR-CR2",
+          "txt": "Resultados del mes anterior: participación y alcance logrado.",
+          "note": "Sin persona, datos."
+        },
+        {
+          "code": "CARR-CR3",
+          "txt": "Historias destacadas enviadas por ciudadanos.",
+          "note": "Los ciudadanos protagonistas de esas historias."
+        },
+        {
+          "code": "CARR-CR4",
+          "txt": "Mapa de progreso con los puntos de intervención por municipio.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "CARR-CR5",
+          "txt": "'Así tu participación se convierte en acción de gobierno'.",
+          "note": "Un ciudadano que ya vio su propuesta implementada."
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "order": 6,
+      "num": 6,
+      "name": "El Táchira que te espera",
+      "sub": "Diáspora y turismo",
+      "phase": "Fase 3",
+      "symbol": "La nostalgia de la diáspora venezolana es el gatillo emocional de mayor rendimiento de todo el ecosistema: para una audiencia que ya no vive en el Táchira, este contenido funciona como sustituto simbólico del regreso a casa. Combinar siempre con testimonios reales de retorno para dar prueba social a la invitación.",
+      "extra": "Narrativa dominante: retorno emocional ('esto te espera si vuelves') + travel/POV. Emoción principal: añoranza + esperanza de regreso. Plantillas de guion B (serial), C (POV) y A (retorno emocional). Plataforma prioritaria: Instagram + YouTube + Facebook diáspora. Día recomendado: jueves a sábado.",
+      "ideas": [
+        {
+          "code": "FOTO-F1",
+          "txt": "Panorámica de un destino turístico: paramo, laguna o pueblo andino.",
+          "note": "Sin persona; opcional, un turista de espaldas contemplando el paisaje."
+        },
+        {
+          "code": "FOTO-F2",
+          "txt": "Un tachirense retornado contando su historia en su lugar de origen.",
+          "note": "El tachirense retornado."
+        },
+        {
+          "code": "FOTO-F3",
+          "txt": "Plato típico tachirense servido, en estilo fotografía gastronómica.",
+          "note": "Manos de la cocinera sirviendo el plato."
+        },
+        {
+          "code": "FOTO-F4",
+          "txt": "Familias o turistas disfrutando de una ruta o mirador.",
+          "note": "Turistas o una familia visitante."
+        },
+        {
+          "code": "FOTO-F5",
+          "txt": "Evento cultural pensado para atraer visitantes: feria, festival, concierto.",
+          "note": "Los artistas del evento y los asistentes."
+        },
+        {
+          "code": "FLY-FL1",
+          "txt": "'Rutas para descubrir el Táchira' con 3 o 4 destinos recomendados.",
+          "note": "Un guía turístico."
+        },
+        {
+          "code": "FLY-FL2",
+          "txt": "Invitación directa a la diáspora: 'Este sigue siendo tu Táchira'.",
+          "note": "Un miembro de la diáspora que aún está afuera, como voz del mensaje."
+        },
+        {
+          "code": "FLY-FL3",
+          "txt": "Calendario de festividades y eventos turísticos del mes.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "FLY-FL4",
+          "txt": "Ficha gastronómica: receta o plato típico con su historia.",
+          "note": "La cocinera o cocinero tradicional."
+        },
+        {
+          "code": "FLY-FL5",
+          "txt": "Datos prácticos de un destino: como llegar, clima, distancia.",
+          "note": "Un guía turístico o viajero frecuente."
+        },
+        {
+          "code": "REEL-R1",
+          "txt": "Recorrido estilo 'travel' por un destino natural, con música envolvente.",
+          "note": "Un guía local o joven viajero/mochilero."
+        },
+        {
+          "code": "REEL-R2",
+          "txt": "Testimonial de un tachirense de la diáspora que decidió regresar.",
+          "note": "El retornado."
+        },
+        {
+          "code": "REEL-R3",
+          "txt": "'Un día en el paramo' en formato POV (punto de vista).",
+          "note": "Un campesino o guía local guiando el recorrido POV."
+        },
+        {
+          "code": "REEL-R4",
+          "txt": "Preparación de un plato típico, de principio a fin.",
+          "note": "La cocinera o cocinero tradicional."
+        },
+        {
+          "code": "REEL-R5",
+          "txt": "Invitación emotiva directa: 'Esto te espera si vuelves'.",
+          "note": "Un familiar esperando en casa (madre, abuela) hablándole directo a quien está afuera."
+        },
+        {
+          "code": "CARR-CR1",
+          "txt": "'5 lugares que debes visitar en el Táchira'.",
+          "note": "Un guía turístico."
+        },
+        {
+          "code": "CARR-CR2",
+          "txt": "Historias de retorno de tachirenses de la diáspora.",
+          "note": "Varios retornados, en mosaico."
+        },
+        {
+          "code": "CARR-CR3",
+          "txt": "Guía gastronómica: platos típicos y donde probarlos.",
+          "note": "La cocinera o chef."
+        },
+        {
+          "code": "CARR-CR4",
+          "txt": "Calendario de eventos y festividades del trimestre.",
+          "note": "Sin persona."
+        },
+        {
+          "code": "CARR-CR5",
+          "txt": "'Guía rápida para tu primer viaje al Táchira'.",
+          "note": "Un guía turístico o un viajero primerizo compartiendo tips."
         }
       ]
     }
@@ -1474,191 +2033,146 @@ const DEFAULT_DATA = {
     {
       "id": "1",
       "order": 1,
-      "tag": "[Pilar 1 · etiqueta]",
-      "name": "[Nombre del símbolo 1]",
-      "description": "[Qué representa este símbolo para la marca.]",
+      "tag": "Símbolo original · Identidad y orgullo regional",
+      "name": "El Apamate",
+      "description": "Pierde todas sus hojas antes de florecer -- se queda aparentemente muerto y, cuando parece que no hay nada, explota en una floración de color. Metáfora visual central de la estrategia original: logo-símbolo oficial de la Marca Territorio, con una variante adaptada a cada una de las cinco dimensiones territoriales (Frontera, Verde, Histórico, Digital, Productivo).",
       "imageUrl": ""
     },
     {
       "id": "2",
       "order": 2,
-      "tag": "[Pilar 2 · etiqueta]",
-      "name": "[Nombre del símbolo 2]",
-      "description": "[Qué representa este símbolo para la marca.]",
+      "tag": "Símbolo sustituto propuesto (agosto 2026) · pendiente de aprobación",
+      "name": "El Pino Lazo",
+      "description": "Arbol nativo del paramo tachirense: se mantiene verde todo el año, con raíces profundas que lo anclan a la roca y la neblina, y resiste sin doblegarse el frío, el viento y la altura. No florece para llamar la atención ni pierde su follaje ante la adversidad: permanece. El Plan de Marketing de 85 días propone sustituir al Apamate por este símbolo tras los sismos de junio de 2026, para evitar que 'florecer después de la tormenta' se lea como una lectura estetizada de una tragedia nacional.",
       "imageUrl": ""
     },
     {
       "id": "3",
       "order": 3,
-      "tag": "[Pilar 3 · etiqueta]",
-      "name": "[Nombre del símbolo 3]",
-      "description": "[Qué representa este símbolo para la marca.]",
+      "tag": "Ícono complementario · Pilar Hecho en Táchira",
+      "name": "El ave posada",
+      "description": "Ícono gráfico de ave posada, parte de los elementos de identidad visual de la marca (\"Renacer Tachirense\"), asociado específicamente a la identidad del pilar 'Hecho en Táchira'.",
       "imageUrl": ""
     }
   ],
-  "weekly": [
-    {
-      "id": "miercoles",
-      "order": 1,
-      "day": "Miércoles",
-      "title": "[Nombre de la pieza — Miércoles]",
-      "format": "[Formato · duración]",
-      "objective": "[Objetivo de esta pieza]",
-      "time": "[Horario de publicación]"
-    },
-    {
-      "id": "jueves",
-      "order": 2,
-      "day": "Jueves",
-      "title": "[Nombre de la pieza — Jueves]",
-      "format": "[Formato · duración]",
-      "objective": "[Objetivo de esta pieza]",
-      "time": "[Horario de publicación]"
-    },
-    {
-      "id": "viernes",
-      "order": 3,
-      "day": "Viernes",
-      "title": "[Nombre de la pieza — Viernes]",
-      "format": "[Formato · duración]",
-      "objective": "[Objetivo de esta pieza]",
-      "time": "[Horario de publicación]"
-    },
-    {
-      "id": "sabado",
-      "order": 4,
-      "day": "Sábado",
-      "title": "[Nombre de la pieza — Sábado]",
-      "format": "[Formato · duración]",
-      "objective": "[Objetivo de esta pieza]",
-      "time": "[Horario de publicación]"
-    },
-    {
-      "id": "domingo",
-      "order": 5,
-      "day": "Domingo",
-      "title": "[Nombre de la pieza — Domingo]",
-      "format": "[Formato · duración]",
-      "objective": "[Objetivo de esta pieza]",
-      "time": "[Horario de publicación]"
-    }
-  ],
+  "weekly": [],
   "specials": [
     {
       "id": "1",
       "order": 1,
-      "title": "[Especial 1 · título]",
-      "phase": "[Fase · fecha]",
-      "format": "[Formato · duración]",
-      "theme": "[Descripción visual/temática de la pieza]",
-      "hook": "[Gancho — primeros segundos]",
-      "development": "[Desarrollo — cuerpo de la pieza]",
-      "cta": "[Llamado a la acción de cierre]"
+      "title": "El arbol que se quedó",
+      "phase": "Fase 1 · Pilar 1 -- El Táchira que no se rindió",
+      "format": "Reel vertical 9:16 · 60-75 segundos",
+      "theme": "Narrativa mítica-simbólica. Pieza base del Banco de Contenido (Reel 1, Pilar 1): recorrido en cámara del apamate floreciendo, con narración en off de la metáfora central -- protagonista posible: voz en off de una abuela.",
+      "hook": "00:00-00:03 PLANO: apamate sin hojas, rama seca, contraluz de atardecer. TEXTO EN PANTALLA: 'Este arbol se quedó sin nada.' 00:03-00:15 VOZ EN OFF (abuela, tono de cuento): 'Cuando el apamate pierde las hojas, la gente cree que se murió. Pero no. Se esta preparando.'",
+      "development": "00:15-00:35 El mismo arbol, corte a floración plena, colores vivos, plaza o avenida reconocible de fondo. VOZ EN OFF: 'Y un día, cuando nadie lo espera, florece como si nada le hubiera costado. Así es el Táchira. Así es nuestra gente.' 00:35-00:55 Planos intercalados: personas caminando bajo el apamate en flor, niños, un anciano, una calle conocida. VOZ EN OFF: 'El que se quedó tiene razón.'",
+      "cta": "00:55-00:70 TEXTO EN PANTALLA (grande): 'EL TÁCHIRA NO SE RINDE'. VOZ EN OFF: 'Cuéntanos: cuál es tu apamate? Que floreció en tu vida cuando decidiste quedarte?' CTA en descripción: 'Déjanos tu historia en los comentarios' + hashtags #TachiraNoSeRinde #ElApamate #[municipio]."
     },
     {
       "id": "2",
       "order": 2,
-      "title": "[Especial 2 · título]",
-      "phase": "[Fase · fecha]",
-      "format": "[Formato · duración]",
-      "theme": "[Descripción visual/temática de la pieza]",
-      "hook": "[Gancho — primeros segundos]",
-      "development": "[Desarrollo — cuerpo de la pieza]",
-      "cta": "[Llamado a la acción de cierre]"
+      "title": "De la mata a la taza",
+      "phase": "Fase 2 · Pilar 2 -- Hecho en Táchira",
+      "format": "Reel vertical 9:16 · 45-60 segundos",
+      "theme": "Narrativa testimonial de proceso. Pieza base del Banco de Contenido (Reel 1, Pilar 2): proceso del cafe en 30-60 segundos -- protagonista: el caficultor narrando su propio proceso.",
+      "hook": "00:00-00:03 PLANO: manos del caficultor cortando un grano de cafe maduro en la mata. TEXTO: 'Esto empieza aquí.' 00:03-00:10 CAFICULTOR A CÁMARA: 'Yo soy [nombre], y esta finca la trabajó mi papá antes que yo. Esto es lo que hacemos con cada grano.'",
+      "development": "00:10-00:35 Secuencia rápida (cortes de 2-3s cada uno): cosecha, despulpado, secado al sol, tueste. Sonido ambiente real (no música genérica) mezclado con narración breve del caficultor sobre cada paso. 00:35-00:50 PLANO: taza de cafe servida, sello 'Hecho en Táchira' visible. CAFICULTOR: 'Cuando te tomas un cafe tachirense, te estas tomando el trabajo de toda una familia.'",
+      "cta": "00:50-00:60 TEXTO EN PANTALLA: 'HECHO EN TÁCHIRA' + CTA: 'Que producto tachirense no puede faltar en tu mesa? Cuéntanos.' El gobernador no aparece en esta pieza salvo como saludo breve al cierre si la ocasión lo amerita, nunca como narrador del proceso."
     },
     {
       "id": "3",
       "order": 3,
-      "title": "[Especial 3 · título]",
-      "phase": "[Fase · fecha]",
-      "format": "[Formato · duración]",
-      "theme": "[Descripción visual/temática de la pieza]",
-      "hook": "[Gancho — primeros segundos]",
-      "development": "[Desarrollo — cuerpo de la pieza]",
-      "cta": "[Llamado a la acción de cierre]"
+      "title": "Lo que la ZEB significa para ti",
+      "phase": "Fase 2 · Pilar 3 -- Táchira Frontera y ZEB",
+      "format": "Reel vertical 9:16 · 55-60 segundos",
+      "theme": "Narrativa aspiracional-explicativa. Pieza base del Banco de Contenido (Reel 3, Pilar 3): en 60 segundos, que gana el ciudadano común con la ZEB -- protagonista: un ciudadano común explicando en sus propias palabras.",
+      "hook": "00:00-00:03 PLANO: ciudadano (comerciante o transportista) a cámara, entorno de frontera de fondo. TEXTO: 'Que gana TU bolsillo con la ZEB?' 00:03-00:20 CIUDADANO A CÁMARA: 'A mi me preguntan mucho que es eso de la Zona Económica Binacional. Yo se los explico fácil...'",
+      "development": "00:20-00:40 Planos de apoyo (frontera activa, camiones, comercio) mientras el ciudadano explica en lenguaje simple: más movimiento, más trabajo, más oportunidad de vender del lado de acá y del lado de allá. 00:40-00:55 CIUDADANO: 'El Táchira siempre fue la puerta. Ahora esa puerta se abre más grande, y eso nos toca a todos.'",
+      "cta": "00:55-00:60 TEXTO EN PANTALLA: 'EL TÁCHIRA ABRE PUERTAS AL MUNDO' + CTA a la web institucional para más información (nunca lenguaje jurídico en el video). Nota vigente: el Plan de Marketing de 85 días (agosto 2026) marca este eje binacional como suspendido -- confirmar antes de producir esta pieza."
+    },
+    {
+      "id": "4",
+      "order": 4,
+      "title": "Esto te espera si vuelves",
+      "phase": "Fase 3 · Pilar 6 -- El Táchira que te espera",
+      "format": "Reel vertical 9:16 · 40-55 segundos",
+      "theme": "Narrativa de retorno emocional. Pieza base del Banco de Contenido (Reel 5, Pilar 6): invitación emotiva directa -- protagonista: un familiar esperando en casa hablándole directo a quien está afuera. Pieza de mayor prioridad emocional de todo el plan.",
+      "hook": "00:00-00:03 PLANO: puerta de una casa tachirense abriendose, luz cálida adentro. TEXTO: 'Para el que está lejos.' 00:03-00:20 MADRE O ABUELA, A CÁMARA, TONO ÍNTIMO (como videollamada): 'Mijo/mija, aquí seguimos. El apamate de la esquina floreció otra vez. Te lo guardé en una foto, pero tu sabes que no es lo mismo.'",
+      "development": "00:20-00:35 Planos intercalados: la mesa servida, el pueblo, el paramo al fondo, alguien esperando en la puerta. VOZ (misma familiar): 'Aquí sigue tu cuarto, tu comida, tu gente.' 00:35-00:50 FAMILIAR, MIRANDO DIRECTO A CÁMARA: 'Esto te espera si vuelves. Cuando tu digas.'",
+      "cta": "00:50-00:55 TEXTO EN PANTALLA: 'ESTE SIGUE SIENDO TU TÁCHIRA' + CTA: 'Etiqueta a alguien que necesita ver esto hoy.' Sin ningún elemento institucional visible (sin logos de gobierno en pantalla salvo el sello de marca territorio al cierre)."
     }
   ],
   "phases": [
     {
       "id": "1",
       "order": 1,
-      "name": "Fase 1",
-      "pillar": "[Pilar asociado a esta fase]",
+      "name": "Fase 1 -- Cimiento simbólico",
+      "pillar": "Pilar 1 (dominante) + lanzamiento de Pilar 5",
       "start": "2026-08-24",
-      "end": "2026-09-12",
-      "days": "días 1-20",
-      "milestone": "[Hito principal de esta fase]"
+      "end": "2026-09-13",
+      "days": "días 1-21 (semanas 1-3)",
+      "milestone": "Instalar el símbolo territorial como unificador de la marca, activar la narrativa de raíces e identidad (Pilar 1) y lanzar la mecánica de participación ciudadana (Pilar 5). Prioridad crítica: cerrar en los primeros 30 días la alianza cultural con un poeta, escritor o historiador tachirense (vía BATT) que legitime el símbolo."
     },
     {
       "id": "2",
       "order": 2,
-      "name": "Fase 2",
-      "pillar": "[Pilar asociado a esta fase]",
-      "start": "2026-09-15",
-      "end": "2026-10-07",
-      "days": "días 21-45",
-      "milestone": "[Hito principal de esta fase]"
+      "name": "Fase 2 -- Aceleración territorial",
+      "pillar": "Pilares 2, 3 y 5 (rotación completa de los 6 pilares)",
+      "start": "2026-09-14",
+      "end": "2026-10-25",
+      "days": "días 22-63 (semanas 4-9)",
+      "milestone": "Poner en rotación completa los 6 pilares con énfasis progresivo en Hecho en Táchira (Pilar 2), Frontera y ZEB (Pilar 3) y Comunidad (Pilar 5) -- fase de mayor volumen de publicación y de consolidación del modelo creador-narrador frente al institucional."
     },
     {
       "id": "3",
       "order": 3,
-      "name": "Fase 3",
-      "pillar": "[Pilar asociado a esta fase]",
-      "start": "2026-10-08",
-      "end": "2026-10-12",
-      "days": "días 46-50",
-      "milestone": "[Hito principal de esta fase]"
-    },
-    {
-      "id": "4",
-      "order": 4,
-      "name": "Fase 4",
-      "pillar": "[Pilar asociado a esta fase]",
-      "start": "2026-10-13",
+      "name": "Fase 3 -- Cierre, balance y diáspora",
+      "pillar": "Pilar 4 y Pilar 6 (cierre integrador de las 5 dimensiones)",
+      "start": "2026-10-26",
       "end": "2026-11-11",
-      "days": "días 51-80",
-      "milestone": "[Hito principal de esta fase]"
+      "days": "días 64-80 (semanas 10-12, semana 12 parcial)",
+      "milestone": "Concentrar la narrativa de Gestión que se siente (Pilar 4) y de Diáspora y turismo (Pilar 6) -- el pilar de mayor potencial emocional del plan -- y cerrar con una pieza integradora que una las cinco dimensiones territoriales: un recorrido del símbolo territorial que enlace frontera, montaña, historia, tecnología y producción."
     }
   ],
   "kpiWeekly": [
     {
       "id": "1",
       "order": 1,
-      "piece": "[Pieza semanal 1]",
-      "metric": "[Métrica a medir]",
-      "goal": "[Meta numérica]",
+      "piece": "Instagram (Marca Territorio)",
+      "metric": "Seguidores netos y engagement por publicación",
+      "goal": "+8.000-10.000 seguidores y engagement sostenido >= 5% en piezas de narrativa testimonial/serial (meta 80 días, ~22% de la meta anual de 50K/5%)",
       "status": null
     },
     {
       "id": "2",
       "order": 2,
-      "piece": "[Pieza semanal 2]",
-      "metric": "[Métrica a medir]",
-      "goal": "[Meta numérica]",
+      "piece": "TikTok",
+      "metric": "Seguidores netos y piezas con desempeño viral",
+      "goal": "+15.000-20.000 seguidores y al menos 8-9 piezas virales (~3/mes), concentradas en Pilares 1, 5 y 6",
       "status": null
     },
     {
       "id": "3",
       "order": 3,
-      "piece": "[Pieza semanal 3]",
-      "metric": "[Métrica a medir]",
-      "goal": "[Meta numérica]",
+      "piece": "Facebook",
+      "metric": "Seguidores netos, foco segmento 35-60 años",
+      "goal": "+12.000-15.000 seguidores, con foco en adultos 35-60 vía Pilares 1 y 4",
       "status": null
     },
     {
       "id": "4",
       "order": 4,
-      "piece": "[Pieza semanal 4]",
-      "metric": "[Métrica a medir]",
-      "goal": "[Meta numérica]",
+      "piece": "YouTube",
+      "metric": "Piezas documentales/testimoniales largas y vistas acumuladas",
+      "goal": "Al menos 4 piezas largas (una por fase) y superar 30.000 vistas acumuladas en el canal de Territorio",
       "status": null
     },
     {
       "id": "5",
       "order": 5,
-      "piece": "[Pieza semanal 5]",
-      "metric": "[Métrica a medir]",
-      "goal": "[Meta numérica]",
+      "piece": "LinkedIn / Web institucional (ZEB)",
+      "metric": "Piezas publicadas y contacto con inversionistas",
+      "goal": "Activar el canal desde cero, publicar al menos 5 piezas (semanas 5 y 8) y lograr el primer contacto documentado con un inversionista",
       "status": null
     }
   ],
@@ -1666,25 +2180,25 @@ const DEFAULT_DATA = {
     {
       "id": "1",
       "order": 1,
-      "piece": "[Publicación especial 1]",
-      "metric": "[Métrica a medir]",
-      "goal": "[Meta numérica]",
+      "piece": "@tachira_natural -- caso de referencia (benchmark)",
+      "metric": "Tasa de engagement por publicación (no volumen absoluto)",
+      "goal": "Formato 'nombre propio' / nostalgia UGC como meta de replica para el resto de cuentas de turismo y cultura",
       "status": null
     },
     {
       "id": "2",
       "order": 2,
-      "piece": "[Publicación especial 2]",
-      "metric": "[Métrica a medir]",
-      "goal": "[Meta numérica]",
+      "piece": "@tachiraextrema -- serie 'Leyendas del Táchira'",
+      "metric": "Rendimiento por entrega del formato serializado",
+      "goal": "Aislar el desempeño de la serie (977 me gusta de referencia) del resto del contenido de la cuenta, no promediarlo",
       "status": null
     },
     {
       "id": "3",
       "order": 3,
-      "piece": "[Publicación especial 3]",
-      "metric": "[Métrica a medir]",
-      "goal": "[Meta numérica]",
+      "piece": "@inatur_tachira_ve y @culturatachira -- cuentas institucionales",
+      "metric": "Eficiencia de alcance orgánico (alcance por publicación / costo por interacción)",
+      "goal": "Cerrar la brecha alcance-vs-valor: estas cuentas tienen el menor alcance relativo del ecosistema pese a contenido de alto interés",
       "status": null
     }
   ],
@@ -1692,38 +2206,38 @@ const DEFAULT_DATA = {
     {
       "id": "grupo1",
       "order": 1,
-      "title": "Verificación de marca",
+      "title": "Verificación de marca y narrativa",
       "items": [
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "El mensaje usa primera persona del plural en contenido de identidad y comunidad ('nuestra gente', 'lo nuestro', 'nuestra tierra')?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "La pieza nombra personas y lugares reales en vez de hablar del Táchira en abstracto?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "El tema paso por el filtro de framing territorial (tabla marco a evitar -> marco a activar) antes de publicar?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "Se identificó el pilar correspondiente y su narrativa dominante (sección 4 y 8 de la Estrategia)?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "Se aplicó el principio de protagonismo compartido (al menos un tercio del contenido con protagonista distinto al Gobernador)?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "La pieza respeta la paleta, tipografía y símbolo oficial de marca (ver Manual, 6.7)?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "Si la pieza usa el sello 'Freddy Bernal Cumple', se confirmó que NO es contenido de duelo, emergencia ni religioso?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "El vocero que aparece está autorizado para el tema según su naturaleza (Gobernador / vocero secundario / Comunicaciones)?",
           "checked": false
         }
       ]
@@ -1731,34 +2245,34 @@ const DEFAULT_DATA = {
     {
       "id": "grupo2",
       "order": 2,
-      "title": "Producción semanal y especiales",
+      "title": "Guion, redacción y producción",
       "items": [
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "El hook de los primeros 3 segundos evita presentaciones institucionales?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "El texto superpuesto está en mayúsculas y alto contraste, legible sin sonido?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "La pieza tiene un solo mensaje central, no una lista de logros o temas simultaneos?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "El cierre incluye un CTA claro (pregunta, invitación a comentar, o bendición/deseo en piezas de fe)?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "La duración respeta el estándar (30-60s testimonial/proceso, 60-90s serial/documental, max. 90s salvo vlog largo)?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "El formato es vertical 9:16 nativo (salvo YouTube largo o archivo institucional)?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "Se uso el modelo de producción correcto según el pilar (A creador-narrador / B curador UGC / C institucional, ver matriz sección 7.3)?",
           "checked": false
         }
       ]
@@ -1766,22 +2280,30 @@ const DEFAULT_DATA = {
     {
       "id": "grupo3",
       "order": 3,
-      "title": "Calendario y coordinación",
+      "title": "Aprobación, permitido/no permitido y archivo",
       "items": [
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "La pieza paso por el flujo completó: elaboración -> revisión y visto bueno del Jefe de Comunicaciones -> autorización del Gobernador si aplica?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "Si la pieza usa contenido de terceros (fotos, testimonios, menores de edad), se verificó el consentimiento?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "Ninguna cifra o dato de aporte se publica sin verificación documental de la dirección competente?",
           "checked": false
         },
         {
-          "text": "[Pregunta de verificación — edita o borra este ítem]",
+          "text": "El logotipo no fue alterado ni mezclado con marcas de terceros, y su uso quedó autorizado (formato Anexo 4)?",
+          "checked": false
+        },
+        {
+          "text": "Si el contenido responde a un incidente de seguridad o crisis, se siguió el protocolo de verificación previa (una sola voz, hechos resueltos primero)?",
+          "checked": false
+        },
+        {
+          "text": "La pieza y su cobertura quedaron archivadas para referencia futura (expediente del evento / archivo fotográfico y audiovisual)?",
           "checked": false
         }
       ]
@@ -2490,14 +3012,14 @@ function buildPrintReport() {
       '<b>' + t.checked + ' de ' + t.total + ' ítems de checklist verificados (' + pct + '%)</b>' +
     '</div>';
 
-  html += '<h2><span>Estado en vivo · KPI por pieza semanal</span></h2><ul>';
+  html += '<h2><span>Estado en vivo · KPI por plataforma</span></h2><ul>';
   sortDocs(state.kpiWeekly).forEach(function (k) {
     const s = kpiStatus('w', k);
     html += '<li class="status-' + (s || 'n') + '">' + txt(k.piece) + ' — <b>' + statusLabel(s) + '</b></li>';
   });
   html += '</ul>';
 
-  html += '<h2><span>Estado en vivo · KPI por publicación especial</span></h2><ul>';
+  html += '<h2><span>Estado en vivo · KPI por cuenta prioritaria</span></h2><ul>';
   sortDocs(state.kpiSpecial).forEach(function (k) {
     const s = kpiStatus('s', k);
     html += '<li class="status-' + (s || 'n') + '">' + txt(k.piece) + ' — <b>' + statusLabel(s) + '</b></li>';
