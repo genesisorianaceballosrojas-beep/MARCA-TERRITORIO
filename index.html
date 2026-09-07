@@ -919,6 +919,10 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       <li><button type="button" class="navbtn" data-target="metricas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Métricas &amp; KPIs<span class="tag">07</span></button></li>
       <li><button type="button" class="navbtn" data-target="checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Checklist<span class="tag">08</span></button></li>
       <li><button type="button" class="navbtn" data-target="gobernacion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/><path d="M9 9h.01M12 9h.01M15 9h.01"/></svg>Gobernación<span class="tag">09</span></button></li>
+      <li><button type="button" class="navbtn" data-target="horarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mejores horarios<span class="tag">10</span></button></li>
+      <li><button type="button" class="navbtn" data-target="coyuntura"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>Análisis de coyuntura<span class="tag">11</span></button></li>
+      <li><button type="button" class="navbtn" data-target="monitoreo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Monitoreo en vivo<span class="tag">12</span></button></li>
+      <li><button type="button" class="navbtn" data-target="riesgos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Matriz de riesgos<span class="tag">13</span></button></li>
     </ul>
 
     <div class="sidebar-foot">
@@ -949,7 +953,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
           <span class="chip"><span class="dot"></span>80 días</span>
           <span class="chip"><span class="dot"></span>5 pilares</span>
           <span class="chip"><span class="dot"></span>12 semanas</span>
-          <span class="chip"><span class="dot"></span>5 plataformas</span>
+          <span class="chip"><span class="dot"></span>4 plataformas</span>
         </div>
       </div>
 
@@ -1111,7 +1115,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
         </div>
       </div>
 
-      <div class="section-title first-title"><h3>KPI por plataforma</h3><span class="num">meta 80 días</span></div>
+      <div class="section-title first-title"><h3>KPI por plataforma</h3><span class="num">indicador a priorizar</span></div>
       <div class="grid grid-3" id="kpiWeekly"></div>
 
       <div class="section-title"><h3>KPI por cuenta prioritaria</h3><span class="num">indicadores de cuenta</span></div>
@@ -1196,15 +1200,99 @@ html.gate-unlocked .gate-overlay{display:none !important;}
         </div>
         <div class="card">
           <div class="section-title" style="margin:0 0 8px;"><h3>Departamento de Comunicaciones</h3></div>
-          <p style="font-size:13px;line-height:1.55;color:var(--black);margin:0;">Única dependencia facultada para emitir comunicaciones institucionales a medios y publicar en las redes oficiales (Instagram, TikTok, X, YouTube, Facebook). Vela por el cumplimiento de la identidad corporativa y el uso correcto del símbolo y la paleta de marca en cada pieza.</p>
+          <p style="font-size:13px;line-height:1.55;color:var(--black);margin:0;">Única dependencia facultada para emitir comunicaciones institucionales a medios y publicar en las redes oficiales (Instagram, X, TikTok, Facebook). Vela por el cumplimiento de la identidad corporativa y el uso correcto del símbolo y la paleta de marca en cada pieza.</p>
+        </div>
+        <div class="card">
+          <div class="section-title" style="margin:0 0 8px;"><h3>Cuentas oficiales</h3></div>
+          <p style="font-size:13px;line-height:1.55;color:var(--black);margin:0;">Ecosistema digital oficial y centralizado de Renacer Tachirense (4 plataformas -- no se mide el rendimiento vía cuentas de terceros ni de corte político-partidista):</p>
+          <ul style="font-size:12px;line-height:1.7;color:var(--black);margin:8px 0 0;padding-left:18px;">
+            <li>Instagram -- <b>@renacertachirense.ve</b></li>
+            <li>X (Twitter) -- <b>@renacertachira</b></li>
+            <li>TikTok -- <b>@renacertachirense</b></li>
+            <li>Facebook -- <b>Renacer Tachirense</b> (Página Oficial)</li>
+          </ul>
+          <p style="font-size:11px;line-height:1.5;color:var(--gray);margin:8px 0 0;">Fuente: "Plan Comunicacional Integral -- Marca Territorio Táchira" (v8, septiembre 2026).</p>
         </div>
       </div>
 
       <div class="note">
-        <b>Estado de la marca (confirmado):</b> el símbolo institucional es el <b>Pino Lazo</b>, en sustitución completa del Apamate — el Apamate ya no forma parte del material activo de la marca. La estructura de contenido es de <b>5 pilares</b> (1. El Táchira que no se rindió · 2. Hecho en Táchira · 3. Gestión que se siente, no se explica · 4. El Táchira que se construye en comunidad · 5. El Táchira que te espera), tras retirar el antiguo pilar "Táchira Frontera y ZEB" y renumerar el resto de forma secuencial. Son solo dos símbolos: el <b>Pino Lazo</b> (institucional) y el <b>Oso Frontino</b> (mascota de extensión de marca). Fuente: "Planificación de Contenidos — Marca Territorio Táchira" (septiembre 2026), el documento más reciente y completo de los entregados.
+        <b>Estado de la marca (confirmado):</b> el símbolo institucional es el <b>Pino Lazo</b>, en sustitución completa del Apamate — el Apamate ya no forma parte del material activo de la marca. La estructura de contenido es de <b>5 pilares</b> (1. El Táchira que no se rindió · 2. Hecho en Táchira · 3. Táchira Verde e Histórico · 4. El Táchira que se construye en comunidad · 5. El Táchira que te espera), tras confirmarse que el Pilar 3 no incluye ningún enfoque de gestión institucional/gubernamental -- se retira por completo esa narrativa del banco de contenido. Son solo dos símbolos: el <b>Pino Lazo</b> (institucional) y el <b>Oso Frontino</b> (mascota de extensión de marca). El ecosistema oficial de cuentas propias es de <b>4 plataformas</b>: Instagram, X, TikTok y Facebook. Fuente: "Plan Comunicacional Integral -- Marca Territorio Táchira" (v8, septiembre 2026) y "Planificación de Contenidos — Marca Territorio Táchira" (septiembre 2026).
       </div>
       <div class="note">
         <b>Elementos gráficos pendientes de diseño</b> (fuente: "Marca Renacer Tachirense — Elementos, Adaptación Pino Lazo"): la rama con acículas y la piña ya están recoloreadas a la paleta de marca sobre el trazo original entregado por la Gobernación, sin necesidad de rediseño. Quedan pendientes: (1) redibujar en Illustrator/Canva las piezas "Movida Cultural" y "Ayer y Hoy" con el logotipo Pino Lazo incrustado; (2) confirmar los valores HEX exactos contra el archivo fuente; (3) conseguir una silueta de árbol de pino lazo completa con licencia — la única referencia recibida trae una marca de agua de stock (Vecteezy) incrustada en los píxeles y no puede usarse en piezas de marca.
+      </div>
+    </section>
+
+    <!-- ============ 10 MEJORES HORARIOS ============ -->
+    <section class="panel" id="horarios">
+      <div class="topline">
+        <div>
+          <h2>Mejores días y horarios</h2>
+          <p class="sub">Programación de contenidos por cuenta oficial de Renacer Tachirense -- fuente: "Plan Comunicacional Integral -- Marca Territorio Táchira" (v8, septiembre 2026).</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Red social oficial</th><th>Mejores días</th><th>Mejor horario</th><th>Frecuencia sugerida</th></tr></thead>
+          <tbody id="scheduleBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 11 ANÁLISIS DE COYUNTURA ============ -->
+    <section class="panel" id="coyuntura">
+      <div class="topline">
+        <div>
+          <h2>Estrategia comunicacional de coyuntura y frontera</h2>
+          <p class="sub">Septiembre 2026 -- fuente: "Plan Comunicacional Integral -- Marca Territorio Táchira" (v8).</p>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="section-title" style="margin:0 0 8px;"><h3>Enfoque de coyuntura</h3></div>
+          <p style="font-size:13px;line-height:1.55;color:var(--black);margin:0;">Integración del análisis geopolítico y socioeconómico binacional, enfocando los esfuerzos de la Marca Territorio Renacer Tachirense en la cohesión social, el orgullo de pertenencia y la resiliencia cultural frente a la volatilidad regional.</p>
+        </div>
+      </div>
+      <div class="note">
+        <b>Pendiente de contenido:</b> el documento v8 solo entrega este resumen de una frase para la sección. El desarrollo completo (protocolos, mensajes clave por escenario, líneas rojas) no ha sido provisto todavía en ningún documento fuente.
+      </div>
+    </section>
+
+    <!-- ============ 12 MONITOREO EN VIVO ============ -->
+    <section class="panel" id="monitoreo">
+      <div class="topline">
+        <div>
+          <h2>Centro de control y monitoreo en vivo</h2>
+          <p class="sub">Dashboard central de métricas y alertas -- fuente: "Plan Comunicacional Integral -- Marca Territorio Táchira" (v8).</p>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="section-title" style="margin:0 0 8px;"><h3>Propósito del centro de control</h3></div>
+          <p style="font-size:13px;line-height:1.55;color:var(--black);margin:0;">Panel interactivo de control operativo y monitoreo general de métricas en tiempo real para las cuentas oficiales de Renacer Tachirense.</p>
+        </div>
+      </div>
+      <div class="note">
+        <b>Pendiente de contenido:</b> el documento v8 solo entrega este resumen de una frase para la sección. Las métricas y alertas en vivo de este panel ya viven en las secciones "Métricas &amp; KPIs" y "Mejores horarios" de este mismo dashboard; un panel de monitoreo dedicado (alertas automáticas, umbrales) queda pendiente hasta contar con un documento fuente que lo especifique.
+      </div>
+    </section>
+
+    <!-- ============ 13 MATRIZ DE RIESGOS ============ -->
+    <section class="panel" id="riesgos">
+      <div class="topline">
+        <div>
+          <h2>Matriz de gestión de riesgos, emergencia y crisis reputacional</h2>
+          <p class="sub">Fuente: "Plan Comunicacional Integral -- Marca Territorio Táchira" (v8, septiembre 2026).</p>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="section-title" style="margin:0 0 8px;"><h3>Alcance de la matriz</h3></div>
+          <p style="font-size:13px;line-height:1.55;color:var(--black);margin:0;">Protocolos de respuesta rápida ante alertas tempranas, niveles de urgencia y discursos de contención basados en la protección de los valores de la Marca Territorio.</p>
+        </div>
+      </div>
+      <div class="note">
+        <b>Pendiente de contenido:</b> el documento v8 solo entrega este resumen de una frase para la sección. La matriz completa (niveles de urgencia, protocolos por escenario, discursos de contención) no ha sido provista todavía en ningún documento fuente.
       </div>
     </section>
 
@@ -1332,8 +1420,8 @@ const DEFAULT_DATA = {
     "introCard": "Este plan traduce el Banco de Contenido de 5 pilares -- se retiro el antiguo Pilar 3 'Táchira Frontera y ZEB', renumerados de forma secuencial como pilares 1 a 5 -- en una estrategia comunicacional ejecutable. El símbolo institucional es el Pino Lazo, en sustitución completa del Apamate; como mascota de extensión de marca se suma el Oso Frontino. El principio rector: adoptar el lenguaje que la propia audiencia tachirense ya premió en cuentas como @tachira_natural, @tachiraextrema, @soytachirense y @TachiraMia, evitando la plantilla institucional impersonal.",
     "stats": [
       {
-        "num": "100",
-        "lbl": "Ideas de contenido en el banco (5 pilares)"
+        "num": "80",
+        "lbl": "Ideas de contenido en el banco (4 de 5 pilares -- Pilar 3 pendiente)"
       },
       {
         "num": "5",
@@ -1589,113 +1677,12 @@ const DEFAULT_DATA = {
       "id": "3",
       "order": 3,
       "num": 3,
-      "name": "Gestión que se siente, no se explica",
-      "sub": "El antidoto: 'esto cambió en tu comunidad' en vez de 'informe de gestión'",
-      "phase": "Fase 2-3",
-      "symbol": "Ninguna pieza de este pilar abre con cifras o lenguaje de informe; debe abrir con la persona beneficiada hablando de su propia experiencia. El gobernador aparece como acompañante de la escena, no como locutor de resultados.",
-      "extra": "Narrativa dominante: testimonio del beneficiario ('esto cambió en mi comunidad') + contraste 'antes/después'. Emoción principal: alivio, confianza y seguridad percibida. Plantillas de guion A (testimonial) y F (carrusel de gestión). Plataforma prioritaria: Instagram + Facebook + TikTok. Día recomendado: lunes/martes.",
-      "ideas": [
-        {
-          "code": "FOTO-F1",
-          "txt": "Una familia beneficiada por una obra o programa, en su entorno real.",
-          "note": "La familia beneficiada, protagonista central."
-        },
-        {
-          "code": "FOTO-F2",
-          "txt": "Inauguración de obra con el gobernador entregando o cortando cinta.",
-          "note": "Complemento: un vecino que usará la obra, en primer plano junto al acto."
-        },
-        {
-          "code": "FOTO-F3",
-          "txt": "Un funcionario de seguridad en el territorio, en tono cercano y humano.",
-          "note": "El funcionario de seguridad."
-        },
-        {
-          "code": "FOTO-F4",
-          "txt": "Escuela o centro de salud renovado, con niños o pacientes presentes.",
-          "note": "Los niños, un maestro, o un paciente."
-        },
-        {
-          "code": "FOTO-F5",
-          "txt": "Foto candid del gobernador escuchando a un ciudadano, sin pose forzada.",
-          "note": "El ciudadano que habla, protagonista de la escena."
-        },
-        {
-          "code": "FLY-FL1",
-          "txt": "Portada del carrusel mensual: 'Esto se hizo por ti este mes'.",
-          "note": "Sin persona."
-        },
-        {
-          "code": "FLY-FL2",
-          "txt": "Logro puntual (ej. kilómetros de vía asfaltada) en lenguaje de beneficio directo.",
-          "note": "Un conductor o vecino de la vía."
-        },
-        {
-          "code": "FLY-FL3",
-          "txt": "Servicio ciudadano: líneas de atención, horarios, puntos de contacto.",
-          "note": "Vocero de atención ciudadana."
-        },
-        {
-          "code": "FLY-FL4",
-          "txt": "Agradecimiento público a un municipio por su participación o resultados.",
-          "note": "El alcalde o un líder comunal del municipio."
-        },
-        {
-          "code": "FLY-FL5",
-          "txt": "'Antes / Ahora' de un espacio público intervenido.",
-          "note": "El vecino de siempre del lugar intervenido."
-        },
-        {
-          "code": "REEL-R1",
-          "txt": "'24 horas con el gobernador', versión corta.",
-          "note": "Formato hermano: '24 horas con un maestro / medico / oficial', alternando con el del gobernador."
-        },
-        {
-          "code": "REEL-R2",
-          "txt": "Inauguración con reacciones reales y espontáneas de la comunidad.",
-          "note": "Niños, vecinos o ancianos reaccionando."
-        },
-        {
-          "code": "REEL-R3",
-          "txt": "Testimonial de un beneficiario directo de un programa social.",
-          "note": "El beneficiario del programa."
-        },
-        {
-          "code": "REEL-R4",
-          "txt": "Resumen mensual 'esto logramos juntos', ritmo rápido y musical.",
-          "note": "Mosaico de varios ciudadanos, sin protagonista único."
-        },
-        {
-          "code": "REEL-R5",
-          "txt": "Recorrido de un operativo de seguridad o atención social, con framing de tranquilidad familiar.",
-          "note": "El funcionario de seguridad o el trabajador social en terreno."
-        },
-        {
-          "code": "CARR-CR1",
-          "txt": "Carrusel mensual de gestión (6 laminas) organizado por eje temático.",
-          "note": "Sin persona, formato informe."
-        },
-        {
-          "code": "CARR-CR2",
-          "txt": "'Antes / Después' de 3 a 4 obras emblemáticas del mes.",
-          "note": "Los vecinos beneficiados."
-        },
-        {
-          "code": "CARR-CR3",
-          "txt": "Servicios disponibles por municipio, en formato de guía rápida.",
-          "note": "El alcalde o un funcionario municipal."
-        },
-        {
-          "code": "CARR-CR4",
-          "txt": "Logros por sector: salud, educación, seguridad, vialidad.",
-          "note": "Un representante por sector -- medico, docente, oficial, ingeniero vial."
-        },
-        {
-          "code": "CARR-CR5",
-          "txt": "'Preguntas frecuentes' sobre un programa de gobierno específico.",
-          "note": "El vocero técnico del programa."
-        }
-      ]
+      "name": "Táchira Verde e Histórico",
+      "sub": "Aspiracional-explicativa: el valor patrimonial de nuestros paisajes",
+      "phase": "",
+      "symbol": "",
+      "extra": "Narrativa dominante: aspiracional-explicativa y valor patrimonial de nuestros paisajes. Emoción principal: esperanza y proyección regional. Fuente: 'Plan Comunicacional Integral -- Marca Territorio Táchira' (v8, septiembre 2026), tabla de pilares. Por instrucción expresa, este pilar NO incluye ningún enfoque de gestión de gobierno -- se retiró por completo la narrativa de obras/inauguraciones/funcionarios que ocupaba antes este espacio. El documento v8 solo entrega la ficha narrativa de este pilar (narrativa dominante y emoción principal), sin banco de ideas por pieza ni asignación de fase/plataforma/día; el banco de 20 ideas de este pilar queda pendiente hasta contar con un documento fuente que lo desarrolle a ese nivel de detalle.",
+      "ideas": []
     },
     {
       "id": "4",
@@ -1995,7 +1982,7 @@ const DEFAULT_DATA = {
       "start": "2026-09-14",
       "end": "2026-10-25",
       "days": "días 22-63 (semanas 4-9)",
-      "milestone": "Poner en rotación completa los 5 pilares con énfasis progresivo en Hecho en Táchira (Pilar 2), Gestión que se siente (Pilar 3) y Comunidad (Pilar 4). Fase de mayor volumen de publicación y de consolidación del modelo creador-narrador frente al institucional."
+      "milestone": "Poner en rotación completa los pilares con contenido asignado -- Hecho en Táchira (Pilar 2) y Comunidad (Pilar 4) -- y sumar Táchira Verde e Histórico (Pilar 3) en cuanto exista un documento fuente con su banco de ideas. Fase de mayor volumen de publicación y de consolidación del modelo creador-narrador frente al institucional."
     },
     {
       "id": "3",
@@ -2005,40 +1992,40 @@ const DEFAULT_DATA = {
       "start": "2026-10-26",
       "end": "2026-11-11",
       "days": "días 64-80 (semanas 10-12, semana 12 parcial)",
-      "milestone": "Concentrar la narrativa de Gestión que se siente (Pilar 3) y de Diáspora y turismo (Pilar 5) -- el pilar de mayor potencial emocional del plan -- y cerrar con una pieza integradora: un recorrido del Pino Lazo por el mapa del Táchira que enlace las cinco dimensiones territoriales."
+      "milestone": "Concentrar la narrativa de Diáspora y turismo (Pilar 5) -- el pilar de mayor potencial emocional del plan -- y cerrar con una pieza integradora: un recorrido del Pino Lazo por el mapa del Táchira que enlace las cinco dimensiones territoriales."
     }
   ],
   "kpiWeekly": [
     {
       "id": "1",
       "order": 1,
-      "piece": "Instagram (Marca Territorio)",
-      "metric": "Seguidores netos y engagement por publicación",
-      "goal": "+8.000-10.000 seguidores y engagement sostenido >= 5% en piezas de narrativa testimonial/serial (meta 80 días, ~22% de la meta anual de 50K/5%)",
+      "piece": "Instagram -- @renacertachirense.ve",
+      "metric": "Indicador a priorizar: tasa de engagement por publicación y guardados en carruseles identitarios",
+      "goal": "Rol estratégico: eje visual principal, comunidad de estilo de vida, Reels de turismo y nostalgia UGC",
       "status": null
     },
     {
       "id": "2",
       "order": 2,
-      "piece": "TikTok",
-      "metric": "Seguidores netos y piezas con desempeño viral",
-      "goal": "+15.000-20.000 seguidores y al menos 8-9 piezas virales (~3/mes), concentradas en Pilares 1, 4 y 5",
+      "piece": "X (Twitter) -- @renacertachira",
+      "metric": "Indicador a priorizar: tasa de republicaciones (retweets) e hilos de memoria histórica",
+      "goal": "Rol estratégico: canal de conversación territorial, difusión rápida de hitos culturales y orgullo regional",
       "status": null
     },
     {
       "id": "3",
       "order": 3,
-      "piece": "Facebook",
-      "metric": "Seguidores netos, foco segmento 35-60 años",
-      "goal": "+12.000-15.000 seguidores, con foco en adultos 35-60 vía Pilares 1 y 3",
+      "piece": "TikTok -- @renacertachirense",
+      "metric": "Indicador a priorizar: retención de video, reproducciones completas y compartidos",
+      "goal": "Rol estratégico: entretenimiento visual dinámico, formatos cortos para la diáspora y tradiciones",
       "status": null
     },
     {
       "id": "4",
       "order": 4,
-      "piece": "YouTube",
-      "metric": "Piezas documentales/testimoniales largas y vistas acumuladas",
-      "goal": "Al menos 4 piezas largas (una por fase) y superar 30.000 vistas acumuladas en el canal de Territorio",
+      "piece": "Facebook -- Página oficial \"Renacer Tachirense\"",
+      "metric": "Indicador a priorizar: comentarios en formato de memoria colectiva e interacciones netas",
+      "goal": "Rol estratégico: comunidad institucional y familiar de mayor alcance demográfico adulto y diáspora",
       "status": null
     }
   ],
@@ -2200,6 +2187,15 @@ const reportRows = [
   ['Semanal (lunes)','KPIs de las 5 piezas + menciones orgánicas detectadas','Director Estratégico + Equipo de Comunicación Digital'],
   ['Mensual (por fase)','KPIs de especiales + crecimiento de seguidores','Director Estratégico — informe ejecutivo de 1 página'],
   ['Cierre del plan (día 80)','Resumen de los 4 pilares + recomendación para la siguiente fase','Equipo estratégico completo']
+];
+
+/* Mejores días y horarios por cuenta oficial -- fuente: Plan Comunicacional
+   Integral v8, sección 10. Específico de Marca Territorio (no compartido). */
+const scheduleRows = [
+  ['Instagram (@renacertachirense.ve)','Todos los días (refuerzo jueves a sábado)','12:00–1:00 p.m. y 7:00–9:00 p.m. (ocio nocturno)','1 a 2 publicaciones diarias (feed + reel)'],
+  ['X (@renacertachira)','Lunes a viernes (días hábiles)','8:00–10:00 a.m. y 12:00–1:00 p.m.','1 publicación diaria, hilos temáticos'],
+  ['TikTok (@renacertachirense)','Martes, jueves y sábado','6:00–10:00 p.m. (pico 7:00–9:00 p.m.)','3 a 4 publicaciones semanales'],
+  ['Facebook (Renacer Tachirense)','Martes a jueves + domingo tarde','9:00–11:00 a.m. / 1:00–3:00 p.m. (domingo 4:00–6:00 p.m.)','1 publicación diaria']
 ];
 
 /* ============ 2 · UTILIDADES ============ */
@@ -2592,6 +2588,12 @@ function renderStaticTables() {
     rb.appendChild(el('tr', '',
       '<td class="rowlabel">' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td>'));
   });
+  const sb = $('scheduleBody');
+  sb.innerHTML = '';
+  scheduleRows.forEach(function (r) {
+    sb.appendChild(el('tr', '',
+      '<td class="rowlabel">' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td>'));
+  });
 }
 
 /* ============ 5 · KPIs + PANEL DE ESTADO EN VIVO ============ */
@@ -2960,12 +2962,12 @@ document.addEventListener('keydown', function (e) {
 /* ============ 9 · CONEXIÓN FIREBASE FIRESTORE ============
    Colecciones esperadas bajo la raíz "{BRAND_SLUG}/plan/...":
      meta/main            (documento único)
-     pillars/{1..4}
-     symbols/{1..3}
+     pillars/{1..5}
+     symbols/{1..2}
      weekly/{miercoles..domingo}
      specials/{1..3}
-     phases/{1..4}
-     kpiWeekly/{1..5}
+     phases/{1..3}
+     kpiWeekly/{1..4}
      kpiSpecial/{1..3}
      checklist/{grupo1..grupo3}
    platformRows y reportRows son iguales para las tres marcas y quedan
