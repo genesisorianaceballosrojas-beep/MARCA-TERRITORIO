@@ -126,6 +126,29 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
 }
 .sidebar-foot b{color:rgba(255,255,255,.65);}
 .kbd-hint{margin-top:10px;font-size:10px;color:rgba(255,255,255,.35);}
+
+/* Modo administrador */
+.admin-toggle-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);
+  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;
+  padding:10px 12px;border-radius:10px;cursor:pointer;transition:all .15s ease;
+}
+.admin-toggle-btn:hover{border-color:var(--emerald-bright);color:#fff;}
+.admin-toggle-btn[aria-pressed="true"]{background:var(--emerald-core);border-color:var(--emerald-core);color:#fff;}
+.admin-mode .editable-field{
+  outline:1.5px dashed var(--emerald-core);outline-offset:2px;border-radius:4px;cursor:text;
+  transition:background .15s ease;
+}
+.admin-mode .editable-field:hover{background:#e2f3ec;}
+.admin-mode .editable-field:focus{outline:2px solid var(--emerald-core);background:#fff;}
+.admin-only{display:none;}
+.admin-mode .admin-only{display:inline-flex;}
+.admin-upload-btn{
+  align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);color:var(--emerald-deep-2);
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:6px 10px;border-radius:100px;cursor:pointer;
+}
+.admin-upload-btn:hover{border-color:var(--emerald-core);}
 .kbd{
   display:inline-block;
   font-family:'IBM Plex Mono',monospace;
@@ -996,6 +1019,10 @@ html.gate-unlocked .gate-overlay{display:none !important;}
         Para evaluación del equipo estratégico
       </div>
       <div class="kbd-hint">Atajos: <span class="kbd">1</span>–<span class="kbd">8</span> o <span class="kbd">←</span><span class="kbd">→</span> para cambiar de sección</div>
+      <button type="button" class="admin-toggle-btn" id="adminToggleBtn" aria-pressed="false">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+        <span id="adminToggleTxt">Administrador</span>
+      </button>
     </div>
   </aside>
 
@@ -2981,6 +3008,14 @@ let localChecks = safeStorage.get(LS_PREFIX + 'checklist_v1') || {};
   const saved = safeStorage.get(LS_PREFIX + 'weeklyPlan_v1');
   if (Array.isArray(saved) && saved.length === state.weeklyPlan.length) state.weeklyPlan = saved;
 })();
+(function loadLocalAdminEdits() {
+  const p = safeStorage.get(LS_PREFIX + 'pillars_v1');
+  if (Array.isArray(p) && p.length === state.pillars.length) state.pillars = p;
+  const s = safeStorage.get(LS_PREFIX + 'specials_v1');
+  if (Array.isArray(s) && s.length === state.specials.length) state.specials = s;
+  const sy = safeStorage.get(LS_PREFIX + 'symbols_v1');
+  if (Array.isArray(sy) && sy.length === state.symbols.length) state.symbols = sy;
+})();
 
 const openPillars = new Set(['1']); // primer pilar abierto por defecto
 
@@ -3166,8 +3201,8 @@ function renderIdeaBank() {
   const pillars = sortDocs(state.pillars);
   const rows = [];
   pillars.forEach(function (p) {
-    (Array.isArray(p.ideas) ? p.ideas : []).forEach(function (idea) {
-      rows.push({ pillarName: txt(p.name), pillarNum: txt(p.num), idea: idea });
+    (Array.isArray(p.ideas) ? p.ideas : []).forEach(function (idea, ideaIndex) {
+      rows.push({ pillarName: txt(p.name), pillarNum: txt(p.num), pillarId: txt(p.id), ideaIndex: ideaIndex, idea: idea });
     });
   });
 
@@ -3196,8 +3231,8 @@ function renderIdeaBank() {
     const fmtKey = formatKeyOf(r.idea && r.idea.code);
     const fmt = FORMAT_ADAPT[fmtKey];
     const card = el('div', 'card idea-bank-card draggable-card');
-    card.draggable = true;
-    card.title = 'Arrastra esta idea a una casilla del plan semanal';
+    card.draggable = !adminMode;
+    card.title = adminMode ? 'Modo administrador: edita el texto directamente' : 'Arrastra esta idea a una casilla del plan semanal';
     card.addEventListener('dragstart', function (ev) {
       ev.dataTransfer.effectAllowed = 'copy';
       ev.dataTransfer.setData('text/plain', JSON.stringify({
@@ -3215,8 +3250,8 @@ function renderIdeaBank() {
         '<span class="idea-bank-pillar">Pilar ' + r.pillarNum + ' · ' + r.pillarName + '</span>' +
       '</div>' +
     '</div>' +
-    '<p class="idea-txt" style="margin-bottom:4px;">' + txt(r.idea && r.idea.txt) + '</p>' +
-    '<p class="idea-bank-note">Protagonista posible: ' + txt(r.idea && r.idea.note) + '</p>';
+    '<p class="idea-txt editable-field" style="margin-bottom:4px;" contenteditable="' + (adminMode ? 'true' : 'false') + '" data-pillar-id="' + txt(r.pillarId) + '" data-idea-index="' + r.ideaIndex + '" data-field="txt">' + txt(r.idea && r.idea.txt) + '</p>' +
+    '<p class="idea-bank-note">Protagonista posible: <span class="editable-field" contenteditable="' + (adminMode ? 'true' : 'false') + '" data-pillar-id="' + txt(r.pillarId) + '" data-idea-index="' + r.ideaIndex + '" data-field="note">' + txt(r.idea && r.idea.note) + '</span></p>';
 
     if (fmt) {
       html += '<div class="idea-bank-platforms">' +
@@ -3227,6 +3262,13 @@ function renderIdeaBank() {
       '</div>';
     }
     card.innerHTML += html;
+    if (adminMode) {
+      Array.prototype.slice.call(card.querySelectorAll('.editable-field')).forEach(function (elField) {
+        elField.addEventListener('blur', function () {
+          saveIdeaField(elField.dataset.pillarId, Number(elField.dataset.ideaIndex), elField.dataset.field, elField.textContent.trim());
+        });
+      });
+    }
     list.appendChild(card);
   });
 }
@@ -3455,6 +3497,98 @@ function renderWeekPlanner() {
   });
 }
 
+/* ============ 4d · MODO ADMINISTRADOR ============
+   Al activarse, vuelve editable el contenido de las ideas, los
+   especiales y los símbolos (texto e imagen). Al desactivarse, el
+   contenido queda fijo tal como se dejó -- no se pierde nada, solo se
+   bloquea la edición visualmente. */
+let adminMode = false;
+
+function saveIdeaField(pillarId, ideaIndex, field, value) {
+  const p = state.pillars.filter(function (x) { return txt(x.id) === txt(pillarId); })[0];
+  if (!p || !Array.isArray(p.ideas) || !p.ideas[ideaIndex]) return;
+  const prevVal = p.ideas[ideaIndex][field];
+  if (prevVal === value) return;
+  const newIdeas = clone(p.ideas);
+  newIdeas[ideaIndex][field] = value;
+  p.ideas = newIdeas;
+  if (fb.live) {
+    fb.api.setDoc(fb.api.doc(fb.db, BRAND_SLUG, 'plan', 'pillars', txt(pillarId)), { ideas: newIdeas }, { merge: true })
+      .then(function () { toast('Idea actualizada.'); })
+      .catch(function (err) {
+        p.ideas[ideaIndex][field] = prevVal;
+        renderIdeaBank();
+        toast('No se pudo guardar en Firestore: ' + (err && err.code ? err.code : 'error'));
+      });
+  } else {
+    safeStorage.set(LS_PREFIX + 'pillars_v1', state.pillars);
+    toast('Idea actualizada en este equipo.');
+  }
+}
+
+function saveSpecialField(specialId, field, value) {
+  const s = state.specials.filter(function (x) { return txt(x.id) === txt(specialId); })[0];
+  if (!s) return;
+  const prevVal = s[field];
+  if (prevVal === value) return;
+  s[field] = value;
+  if (fb.live) {
+    const patch = {};
+    patch[field] = value;
+    fb.api.setDoc(fb.api.doc(fb.db, BRAND_SLUG, 'plan', 'specials', txt(specialId)), patch, { merge: true })
+      .then(function () { toast('Especial actualizado.'); })
+      .catch(function (err) {
+        s[field] = prevVal;
+        renderSpecials();
+        toast('No se pudo guardar en Firestore: ' + (err && err.code ? err.code : 'error'));
+      });
+  } else {
+    safeStorage.set(LS_PREFIX + 'specials_v1', state.specials);
+    toast('Especial actualizado en este equipo.');
+  }
+}
+
+function saveSymbolField(symbolId, field, value) {
+  const s = state.symbols.filter(function (x) { return txt(x.id) === txt(symbolId); })[0];
+  if (!s) return;
+  const prevVal = s[field];
+  if (prevVal === value) return;
+  s[field] = value;
+  if (fb.live) {
+    const patch = {};
+    patch[field] = value;
+    fb.api.setDoc(fb.api.doc(fb.db, BRAND_SLUG, 'plan', 'symbols', txt(symbolId)), patch, { merge: true })
+      .then(function () { toast('Símbolo actualizado.'); renderSymbols(); })
+      .catch(function (err) {
+        s[field] = prevVal;
+        renderSymbols();
+        toast('No se pudo guardar en Firestore: ' + (err && err.code ? err.code : 'error'));
+      });
+  } else {
+    safeStorage.set(LS_PREFIX + 'symbols_v1', state.symbols);
+    renderSymbols();
+    toast('Símbolo actualizado en este equipo.');
+  }
+}
+
+function setAdminMode(on) {
+  adminMode = on;
+  document.body.classList.toggle('admin-mode', on);
+  const btn = $('adminToggleBtn');
+  if (btn) btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  const txtEl = $('adminToggleTxt');
+  if (txtEl) txtEl.textContent = on ? 'Administrador (activo)' : 'Administrador';
+  toast(on ? 'Modo administrador activado: edita ideas, especiales y símbolos.' : 'Modo administrador desactivado. Los cambios quedan fijos.');
+  renderIdeaBank();
+  renderSpecials();
+  renderSymbols();
+}
+
+function wireAdmin() {
+  const btn = $('adminToggleBtn');
+  if (btn) btn.addEventListener('click', function () { setAdminMode(!adminMode); });
+}
+
 function renderSymbols() {
   const grid = $('symbolGrid');
   grid.innerHTML = '';
@@ -3464,17 +3598,40 @@ function renderSymbols() {
     return;
   }
   symbols.forEach(function (s) {
+    const ce = adminMode ? 'true' : 'false';
     const url = safeUrl(s.imageUrl);
     const media = url
       ? '<div class="symbol-img-box"><img src="' + url + '" alt="' + txt(s.name).replace(/"/g, '&quot;') + '" loading="lazy"></div>'
       : '<div class="symbol-ph"><span>[Imagen del símbolo]</span></div>';
-    grid.appendChild(el('div', 'symbol-item',
+    const item = el('div', 'symbol-item',
       media +
+      (adminMode ? '<div style="padding:10px 14px 0;"><button type="button" class="admin-upload-btn admin-only" style="display:inline-flex;" data-symbol-id="' + txt(s.id) + '">📷 Cambiar imagen</button><input type="file" accept="image/*" class="symbol-file-input" data-symbol-id="' + txt(s.id) + '" style="display:none;"></div>' : '') +
       '<div class="symbol-txt">' +
         '<span class="symbol-tag">' + txt(s.tag) + '</span>' +
-        '<h5>' + txt(s.name) + '</h5>' +
-        '<p>' + txt(s.description) + '</p>' +
-      '</div>'));
+        '<h5 class="editable-field" contenteditable="' + ce + '" data-symbol-id="' + txt(s.id) + '" data-field="name">' + txt(s.name) + '</h5>' +
+        '<p class="editable-field" contenteditable="' + ce + '" data-symbol-id="' + txt(s.id) + '" data-field="description">' + txt(s.description) + '</p>' +
+      '</div>');
+    if (adminMode) {
+      Array.prototype.slice.call(item.querySelectorAll('.editable-field')).forEach(function (elField) {
+        elField.addEventListener('blur', function () {
+          saveSymbolField(elField.dataset.symbolId, elField.dataset.field, elField.textContent.trim());
+        });
+      });
+      const uploadBtn = item.querySelector('.admin-upload-btn');
+      const fileInput = item.querySelector('.symbol-file-input');
+      if (uploadBtn && fileInput) {
+        uploadBtn.addEventListener('click', function () { fileInput.click(); });
+        fileInput.addEventListener('change', function () {
+          const file = fileInput.files && fileInput.files[0];
+          if (!file) return;
+          if (file.size > 900 * 1024) { toast('Imagen muy pesada (máx. ~900 KB). Usa una versión comprimida.'); return; }
+          const reader = new FileReader();
+          reader.onload = function () { saveSymbolField(txt(s.id), 'imageUrl', reader.result); };
+          reader.readAsDataURL(file);
+        });
+      }
+    }
+    grid.appendChild(item);
   });
 }
 
@@ -3488,21 +3645,22 @@ function renderSpecials() {
     return;
   }
   specials.forEach(function (s) {
+    const ce = adminMode ? 'true' : 'false';
     const card = el('div', 'special-card draggable-card',
       '<div class="special-top">' +
-        '<div><h4>' + txt(s.title) + '</h4><p class="theme">' + txt(s.theme) + '</p></div>' +
+        '<div><h4 class="editable-field" contenteditable="' + ce + '" data-special-id="' + txt(s.id) + '" data-field="title">' + txt(s.title) + '</h4><p class="theme editable-field" contenteditable="' + ce + '" data-special-id="' + txt(s.id) + '" data-field="theme">' + txt(s.theme) + '</p></div>' +
         '<div class="special-badges">' +
-          (txt(s.format).trim() ? '<span class="badge fmt">' + txt(s.format) + '</span>' : '') +
-          (txt(s.phase).trim() ? '<span class="badge phase">' + txt(s.phase) + '</span>' : '') +
+          '<span class="badge fmt editable-field" contenteditable="' + ce + '" data-special-id="' + txt(s.id) + '" data-field="format">' + txt(s.format) + '</span>' +
+          '<span class="badge phase editable-field" contenteditable="' + ce + '" data-special-id="' + txt(s.id) + '" data-field="phase">' + txt(s.phase) + '</span>' +
         '</div>' +
       '</div>' +
       '<div class="special-script">' +
-        '<div class="script-part"><span class="k">Gancho</span><p>' + txt(s.hook) + '</p></div>' +
-        '<div class="script-part"><span class="k">Desarrollo</span><p>' + txt(s.development) + '</p></div>' +
-        '<div class="script-part"><span class="k">CTA</span><p>' + txt(s.cta) + '</p></div>' +
+        '<div class="script-part"><span class="k">Gancho</span><p class="editable-field" contenteditable="' + ce + '" data-special-id="' + txt(s.id) + '" data-field="hook">' + txt(s.hook) + '</p></div>' +
+        '<div class="script-part"><span class="k">Desarrollo</span><p class="editable-field" contenteditable="' + ce + '" data-special-id="' + txt(s.id) + '" data-field="development">' + txt(s.development) + '</p></div>' +
+        '<div class="script-part"><span class="k">CTA</span><p class="editable-field" contenteditable="' + ce + '" data-special-id="' + txt(s.id) + '" data-field="cta">' + txt(s.cta) + '</p></div>' +
       '</div>');
-    card.draggable = true;
-    card.title = 'Arrastra este especial a la plantilla del domingo';
+    card.draggable = !adminMode;
+    card.title = adminMode ? 'Modo administrador: edita el texto directamente' : 'Arrastra este especial a la plantilla del domingo';
     card.addEventListener('dragstart', function (ev) {
       ev.dataTransfer.effectAllowed = 'copy';
       ev.dataTransfer.setData('text/plain', JSON.stringify({
@@ -3514,6 +3672,13 @@ function renderSpecials() {
         cta: txt(s.cta)
       }));
     });
+    if (adminMode) {
+      Array.prototype.slice.call(card.querySelectorAll('.editable-field')).forEach(function (elField) {
+        elField.addEventListener('blur', function () {
+          saveSpecialField(elField.dataset.specialId, elField.dataset.field, elField.textContent.trim());
+        });
+      });
+    }
     list.appendChild(card);
   });
 }
@@ -4160,6 +4325,7 @@ async function boot() {
   renderAllFromState(); // contenido local inmediato: nunca hay pantalla en blanco
   wireStaticButtons();
   wireIdeaBank();
+  wireAdmin();
   wireFbDialog();
   wireGate();
 
