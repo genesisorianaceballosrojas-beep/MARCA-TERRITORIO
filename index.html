@@ -394,6 +394,43 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
 .idea-note{font-size:11.5px;line-height:1.45;color:var(--gray);font-style:italic;}
 @media(max-width:700px){.idea-row{grid-template-columns:50px 1fr;}.idea-note{grid-column:2/3;}}
 
+/* Banco de ideas -- buscador y filtro de formato */
+.idea-search-bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:6px;}
+.idea-search-input-wrap{
+  flex:1 1 260px;display:flex;align-items:center;gap:8px;
+  background:var(--white);border:1px solid var(--border);border-radius:100px;
+  padding:9px 14px;color:var(--gray);
+}
+.idea-search-input-wrap svg{flex-shrink:0;opacity:.7;}
+.idea-search-input-wrap input{
+  flex:1;border:none;outline:none;background:transparent;
+  font-family:'Inter',sans-serif;font-size:13px;color:var(--black);
+}
+.idea-search-input-wrap:focus-within{border-color:var(--emerald-core);}
+.idea-format-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.format-chip{
+  border:1px solid var(--border);background:var(--paper-2);color:var(--gray);
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:600;
+  padding:8px 14px;border-radius:100px;cursor:pointer;transition:all .15s ease;white-space:nowrap;
+}
+.format-chip:hover{border-color:var(--emerald-core);}
+.format-chip.active{background:var(--emerald-core);border-color:var(--emerald-core);color:#fff;}
+.idea-search-count{font-size:12px;color:var(--gray);margin:12px 0 14px;}
+.idea-bank-card{margin-bottom:12px;}
+.idea-bank-top{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px;}
+.idea-bank-tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.idea-bank-pillar{
+  font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;color:var(--emerald-deep-2);
+  background:#e2f3ec;padding:3px 9px;border-radius:100px;white-space:nowrap;
+}
+.idea-bank-note{font-size:12px;color:var(--gray);font-style:italic;margin:0 0 12px;}
+.idea-bank-platforms{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:900px){.idea-bank-platforms{grid-template-columns:repeat(2,1fr);}}
+.idea-bank-platform{background:var(--paper-2);border-radius:10px;padding:10px 12px;}
+.idea-bank-platform .plat-lbl{display:block;font-size:11px;font-weight:700;color:var(--emerald-deep-2);margin-bottom:4px;}
+.idea-bank-platform p{margin:0;font-size:11.5px;line-height:1.5;color:var(--black);}
+.idea-bank-empty{padding:30px 0;text-align:center;color:var(--gray);font-size:13px;}
+
 /* Weekly pieces */
 .week-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
 @media(max-width:900px){.week-strip{grid-template-columns:repeat(2,1fr);}}
@@ -912,16 +949,17 @@ html.gate-unlocked .gate-overlay{display:none !important;}
     <ul class="navlist" id="navlist">
       <li><button type="button" class="navbtn active" data-target="resumen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Resumen<span class="tag">01</span></button></li>
       <li><button type="button" class="navbtn" data-target="pilares"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7Z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>Pilares de marca<span class="tag">02</span></button></li>
-      <li><button type="button" class="navbtn" data-target="semanal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Plan semanal<span class="tag">03</span></button></li>
-      <li><button type="button" class="navbtn" data-target="especiales"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 10 17 15 18 22 12 18.5 6 22 7 15 2 10 9 9"/></svg>Publicaciones especiales<span class="tag">04</span></button></li>
-      <li><button type="button" class="navbtn" data-target="calendario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15h.01M12 15h.01M16 15h.01"/></svg>Calendario 80 días<span class="tag">05</span></button></li>
-      <li><button type="button" class="navbtn" data-target="plataformas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 12 15 2 8.5"/><polyline points="2 15.5 12 22 22 15.5"/><polyline points="2 12 12 18.5 22 12"/></svg>Multiplataforma<span class="tag">06</span></button></li>
-      <li><button type="button" class="navbtn" data-target="metricas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Métricas &amp; KPIs<span class="tag">07</span></button></li>
-      <li><button type="button" class="navbtn" data-target="checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Checklist<span class="tag">08</span></button></li>
-      <li><button type="button" class="navbtn" data-target="horarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mejores horarios<span class="tag">09</span></button></li>
-      <li><button type="button" class="navbtn" data-target="coyuntura"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>Análisis de coyuntura<span class="tag">10</span></button></li>
-      <li><button type="button" class="navbtn" data-target="monitoreo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Monitoreo en vivo<span class="tag">11</span></button></li>
-      <li><button type="button" class="navbtn" data-target="riesgos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Matriz de riesgos<span class="tag">12</span></button></li>
+      <li><button type="button" class="navbtn" data-target="ideabank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Banco de ideas<span class="tag">03</span></button></li>
+      <li><button type="button" class="navbtn" data-target="semanal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Plan semanal<span class="tag">04</span></button></li>
+      <li><button type="button" class="navbtn" data-target="especiales"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 10 17 15 18 22 12 18.5 6 22 7 15 2 10 9 9"/></svg>Publicaciones especiales<span class="tag">05</span></button></li>
+      <li><button type="button" class="navbtn" data-target="calendario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15h.01M12 15h.01M16 15h.01"/></svg>Calendario 80 días<span class="tag">06</span></button></li>
+      <li><button type="button" class="navbtn" data-target="plataformas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 12 15 2 8.5"/><polyline points="2 15.5 12 22 22 15.5"/><polyline points="2 12 12 18.5 22 12"/></svg>Multiplataforma<span class="tag">07</span></button></li>
+      <li><button type="button" class="navbtn" data-target="metricas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Métricas &amp; KPIs<span class="tag">08</span></button></li>
+      <li><button type="button" class="navbtn" data-target="checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Checklist<span class="tag">09</span></button></li>
+      <li><button type="button" class="navbtn" data-target="horarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mejores horarios<span class="tag">10</span></button></li>
+      <li><button type="button" class="navbtn" data-target="coyuntura"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>Análisis de coyuntura<span class="tag">11</span></button></li>
+      <li><button type="button" class="navbtn" data-target="monitoreo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Monitoreo en vivo<span class="tag">12</span></button></li>
+      <li><button type="button" class="navbtn" data-target="riesgos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Matriz de riesgos<span class="tag">13</span></button></li>
     </ul>
 
     <div class="sidebar-foot">
@@ -1011,7 +1049,33 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       <div class="note" id="pilaresNote"></div>
     </section>
 
-    <!-- ============ 03 SEMANAL ============ -->
+    <!-- ============ 03 BANCO DE IDEAS ============ -->
+    <section class="panel" id="ideabank">
+      <div class="topline">
+        <div>
+          <h2>Banco de ideas de contenido</h2>
+          <p class="sub">Las 104 ideas de los 5 pilares en un solo buscador -- filtra por formato y consulta cómo adaptar cada una a Instagram, Facebook, TikTok y X.</p>
+        </div>
+      </div>
+
+      <div class="idea-search-bar">
+        <div class="idea-search-input-wrap">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="ideaSearchInput" placeholder="Buscar por palabra clave, pilar, protagonista o código (ej. REEL-R1)...">
+        </div>
+        <div class="idea-format-chips" id="ideaFormatChips">
+          <button type="button" class="format-chip active" data-format="all">Todos</button>
+          <button type="button" class="format-chip" data-format="FOTO">Foto</button>
+          <button type="button" class="format-chip" data-format="FLY">Flyer</button>
+          <button type="button" class="format-chip" data-format="REEL">Reel</button>
+          <button type="button" class="format-chip" data-format="CARR">Carrusel</button>
+        </div>
+      </div>
+      <p class="idea-search-count" id="ideaSearchCount"></p>
+      <div id="ideaBankList"></div>
+    </section>
+
+    <!-- ============ 04 SEMANAL ============ -->
     <section class="panel" id="semanal">
       <div class="topline">
         <div>
@@ -1023,7 +1087,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       <div class="note" id="semanalNote"></div>
     </section>
 
-    <!-- ============ 04 ESPECIALES ============ -->
+    <!-- ============ 05 ESPECIALES ============ -->
     <section class="panel" id="especiales">
       <div class="topline">
         <div>
@@ -1041,7 +1105,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
     </section>
 
-    <!-- ============ 05 CALENDARIO ============ -->
+    <!-- ============ 06 CALENDARIO ============ -->
     <section class="panel" id="calendario">
       <div class="topline">
         <div>
@@ -1056,7 +1120,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
     </section>
 
-    <!-- ============ 06 PLATAFORMAS ============ -->
+    <!-- ============ 07 PLATAFORMAS ============ -->
     <section class="panel" id="plataformas">
       <div class="topline">
         <div>
@@ -1072,7 +1136,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
     </section>
 
-    <!-- ============ 07 MÉTRICAS ============ -->
+    <!-- ============ 08 MÉTRICAS ============ -->
     <section class="panel" id="metricas">
       <div class="topline">
         <div>
@@ -1136,7 +1200,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
     </section>
 
-    <!-- ============ 08 CHECKLIST ============ -->
+    <!-- ============ 09 CHECKLIST ============ -->
     <section class="panel" id="checklist">
       <div class="topline">
         <div>
@@ -1166,7 +1230,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       <div id="checkGroups"></div>
     </section>
 
-    <!-- ============ 09 MEJORES HORARIOS ============ -->
+    <!-- ============ 10 MEJORES HORARIOS ============ -->
     <section class="panel" id="horarios">
       <div class="topline">
         <div>
@@ -1182,7 +1246,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
     </section>
 
-    <!-- ============ 10 ANÁLISIS DE COYUNTURA ============ -->
+    <!-- ============ 11 ANÁLISIS DE COYUNTURA ============ -->
     <section class="panel" id="coyuntura">
       <div class="topline">
         <div>
@@ -1201,7 +1265,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
     </section>
 
-    <!-- ============ 11 MONITOREO EN VIVO ============ -->
+    <!-- ============ 12 MONITOREO EN VIVO ============ -->
     <section class="panel" id="monitoreo">
       <div class="topline">
         <div>
@@ -1220,7 +1284,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
     </section>
 
-    <!-- ============ 12 MATRIZ DE RIESGOS ============ -->
+    <!-- ============ 13 MATRIZ DE RIESGOS ============ -->
     <section class="panel" id="riesgos">
       <div class="topline">
         <div>
@@ -2509,6 +2573,138 @@ function renderPillars() {
   });
 }
 
+/* ============ 4b · BANCO DE IDEAS (buscador + adaptación por red) ============
+   Guía general de adaptación por formato -- traduce cada formato del banco
+   (Foto, Flyer, Reel, Carrusel) a una propuesta concreta por red social,
+   usando las especificaciones ya cargadas en el dashboard (tabla de
+   Multiplataforma, cuentas oficiales y Mejores horarios). No sustituye la
+   idea original: es la forma práctica de publicarla en cada red. */
+const FORMAT_ADAPT = {
+  FOTO: {
+    label: 'Foto',
+    instagram: 'Post de feed (single) o primera lámina de un carrusel. Copy emocional en el primer renglón, 5-10 hashtags (nicho + general). Mejor horario: 12:00-1:00 p.m. y 7:00-9:00 p.m.',
+    facebook: 'Post de foto con texto narrativo más largo debajo -- Facebook admite storytelling extenso. CTA de \"Comparte / ¿Qué opinas?\". Mejor horario: 9:00-11:00 a.m. y 1:00-3:00 p.m.',
+    tiktok: 'La foto no es formato nativo: conviértela en un video corto (15-60 seg) con la imagen fija + voz en off o texto animado contando la misma idea, o úsala solo como apoyo en un Reel/Historia.',
+    x: 'Publícala como imagen adjunta a un tuit breve, o como la imagen de apertura de un hilo si acompaña un dato o cifra. Mejor horario: 8:00-10:00 a.m. y 12:00-1:00 p.m.'
+  },
+  FLY: {
+    label: 'Flyer',
+    instagram: 'Post estático de feed o primera lámina de carrusel educativo. 5-10 hashtags, texto corto y directo sobre la pieza. Mejor horario: 12:00-1:00 p.m. y 7:00-9:00 p.m.',
+    facebook: 'Post estático con el copy explicativo completo debajo (Facebook admite más texto que Instagram). CTA de comentarios. Mejor horario: 9:00-11:00 a.m. y 1:00-3:00 p.m.',
+    tiktok: 'Conviértelo en un video corto (15-30 seg) mostrando el flyer con texto animado y voz en off explicando el dato, en vez de publicarlo como imagen estática.',
+    x: 'Imagen adjunta a un tuit breve con el dato principal del flyer, o como parte de un hilo informativo de varios tuits. Mejor horario: 8:00-10:00 a.m. y 12:00-1:00 p.m.'
+  },
+  REEL: {
+    label: 'Reel',
+    instagram: 'Reel nativo 9:16, 7-90 segundos, subtítulos obligatorios (80% se consume sin audio). CTA \"Comenta / Guarda / Etiqueta a alguien\". Mejor horario: 12:00-1:00 p.m. y 7:00-9:00 p.m.',
+    facebook: 'Republica el mismo video (cross-post) con un caption más narrativo y largo que el de Instagram. Mejor horario: 9:00-11:00 a.m. y 1:00-3:00 p.m.',
+    tiktok: 'Recorta a 15-60 segundos, ritmo más ágil, sonido de tendencia si aplica, e invita a Dueto/Stitch. Subtítulos obligatorios. Mejor horario pico: 7:00-9:00 p.m.',
+    x: 'Sube un clip corto (menos de 2 min) o un GIF del momento más fuerte, con un tuit breve como gancho. Mejor horario: 8:00-10:00 a.m. y 12:00-1:00 p.m.'
+  },
+  CARR: {
+    label: 'Carrusel',
+    instagram: 'Carrusel nativo de hasta 10 láminas, primera lámina como portada/gancho. 5-10 hashtags. Mejor horario: 12:00-1:00 p.m. y 7:00-9:00 p.m.',
+    facebook: 'Facebook también soporta carrusel/álbum de fotos, con caption más largo que Instagram. Mejor horario: 9:00-11:00 a.m. y 1:00-3:00 p.m.',
+    tiktok: 'TikTok no tiene carrusel nativo equivalente: convierte el contenido en un Reel narrando cada lámina en secuencia, 15-60 segundos.',
+    x: 'Conviértelo en un hilo de varios tuits, una lámina/idea por tuit -- es el equivalente textual del carrusel. Mejor horario: 8:00-10:00 a.m. y 12:00-1:00 p.m.'
+  }
+};
+function formatKeyOf(code) {
+  const c = txt(code);
+  if (c.indexOf('FOTO') === 0) return 'FOTO';
+  if (c.indexOf('FLY') === 0) return 'FLY';
+  if (c.indexOf('REEL') === 0) return 'REEL';
+  if (c.indexOf('CARR') === 0) return 'CARR';
+  return '';
+}
+
+let ideaBankQuery = '';
+let ideaBankFormat = 'all';
+
+function renderIdeaBank() {
+  const list = $('ideaBankList');
+  const countEl = $('ideaSearchCount');
+  if (!list) return;
+  list.innerHTML = '';
+
+  const pillars = sortDocs(state.pillars);
+  const rows = [];
+  pillars.forEach(function (p) {
+    (Array.isArray(p.ideas) ? p.ideas : []).forEach(function (idea) {
+      rows.push({ pillarName: txt(p.name), pillarNum: txt(p.num), idea: idea });
+    });
+  });
+
+  const q = ideaBankQuery.trim().toLowerCase();
+  const filtered = rows.filter(function (r) {
+    const fmt = formatKeyOf(r.idea && r.idea.code);
+    if (ideaBankFormat !== 'all' && fmt !== ideaBankFormat) return false;
+    if (!q) return true;
+    const hay = [txt(r.idea && r.idea.code), txt(r.idea && r.idea.txt), txt(r.idea && r.idea.note), r.pillarName]
+      .join(' ').toLowerCase();
+    return hay.indexOf(q) !== -1;
+  });
+
+  if (countEl) {
+    countEl.textContent = filtered.length + ' de ' + rows.length + ' ideas' +
+      (ideaBankFormat !== 'all' ? ' · formato ' + (FORMAT_ADAPT[ideaBankFormat] ? FORMAT_ADAPT[ideaBankFormat].label : ideaBankFormat) : '') +
+      (q ? ' · búsqueda: \"' + txt(ideaBankQuery) + '\"' : '');
+  }
+
+  if (!filtered.length) {
+    list.appendChild(el('div', 'idea-bank-empty', rows.length ? 'Ninguna idea coincide con la búsqueda o el filtro.' : 'Sin ideas cargadas todavía.'));
+    return;
+  }
+
+  filtered.forEach(function (r) {
+    const fmtKey = formatKeyOf(r.idea && r.idea.code);
+    const fmt = FORMAT_ADAPT[fmtKey];
+    const card = el('div', 'card idea-bank-card');
+    let html = '<div class="idea-bank-top">' +
+      '<div class="idea-bank-tags">' +
+        '<span class="idea-code">' + txt(r.idea && r.idea.code) + '</span>' +
+        (fmt ? '<span class="idea-bank-pillar">' + fmt.label + '</span>' : '') +
+        '<span class="idea-bank-pillar">Pilar ' + r.pillarNum + ' · ' + r.pillarName + '</span>' +
+      '</div>' +
+    '</div>' +
+    '<p class="idea-txt" style="margin-bottom:4px;">' + txt(r.idea && r.idea.txt) + '</p>' +
+    '<p class="idea-bank-note">Protagonista posible: ' + txt(r.idea && r.idea.note) + '</p>';
+
+    if (fmt) {
+      html += '<div class="idea-bank-platforms">' +
+        '<div class="idea-bank-platform"><span class="plat-lbl">Instagram</span><p>' + fmt.instagram + '</p></div>' +
+        '<div class="idea-bank-platform"><span class="plat-lbl">Facebook</span><p>' + fmt.facebook + '</p></div>' +
+        '<div class="idea-bank-platform"><span class="plat-lbl">TikTok</span><p>' + fmt.tiktok + '</p></div>' +
+        '<div class="idea-bank-platform"><span class="plat-lbl">X</span><p>' + fmt.x + '</p></div>' +
+      '</div>';
+    }
+    card.innerHTML = html;
+    list.appendChild(card);
+  });
+}
+
+function wireIdeaBank() {
+  const input = $('ideaSearchInput');
+  if (input) {
+    input.addEventListener('input', function () {
+      ideaBankQuery = input.value;
+      renderIdeaBank();
+    });
+  }
+  const chips = $('ideaFormatChips');
+  if (chips) {
+    chips.addEventListener('click', function (ev) {
+      const btn = ev.target.closest('.format-chip');
+      if (!btn) return;
+      ideaBankFormat = btn.dataset.format;
+      Array.prototype.slice.call(chips.querySelectorAll('.format-chip')).forEach(function (b) {
+        b.classList.toggle('active', b === btn);
+      });
+      renderIdeaBank();
+    });
+  }
+}
+
 function renderSymbols() {
   const grid = $('symbolGrid');
   grid.innerHTML = '';
@@ -3109,7 +3305,7 @@ function attachListeners() {
     }, function (err) { onFsError(col, err); }));
   }
 
-  watchCollection('pillars', 'pillars', function () { renderPillars(); });
+  watchCollection('pillars', 'pillars', function () { renderPillars(); renderIdeaBank(); });
   watchCollection('symbols', 'symbols', function () { renderSymbols(); });
   watchCollection('weekly', 'weekly', function () { renderWeekly(); });
   watchCollection('specials', 'specials', function () { renderSpecials(); });
@@ -3297,6 +3493,7 @@ function wireFbDialog() {
 function renderAllFromState() {
   renderMeta();
   renderPillars();
+  renderIdeaBank();
   renderSymbols();
   renderWeekly();
   renderSpecials();
@@ -3371,6 +3568,7 @@ async function boot() {
   renderStaticTables();
   renderAllFromState(); // contenido local inmediato: nunca hay pantalla en blanco
   wireStaticButtons();
+  wireIdeaBank();
   wireFbDialog();
   wireGate();
 
