@@ -430,6 +430,34 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
 .idea-bank-platform .plat-lbl{display:block;font-size:11px;font-weight:700;color:var(--emerald-deep-2);margin-bottom:4px;}
 .idea-bank-platform p{margin:0;font-size:11.5px;line-height:1.5;color:var(--black);}
 .idea-bank-empty{padding:30px 0;text-align:center;color:var(--gray);font-size:13px;}
+.draggable-card{cursor:grab;}
+.draggable-card:active{cursor:grabbing;}
+
+/* Plan semanal arrastrable */
+.week-planner-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.week-day-card{
+  background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow);
+}
+.week-day-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.week-day-head h4{margin:0;font-size:14.5px;font-weight:700;}
+.week-net-row{
+  display:grid;grid-template-columns:90px 1fr 1fr 1.4fr;gap:10px;align-items:start;
+  padding:9px 8px;border-radius:10px;border:1px dashed transparent;transition:background .15s ease,border-color .15s ease;
+}
+.week-net-row.drag-over{background:#e2f3ec;border-color:var(--emerald-core);}
+.week-net-lbl{font-size:12px;font-weight:700;color:var(--emerald-deep-2);padding-top:8px;}
+.week-cell-input,.week-cell-textarea{
+  width:100%;border:1px solid var(--border);border-radius:8px;padding:7px 10px;
+  font-family:'Inter',sans-serif;font-size:12.5px;color:var(--black);background:var(--paper-2);
+  box-sizing:border-box;
+}
+.week-cell-input:focus,.week-cell-textarea:focus{outline:2px solid var(--emerald-core);outline-offset:-1px;background:var(--white);}
+.week-cell-textarea{resize:vertical;min-height:34px;font-family:'Inter',sans-serif;}
+@media(max-width:900px){.week-net-row{grid-template-columns:1fr;gap:6px;}.week-net-lbl{padding-top:0;}}
+.week-special-card{border-color:var(--emerald-core);border-width:2px;}
+.week-special-card.drag-over{background:#e2f3ec;}
+.week-special-body{display:flex;flex-direction:column;gap:8px;}
 
 /* Weekly pieces */
 .week-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
@@ -950,16 +978,14 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       <li><button type="button" class="navbtn active" data-target="resumen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Resumen<span class="tag">01</span></button></li>
       <li><button type="button" class="navbtn" data-target="pilares"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7Z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>Pilares de marca<span class="tag">02</span></button></li>
       <li><button type="button" class="navbtn" data-target="ideabank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Banco de ideas<span class="tag">03</span></button></li>
-      <li><button type="button" class="navbtn" data-target="semanal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Plan semanal<span class="tag">04</span></button></li>
-      <li><button type="button" class="navbtn" data-target="especiales"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 10 17 15 18 22 12 18.5 6 22 7 15 2 10 9 9"/></svg>Publicaciones especiales<span class="tag">05</span></button></li>
-      <li><button type="button" class="navbtn" data-target="calendario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15h.01M12 15h.01M16 15h.01"/></svg>Calendario 80 días<span class="tag">06</span></button></li>
-      <li><button type="button" class="navbtn" data-target="plataformas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 12 15 2 8.5"/><polyline points="2 15.5 12 22 22 15.5"/><polyline points="2 12 12 18.5 22 12"/></svg>Multiplataforma<span class="tag">07</span></button></li>
-      <li><button type="button" class="navbtn" data-target="metricas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Métricas &amp; KPIs<span class="tag">08</span></button></li>
-      <li><button type="button" class="navbtn" data-target="checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Checklist<span class="tag">09</span></button></li>
-      <li><button type="button" class="navbtn" data-target="horarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mejores horarios<span class="tag">10</span></button></li>
-      <li><button type="button" class="navbtn" data-target="coyuntura"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>Análisis de coyuntura<span class="tag">11</span></button></li>
-      <li><button type="button" class="navbtn" data-target="monitoreo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Monitoreo en vivo<span class="tag">12</span></button></li>
-      <li><button type="button" class="navbtn" data-target="riesgos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Matriz de riesgos<span class="tag">13</span></button></li>
+      <li><button type="button" class="navbtn" data-target="calendario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15h.01M12 15h.01M16 15h.01"/></svg>Calendario 80 días<span class="tag">04</span></button></li>
+      <li><button type="button" class="navbtn" data-target="plataformas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 12 15 2 8.5"/><polyline points="2 15.5 12 22 22 15.5"/><polyline points="2 12 12 18.5 22 12"/></svg>Multiplataforma<span class="tag">05</span></button></li>
+      <li><button type="button" class="navbtn" data-target="metricas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Métricas &amp; KPIs<span class="tag">06</span></button></li>
+      <li><button type="button" class="navbtn" data-target="checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Checklist<span class="tag">07</span></button></li>
+      <li><button type="button" class="navbtn" data-target="horarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mejores horarios<span class="tag">08</span></button></li>
+      <li><button type="button" class="navbtn" data-target="coyuntura"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>Análisis de coyuntura<span class="tag">09</span></button></li>
+      <li><button type="button" class="navbtn" data-target="monitoreo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Monitoreo en vivo<span class="tag">10</span></button></li>
+      <li><button type="button" class="navbtn" data-target="riesgos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Matriz de riesgos<span class="tag">11</span></button></li>
     </ul>
 
     <div class="sidebar-foot">
@@ -1032,7 +1058,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
 
       <div class="symbol-compare">
-        <h4>Los tres símbolos que sostienen la marca</h4>
+        <h4>Los dos símbolos que sostienen la marca</h4>
         <p class="chart-sub">El Pino Lazo es el símbolo institucional oficial de la marca, en sustitución completa del Apamate. El Oso Frontino es la mascota de extensión de marca (contenido juvenil, gamificación, turismo).</p>
         <div class="symbol-grid" id="symbolGrid"></div>
         <div class="symbol-diff">
@@ -1046,7 +1072,6 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       </div>
 
       <div id="pillarList"></div>
-      <div class="note" id="pilaresNote"></div>
     </section>
 
     <!-- ============ 03 BANCO DE IDEAS ============ -->
@@ -1054,10 +1079,30 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       <div class="topline">
         <div>
           <h2>Banco de ideas de contenido</h2>
-          <p class="sub">Las 104 ideas de los 5 pilares en un solo buscador -- filtra por formato y consulta cómo adaptar cada una a Instagram, Facebook, TikTok y X.</p>
+          <p class="sub">Planificador semanal, publicaciones especiales y las 104 ideas de los 5 pilares -- todo en un solo lugar.</p>
         </div>
       </div>
 
+      <!-- ---- Planificador semanal (arrastra ideas desde el banco de abajo) ---- -->
+      <div class="section-title first-title"><h3>Plan semanal · miércoles a domingo</h3><span class="num">arrastra una idea a cada casilla</span></div>
+      <p class="sub" style="margin:-6px 0 14px;">Una semana tipo por mes (Septiembre, Octubre, Noviembre y Diciembre 2026). Arrastra una tarjeta del banco de ideas o del banco de especiales a la red social del día que quieras planificar; formato, contenido y copy quedan editables. El domingo de cada semana es la plantilla de contenido especial.</p>
+      <div class="week-planner-tabs" id="weekPlannerTabs"></div>
+      <div id="weekPlannerDays"></div>
+
+      <!-- ---- Banco de contenidos especiales ---- -->
+      <div class="section-title"><h3>Banco de contenidos especiales</h3><span class="num">arrastrables a la plantilla del domingo</span></div>
+      <p class="sub" style="margin:-6px 0 14px;">Reels de mayor producción que crean hitos de visibilidad en cada fase. No reemplazan la grilla semanal fija.</p>
+      <div id="specialsList"></div>
+
+      <div class="note">
+        <b>Fechas conmemorativas verificadas</b> (fuente: "Planificación de Contenidos por Pilar", 7 sept. 2026 -- solo se listan fechas verificables): <b>12 de octubre</b> -- Día de la Resistencia Indígena, feriado oficial confirmado, buen encaje con Pilar 1 y Pilar 3 (histórico). <b>1 de noviembre</b> -- Día de Todos los Santos, tradición religiosa (no confirmada como feriado no laborable), tono de fe y memoria familiar, Pilar 1. <b>2 de noviembre</b> -- Día de los Fieles Difuntos, tradición religiosa, tono sobrio de memoria y tradición andina, Pilar 1. <b>27 de septiembre</b> -- Día Mundial del Turismo, efeméride internacional, gancho para rutas de páramo y patrimonio, Pilar 3 y Pilar 5. Verificar con el calendario oficial vigente antes de publicar si se requiere precisión de feriado laborable.
+      </div>
+      <div class="note">
+        <b>Piezas insignia adicionales pendientes de desarrollo</b> (mismo documento, sección 3.2 -- solo existe el concepto, sin guion): alianza cultural con un cronista, escritor o historiador tachirense (BATT) -- pieza de lanzamiento presentando la alianza y adelantando contenido de archivo/patrimonio exclusivo; reportaje especial de conservación -- cobertura de una jornada real de reforestación, limpieza de páramo o restauración patrimonial, de principio a fin (Pilar 3, formato largo); pieza integradora de cierre de tramo -- recorrido del Pino Lazo que una los 5 pilares en una sola narrativa, sin fecha fija; especial "Municipio del mes" -- pieza ampliada del Pilar 4 con recorrido más largo que el resto del banco regular.
+      </div>
+
+      <!-- ---- Banco de ideas de contenido (buscador) ---- -->
+      <div class="section-title"><h3>Banco de ideas de contenido</h3><span class="num">104 ideas · arrastrables al plan semanal</span></div>
       <div class="idea-search-bar">
         <div class="idea-search-input-wrap">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -1075,37 +1120,7 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       <div id="ideaBankList"></div>
     </section>
 
-    <!-- ============ 04 SEMANAL ============ -->
-    <section class="panel" id="semanal">
-      <div class="topline">
-        <div>
-          <h2>Plan semanal · miércoles a domingo</h2>
-          <p class="sub">5 piezas fijas de la semana. Ajusta este texto a las reglas propias de tu marca.</p>
-        </div>
-      </div>
-      <div class="week-strip" id="weekStrip"></div>
-      <div class="note" id="semanalNote"></div>
-    </section>
-
-    <!-- ============ 05 ESPECIALES ============ -->
-    <section class="panel" id="especiales">
-      <div class="topline">
-        <div>
-          <h2>Publicaciones especiales</h2>
-          <p class="sub">Reels de mayor producción que crean hitos de visibilidad en cada fase. No reemplazan la grilla semanal fija.</p>
-        </div>
-      </div>
-      <div id="specialsList"></div>
-
-      <div class="note">
-        <b>Fechas conmemorativas verificadas</b> (fuente: "Planificación de Contenidos por Pilar", 7 sept. 2026 -- solo se listan fechas verificables): <b>12 de octubre</b> -- Día de la Resistencia Indígena, feriado oficial confirmado, buen encaje con Pilar 1 y Pilar 3 (histórico). <b>1 de noviembre</b> -- Día de Todos los Santos, tradición religiosa (no confirmada como feriado no laborable), tono de fe y memoria familiar, Pilar 1. <b>2 de noviembre</b> -- Día de los Fieles Difuntos, tradición religiosa, tono sobrio de memoria y tradición andina, Pilar 1. <b>27 de septiembre</b> -- Día Mundial del Turismo, efeméride internacional, gancho para rutas de páramo y patrimonio, Pilar 3 y Pilar 5. Verificar con el calendario oficial vigente antes de publicar si se requiere precisión de feriado laborable.
-      </div>
-      <div class="note">
-        <b>Piezas insignia adicionales pendientes de desarrollo</b> (mismo documento, sección 3.2 -- solo existe el concepto, sin guion): alianza cultural con un cronista, escritor o historiador tachirense (BATT) -- pieza de lanzamiento presentando la alianza y adelantando contenido de archivo/patrimonio exclusivo; reportaje especial de conservación -- cobertura de una jornada real de reforestación, limpieza de páramo o restauración patrimonial, de principio a fin (Pilar 3, formato largo); pieza integradora de cierre de tramo -- recorrido del Pino Lazo que una los 5 pilares en una sola narrativa, sin fecha fija; especial "Municipio del mes" -- pieza ampliada del Pilar 4 con recorrido más largo que el resto del banco regular.
-      </div>
-    </section>
-
-    <!-- ============ 06 CALENDARIO ============ -->
+    <!-- ============ 04 CALENDARIO ============ -->
     <section class="panel" id="calendario">
       <div class="topline">
         <div>
@@ -1450,8 +1465,6 @@ const DEFAULT_DATA = {
     "resumenNote": "Pendiente crítico: cerrar dentro de los primeros 30 días del plan la alianza cultural con un poeta, escritor o historiador tachirense (vía BATT) que legitime culturalmente el símbolo del Pino Lazo.",
     "symbolDiff": "El Pino Lazo es el símbolo institucional oficial: arbol perenne, siempre verde, adaptado a cada una de las cinco dimensiones territoriales. El Oso Frontino es distinto -- una mascota de extensión de marca para contenido juvenil, gamificación y turismo, sin sustituir al símbolo institucional.",
     "symbolReflection": "No florece para llamar la atención ni pierde su follaje ante la adversidad: permanece. Esa es la idea que sostiene toda la estrategia de marca.",
-    "pilaresNote": "Nota operativa: los elementos formales de identidad visual (logotipo, área de resguardo, tamaños mínimos) deben confirmarse en un Manual de Identidad Visual Corporativa formal. El logotipo de la sub-marca 'Renacer Tachirense' ya incluye variantes de color (verde, dorado, amarillo, marron, negro e invertida). Elementos gráficos pendientes de diseño (fuente: 'Marca Renacer Tachirense -- Elementos, Adaptación Pino Lazo'): la rama con acículas y la piña ya están recoloreadas a la paleta de marca sobre el trazo original entregado por la Gobernación, sin necesidad de rediseño. Quedan pendientes: (1) redibujar en Illustrator/Canva las piezas 'Movida Cultural' y 'Ayer y Hoy' con el logotipo Pino Lazo incrustado; (2) confirmar los valores HEX exactos contra el archivo fuente; (3) conseguir una silueta de árbol de pino lazo completa con licencia -- la única referencia recibida trae una marca de agua de stock (Vecteezy) incrustada en los píxeles y no puede usarse en piezas de marca.",
-    "semanalNote": "El Manual Estratégico (Anexo 3) señalaba como pendiente el 'calendario editorial detallado — día a día'. Ya existe un calendario operativo diario más reciente (123 días, 1 oct 2026 - 31 ene 2027, rotando 1 pilar por día en ciclo continuo de 5 pilares en las 4 redes), pero no esta organizado como una grilla fija de miercoles a domingo con una pieza por día de la semana -- es una rotación ciclica independiente del día de la semana. No se fuerzo ese calendario en este formato de 5 días fijos para no representarlo de forma inexacta; puede incorporarse como una vista de calendario distinta si se solicita. Cadencia sugerida por red (fuente: 'Planificación de Contenidos por Pilar', 7 sept. 2026, sin fechas asignadas): Facebook 1 publicación diaria rotando Foto/Flyer/Carrusel; Instagram 2 piezas diarias (1 publicación + 1 Reel); TikTok 1 video diario, con una idea de Reel distinta a la usada ese día en Instagram; X 1 publicación diaria breve. El Pilar 3 (Táchira Verde e Histórico), como prioritario, se sugiere en 2 de cada 5 publicaciones en vez de 1 de cada 5, hasta que su banco esté consolidado como los demás pilares.",
     "metricHero": "Consolidar la primera fase de posicionamiento digital de la Marca Territorio: crecimiento sostenido de seguidores (+8K a +20K según red, ~22% de las metas a 12 meses del Plan Maestro) con engagement >= 5% en piezas de narrativa testimonial y serial, y cierre de la alianza cultural BATT dentro de los primeros 30 días.",
     "footer": "MARCA TERRITORIO · GOBERNACIÓN DEL TÁCHIRA — PLAN COMUNICACIONAL INTEGRADO<br><b>Confidencial</b> · Para evaluación del equipo estratégico"
   },
@@ -1576,7 +1589,7 @@ const DEFAULT_DATA = {
       "sub": "Productivo y económico",
       "phase": "Fase 2",
       "symbol": "Todo Reel de este pilar se graba con el productor hablando a cámara en su propio entorno de trabajo (finca, mercado, cocina), nunca en estudio ni con vocero institucional narrando por el. El sello 'Hecho en Táchira' se comunica mostrando el proceso completo antes que el logo solo.",
-      "extra": "Narrativa dominante: testimonial de oficio ('el protagonista real cuenta su propio proceso') + cadena/proceso ('de la mata a la taza'). Emoción principal: orgullo de logro y oficio + confianza. Plantillas de guion A (testimonial) y C (proceso). Plataforma prioritaria: Instagram + TikTok + WhatsApp Business (productores). Día recomendado: entre semana (martes/miercoles), horario de mañana. Fuente del banco de ideas: 'Planificación de Contenidos por Pilar -- Marca Territorio Táchira' (7 sept. 2026).",
+      "extra": "Narrativa dominante: testimonial de oficio ('el protagonista real cuenta su propio proceso') + cadena/proceso ('de la mata a la taza'). Emoción principal: orgullo de logro y oficio + confianza. Plataforma prioritaria: Instagram + TikTok + WhatsApp Business (productores). Fuente del banco de ideas: 'Planificación de Contenidos por Pilar -- Marca Territorio Táchira' (7 sept. 2026).<br><br><b>Ejemplos de aplicación por red social (Pilar 2):</b><br><br><b>Instagram (@renacertachirense.ve):</b> Reel 'De la mata a la taza' (proceso del café en 30-60 seg) o product shot del queso/panela con el sello 'Hecho en Táchira' (foto de producto). Hashtags #HechoEnTáchira + el rubro; mejor horario 12:00-1:00 p.m. y 7:00-9:00 p.m.<br><br><b>Facebook (Página 'Renacer Tachirense'):</b> testimonial largo del productor contando cómo creció su negocio, o la historia de un emprendimiento local contada foto a foto (carrusel) -- formato narrativo que rinde bien con la audiencia adulta/diáspora que compra productos tachirenses. Mejor horario 9:00-11:00 a.m. y 1:00-3:00 p.m.<br><br><b>TikTok (@renacertachirense):</b> time-lapse de una jornada de campo (amanecer a cosecha) o receta rápida con un producto tachirense -- ritmo ágil, 15-60 seg. Mejor horario pico 7:00-9:00 p.m.<br><br><b>X (@renacertachira):</b> cifras de producción del mes o 'los 5 productos que representan al Táchira en el mundo' como hilo breve de 2-4 tuits. Mejor horario 8:00-10:00 a.m.",
       "ideas": [
         {
           "code": "FOTO-F1",
@@ -1688,7 +1701,7 @@ const DEFAULT_DATA = {
       "sub": "PRIORITARIO -- páramo, biodiversidad y conservación + patrimonio, cronistas y memoria",
       "phase": "Fase 2-3",
       "symbol": "Fusiona las dos dimensiones territoriales de 'Táchira Verde' (páramo, biodiversidad, conservación) y 'Táchira Histórico' (patrimonio, cronistas, memoria) en un solo pilar de contenido documental y educativo. Se refuerza con más piezas que el resto de los pilares (24 en vez de 20) por instrucción directa, y se sugiere que aparezca con mayor frecuencia en la rotación (2 de cada 5 publicaciones) hasta consolidarse como los demás pilares.",
-      "extra": "Narrativa dominante: documental y educativa sobre conservación del páramo y patrimonio histórico. Emoción principal: esperanza y proyección regional. Protagonistas posibles: guardaparques, guías de conservación, cronistas e historiadores tachirenses, restauradores y voluntarios. Plataforma prioritaria: Instagram + Facebook + TikTok. Pieza insignia: serie documental corta 'Táchira Verde e Histórico' (3-4 episodios) recorriendo páramo, patrimonio y las voces que los cuidan. Fuente del banco de ideas: 'Planificación de Contenidos por Pilar -- Marca Territorio Táchira' (7 sept. 2026) -- reemplaza la versión anterior de este pilar, que partía sin ideas cargadas. Por instrucción expresa, este pilar NO incluye ningún enfoque de gestión de gobierno.",
+      "extra": "Narrativa dominante: documental y educativa sobre conservación del páramo y patrimonio histórico. Emoción principal: esperanza y proyección regional. Protagonistas posibles: guardaparques, guías de conservación, cronistas e historiadores tachirenses, restauradores y voluntarios. Pieza insignia: serie documental corta 'Táchira Verde e Histórico' (3-4 episodios). Fuente del banco de ideas: 'Planificación de Contenidos por Pilar -- Marca Territorio Táchira' (7 sept. 2026). Por instrucción expresa, este pilar NO incluye ningún enfoque de gestión de gobierno.<br><br><b>Ejemplos de aplicación por red social (Pilar 3):</b><br><br><b>Instagram (@renacertachirense.ve):</b> panorámica del páramo al amanecer (foto de marca pura) o recorrido en Reel narrado por un guía local mostrando flora y fauna nativa. Hashtags #TáchiraVerde #Páramo; mejor horario 12:00-1:00 p.m. y 7:00-9:00 p.m.<br><br><b>Facebook (Página 'Renacer Tachirense'):</b> mini-documental de un sitio histórico contado por un cronista, o galería de patrimonio arquitectónico municipio por municipio -- formato largo para la audiencia interesada en historia local. Mejor horario 9:00-11:00 a.m. y 1:00-3:00 p.m.<br><br><b>TikTok (@renacertachirense):</b> serie 'Leyendas y raíces del Táchira' -- relato breve de una leyenda o tradición, narrado corto y con gancho fuerte en los primeros 3 seg. Mejor horario pico 7:00-9:00 p.m.<br><br><b>X (@renacertachira):</b> 'El páramo en cifras' (biodiversidad, altura, importancia hídrica) o una efeméride histórica verificada, como hilo breve de 2-4 tuits. Mejor horario 8:00-10:00 a.m.",
       "ideas": [
         {
           "code": "FOTO-F1",
@@ -1820,7 +1833,7 @@ const DEFAULT_DATA = {
       "sub": "De espectador a embajador activo",
       "phase": "Fase 1-2",
       "symbol": "Se prioriza sistemáticamente el contenido enviado por ciudadanos sobre el contenido producido internamente; el gobernador aparece solo en la mecánica de respuesta, nunca como iniciador del contenido. La etiqueta y el hashtag funcionan como mecanismo de curaduría (modelo #tg_fotos de @tachiragram).",
-      "extra": "Narrativa dominante: participativa/UGC + reconocimiento y logro colectivo. Emoción principal: pertenencia activa y orgullo de protagonismo personal. Plantilla A adaptada a UGC + Plantilla G (flyer participativo). Plataforma prioritaria: TikTok + Instagram. Día recomendado: miercoles/jueves (formatos informativos) o fin de semana (formatos de participación). Fuente del banco de ideas: 'Planificación de Contenidos por Pilar -- Marca Territorio Táchira' (7 sept. 2026).",
+      "extra": "Narrativa dominante: participativa/UGC + reconocimiento y logro colectivo. Emoción principal: pertenencia activa y orgullo de protagonismo personal. Plataforma prioritaria: TikTok + Instagram. Fuente del banco de ideas: 'Planificación de Contenidos por Pilar -- Marca Territorio Táchira' (7 sept. 2026).<br><br><b>Ejemplos de aplicación por red social (Pilar 4):</b><br><br><b>Instagram (@renacertachirense.ve):</b> convocatoria al desafío mensual (flyer con instrucciones claras) o compilado de videos enviados por ciudadanos (Reel de contenido generado por usuarios). Hashtag propio de curaduría; mejor horario 12:00-1:00 p.m. y 7:00-9:00 p.m.<br><br><b>Facebook (Página 'Renacer Tachirense'):</b> anuncio del 'Municipio del mes' ganador (foto grupal) o explicación completa de la mecánica de gamificación (carrusel) -- audiencia familiar/institucional que sigue la convocatoria. Mejor horario 9:00-11:00 a.m. y 1:00-3:00 p.m.<br><br><b>TikTok (@renacertachirense):</b> tutorial rápido de cómo participar en el desafío mensual -- corto, directo, invitando a Dueto/Stitch con contenido propio. Mejor horario pico 7:00-9:00 p.m.<br><br><b>X (@renacertachira):</b> resultados del mes anterior (participación y alcance logrado) como hilo breve con cifras. Mejor horario 8:00-10:00 a.m.",
       "ideas": [
         {
           "code": "FOTO-F1",
@@ -1932,7 +1945,7 @@ const DEFAULT_DATA = {
       "sub": "Diáspora y turismo",
       "phase": "Fase 3",
       "symbol": "La nostalgia de la diáspora venezolana es el gatillo emocional de mayor rendimiento de todo el ecosistema: para una audiencia que ya no vive en el Táchira, este contenido funciona como sustituto simbólico del regreso a casa. Combinar siempre con testimonios reales de retorno para dar prueba social a la invitación.",
-      "extra": "Narrativa dominante: retorno emocional ('esto te espera si vuelves') + travel/POV. Emoción principal: añoranza + esperanza de regreso. Plantillas de guion B (serial), C (POV) y A (retorno emocional). Plataforma prioritaria: Instagram + YouTube + Facebook diáspora. Día recomendado: jueves a sábado. Fuente del banco de ideas: 'Planificación de Contenidos por Pilar -- Marca Territorio Táchira' (7 sept. 2026).",
+      "extra": "Narrativa dominante: retorno emocional ('esto te espera si vuelves') + travel/POV. Emoción principal: añoranza + esperanza de regreso. Plataforma prioritaria: Instagram + Facebook diáspora. Fuente del banco de ideas: 'Planificación de Contenidos por Pilar -- Marca Territorio Táchira' (7 sept. 2026).<br><br><b>Ejemplos de aplicación por red social (Pilar 5):</b><br><br><b>Instagram (@renacertachirense.ve):</b> recorrido estilo 'travel' por un destino natural (Reel con música envolvente) o '5 lugares que debes visitar en el Táchira' (carrusel). Hashtags de turismo + diáspora; mejor horario 12:00-1:00 p.m. y 7:00-9:00 p.m.<br><br><b>Facebook (Página 'Renacer Tachirense'):</b> testimonial de un tachirense de la diáspora que decidió regresar, o historias de retorno en mosaico (carrusel) -- el formato más narrativo y de mayor alcance en la diáspora de más edad. Mejor horario 9:00-11:00 a.m. y 1:00-3:00 p.m. (domingo 4:00-6:00 p.m., día fuerte para diáspora).<br><br><b>TikTok (@renacertachirense):</b> 'Un día en el páramo' en formato POV, o la invitación emotiva directa 'Esto te espera si vuelves' -- corto e íntimo. Mejor horario pico 7:00-9:00 p.m.<br><br><b>X (@renacertachira):</b> datos prácticos de un destino (cómo llegar, clima, distancia) o invitación directa a la diáspora, como hilo breve. Mejor horario 8:00-10:00 a.m.",
       "ideas": [
         {
           "code": "FOTO-F1",
@@ -2056,6 +2069,568 @@ const DEFAULT_DATA = {
     }
   ],
   "weekly": [],
+  "weeklyPlan": [
+    {
+      "id": "sep-1",
+      "order": 1,
+      "monthKey": "sep",
+      "month": "Septiembre 2026",
+      "dayIndex": 1,
+      "dayLabel": "Miércoles",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "sep-2",
+      "order": 2,
+      "monthKey": "sep",
+      "month": "Septiembre 2026",
+      "dayIndex": 2,
+      "dayLabel": "Jueves",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "sep-3",
+      "order": 3,
+      "monthKey": "sep",
+      "month": "Septiembre 2026",
+      "dayIndex": 3,
+      "dayLabel": "Viernes",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "sep-4",
+      "order": 4,
+      "monthKey": "sep",
+      "month": "Septiembre 2026",
+      "dayIndex": 4,
+      "dayLabel": "Sábado",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "sep-5",
+      "order": 5,
+      "monthKey": "sep",
+      "month": "Septiembre 2026",
+      "dayIndex": 5,
+      "dayLabel": "Domingo",
+      "isSpecial": true,
+      "special": {
+        "title": "",
+        "format": "",
+        "hook": "",
+        "development": "",
+        "cta": ""
+      }
+    },
+    {
+      "id": "oct-1",
+      "order": 6,
+      "monthKey": "oct",
+      "month": "Octubre 2026",
+      "dayIndex": 1,
+      "dayLabel": "Miércoles",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "oct-2",
+      "order": 7,
+      "monthKey": "oct",
+      "month": "Octubre 2026",
+      "dayIndex": 2,
+      "dayLabel": "Jueves",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "oct-3",
+      "order": 8,
+      "monthKey": "oct",
+      "month": "Octubre 2026",
+      "dayIndex": 3,
+      "dayLabel": "Viernes",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "oct-4",
+      "order": 9,
+      "monthKey": "oct",
+      "month": "Octubre 2026",
+      "dayIndex": 4,
+      "dayLabel": "Sábado",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "oct-5",
+      "order": 10,
+      "monthKey": "oct",
+      "month": "Octubre 2026",
+      "dayIndex": 5,
+      "dayLabel": "Domingo",
+      "isSpecial": true,
+      "special": {
+        "title": "",
+        "format": "",
+        "hook": "",
+        "development": "",
+        "cta": ""
+      }
+    },
+    {
+      "id": "nov-1",
+      "order": 11,
+      "monthKey": "nov",
+      "month": "Noviembre 2026",
+      "dayIndex": 1,
+      "dayLabel": "Miércoles",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "nov-2",
+      "order": 12,
+      "monthKey": "nov",
+      "month": "Noviembre 2026",
+      "dayIndex": 2,
+      "dayLabel": "Jueves",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "nov-3",
+      "order": 13,
+      "monthKey": "nov",
+      "month": "Noviembre 2026",
+      "dayIndex": 3,
+      "dayLabel": "Viernes",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "nov-4",
+      "order": 14,
+      "monthKey": "nov",
+      "month": "Noviembre 2026",
+      "dayIndex": 4,
+      "dayLabel": "Sábado",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "nov-5",
+      "order": 15,
+      "monthKey": "nov",
+      "month": "Noviembre 2026",
+      "dayIndex": 5,
+      "dayLabel": "Domingo",
+      "isSpecial": true,
+      "special": {
+        "title": "",
+        "format": "",
+        "hook": "",
+        "development": "",
+        "cta": ""
+      }
+    },
+    {
+      "id": "dic-1",
+      "order": 16,
+      "monthKey": "dic",
+      "month": "Diciembre 2026",
+      "dayIndex": 1,
+      "dayLabel": "Miércoles",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "dic-2",
+      "order": 17,
+      "monthKey": "dic",
+      "month": "Diciembre 2026",
+      "dayIndex": 2,
+      "dayLabel": "Jueves",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "dic-3",
+      "order": 18,
+      "monthKey": "dic",
+      "month": "Diciembre 2026",
+      "dayIndex": 3,
+      "dayLabel": "Viernes",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "dic-4",
+      "order": 19,
+      "monthKey": "dic",
+      "month": "Diciembre 2026",
+      "dayIndex": 4,
+      "dayLabel": "Sábado",
+      "isSpecial": false,
+      "cells": {
+        "facebook": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "instagram": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "x": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        },
+        "tiktok": {
+          "format": "",
+          "content": "",
+          "copy": ""
+        }
+      }
+    },
+    {
+      "id": "dic-5",
+      "order": 20,
+      "monthKey": "dic",
+      "month": "Diciembre 2026",
+      "dayIndex": 5,
+      "dayLabel": "Domingo",
+      "isSpecial": true,
+      "special": {
+        "title": "",
+        "format": "",
+        "hook": "",
+        "development": "",
+        "cta": ""
+      }
+    }
+  ],
   "specials": [
     {
       "id": "1",
@@ -2423,6 +2998,7 @@ const state = {
   pillars: clone(DEFAULT_DATA.pillars),
   symbols: clone(DEFAULT_DATA.symbols),
   weekly: clone(DEFAULT_DATA.weekly),
+  weeklyPlan: clone(DEFAULT_DATA.weeklyPlan),
   specials: clone(DEFAULT_DATA.specials),
   phases: clone(DEFAULT_DATA.phases),
   kpiWeekly: clone(DEFAULT_DATA.kpiWeekly),
@@ -2433,6 +3009,10 @@ const state = {
 /* Estado local (se usa mientras no haya conexión con Firestore). */
 let localStatus = safeStorage.get(LS_PREFIX + 'status_v1') || {};
 let localChecks = safeStorage.get(LS_PREFIX + 'checklist_v1') || {};
+(function loadLocalWeeklyPlan() {
+  const saved = safeStorage.get(LS_PREFIX + 'weeklyPlan_v1');
+  if (Array.isArray(saved) && saved.length === state.weeklyPlan.length) state.weeklyPlan = saved;
+})();
 
 const openPillars = new Set(['1']); // primer pilar abierto por defecto
 
@@ -2466,8 +3046,6 @@ function renderMeta() {
   setHTML('quoteTxt', m.quote);
   setHTML('metricHero', m.metricHero);
   setHTML('resumenNote', m.resumenNote);
-  setHTML('pilaresNote', m.pilaresNote);
-  setHTML('semanalNote', m.semanalNote);
   setHTML('symbolDiff', m.symbolDiff);
   setHTML('symbolReflection', m.symbolReflection);
   setHTML('docFoot', m.footer);
@@ -2493,8 +3071,6 @@ function renderMeta() {
   setHTML('diagCount', found.length + (found.length === 1 ? ' hallazgo' : ' hallazgos'));
   $('diagCount').style.display = found.length ? '' : 'none';
   $('resumenNote').style.display = txt(m.resumenNote).trim() ? '' : 'none';
-  $('pilaresNote').style.display = txt(m.pilaresNote).trim() ? '' : 'none';
-  $('semanalNote').style.display = txt(m.semanalNote).trim() ? '' : 'none';
 }
 
 function renderPillars() {
@@ -2659,7 +3235,19 @@ function renderIdeaBank() {
   filtered.forEach(function (r) {
     const fmtKey = formatKeyOf(r.idea && r.idea.code);
     const fmt = FORMAT_ADAPT[fmtKey];
-    const card = el('div', 'card idea-bank-card');
+    const card = el('div', 'card idea-bank-card draggable-card');
+    card.draggable = true;
+    card.title = 'Arrastra esta idea a una casilla del plan semanal';
+    card.addEventListener('dragstart', function (ev) {
+      ev.dataTransfer.effectAllowed = 'copy';
+      ev.dataTransfer.setData('text/plain', JSON.stringify({
+        kind: 'idea',
+        code: txt(r.idea && r.idea.code),
+        format: fmt ? fmt.label : '',
+        content: txt(r.idea && r.idea.txt),
+        note: txt(r.idea && r.idea.note)
+      }));
+    });
     let html = '<div class="idea-bank-top">' +
       '<div class="idea-bank-tags">' +
         '<span class="idea-code">' + txt(r.idea && r.idea.code) + '</span>' +
@@ -2678,7 +3266,7 @@ function renderIdeaBank() {
         '<div class="idea-bank-platform"><span class="plat-lbl">X</span><p>' + fmt.x + '</p></div>' +
       '</div>';
     }
-    card.innerHTML = html;
+    card.innerHTML += html;
     list.appendChild(card);
   });
 }
@@ -2705,6 +3293,208 @@ function wireIdeaBank() {
   }
 }
 
+/* ============ 4c · PLAN SEMANAL ARRASTRABLE (Sept-Dic, 5 dias por mes) ============
+   Plantilla en blanco -- ninguno de los campos trae contenido precargado, se
+   llenan arrastrando tarjetas del Banco de ideas / Banco de especiales o
+   escribiendo directamente. El día 5 de cada semana es la plantilla de
+   contenido especial. */
+const WEEK_NETWORKS = [
+  { key: 'facebook', label: 'Facebook' },
+  { key: 'instagram', label: 'Instagram' },
+  { key: 'x', label: 'X' },
+  { key: 'tiktok', label: 'TikTok' }
+];
+const WEEK_MONTHS = [
+  { key: 'sep', label: 'Septiembre' },
+  { key: 'oct', label: 'Octubre' },
+  { key: 'nov', label: 'Noviembre' },
+  { key: 'dic', label: 'Diciembre' }
+];
+let weekPlannerMonth = 'sep';
+
+function saveWeeklyPlanLocal() {
+  safeStorage.set(LS_PREFIX + 'weeklyPlan_v1', state.weeklyPlan);
+}
+
+function setWeeklyCell(dayId, network, field, value) {
+  const day = state.weeklyPlan.filter(function (d) { return txt(d.id) === txt(dayId); })[0];
+  if (!day || !day.cells || !day.cells[network]) return;
+  const prevVal = day.cells[network][field];
+  if (prevVal === value) return;
+  day.cells[network][field] = value;
+  if (fb.live) {
+    const patch = { cells: {} };
+    patch.cells[network] = {};
+    patch.cells[network][field] = value;
+    fb.api.setDoc(fb.api.doc(fb.db, BRAND_SLUG, 'plan', 'weeklyPlan', txt(dayId)), patch, { merge: true })
+      .catch(function (err) {
+        day.cells[network][field] = prevVal;
+        renderWeekPlanner();
+        toast('No se pudo guardar en Firestore: ' + (err && err.code ? err.code : 'error'));
+      });
+  } else {
+    saveWeeklyPlanLocal();
+  }
+}
+
+function setWeeklySpecial(dayId, field, value) {
+  const day = state.weeklyPlan.filter(function (d) { return txt(d.id) === txt(dayId); })[0];
+  if (!day || !day.special) return;
+  const prevVal = day.special[field];
+  if (prevVal === value) return;
+  day.special[field] = value;
+  if (fb.live) {
+    const patch = { special: {} };
+    patch.special[field] = value;
+    fb.api.setDoc(fb.api.doc(fb.db, BRAND_SLUG, 'plan', 'weeklyPlan', txt(dayId)), patch, { merge: true })
+      .catch(function (err) {
+        day.special[field] = prevVal;
+        renderWeekPlanner();
+        toast('No se pudo guardar en Firestore: ' + (err && err.code ? err.code : 'error'));
+      });
+  } else {
+    saveWeeklyPlanLocal();
+  }
+}
+
+function parseDragPayload(ev) {
+  try {
+    const raw = ev.dataTransfer.getData('text/plain');
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) { return null; }
+}
+
+function renderWeekPlanner() {
+  const tabsWrap = $('weekPlannerTabs');
+  const daysWrap = $('weekPlannerDays');
+  if (!tabsWrap || !daysWrap) return;
+
+  if (!tabsWrap.dataset.wired) {
+    WEEK_MONTHS.forEach(function (m) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'format-chip' + (m.key === weekPlannerMonth ? ' active' : '');
+      btn.dataset.month = m.key;
+      btn.textContent = m.label;
+      btn.addEventListener('click', function () {
+        weekPlannerMonth = m.key;
+        Array.prototype.slice.call(tabsWrap.querySelectorAll('.format-chip')).forEach(function (b) {
+          b.classList.toggle('active', b.dataset.month === weekPlannerMonth);
+        });
+        renderWeekPlanner();
+      });
+      tabsWrap.appendChild(btn);
+    });
+    tabsWrap.dataset.wired = '1';
+  } else {
+    Array.prototype.slice.call(tabsWrap.querySelectorAll('.format-chip')).forEach(function (b) {
+      b.classList.toggle('active', b.dataset.month === weekPlannerMonth);
+    });
+  }
+
+  daysWrap.innerHTML = '';
+  const days = sortDocs(state.weeklyPlan).filter(function (d) { return txt(d.monthKey) === weekPlannerMonth; });
+  if (!days.length) {
+    daysWrap.appendChild(el('div', 'empty', 'Sin días cargados para este mes.'));
+    return;
+  }
+
+  days.forEach(function (day) {
+    const card = el('div', 'week-day-card' + (day.isSpecial ? ' week-special-card' : ''));
+    const head = el('div', 'week-day-head', '<h4>' + txt(day.dayLabel) + '</h4>' +
+      (day.isSpecial ? '<span class="badge fmt">Plantilla de contenido especial</span>' : ''));
+    card.appendChild(head);
+
+    if (day.isSpecial) {
+      const sp = day.special || {};
+      const body = el('div', 'week-special-body');
+      const fields = [
+        { key: 'title', tag: 'input', ph: 'Título de la pieza especial' },
+        { key: 'format', tag: 'input', ph: 'Formato (ej. Reel vertical 9:16 · 45-60 seg)' },
+        { key: 'hook', tag: 'textarea', ph: 'Gancho (hook)' },
+        { key: 'development', tag: 'textarea', ph: 'Desarrollo' },
+        { key: 'cta', tag: 'textarea', ph: 'CTA / cierre' }
+      ];
+      fields.forEach(function (f) {
+        const input = document.createElement(f.tag);
+        input.className = f.tag === 'textarea' ? 'week-cell-textarea' : 'week-cell-input';
+        input.placeholder = f.ph;
+        input.value = txt(sp[f.key]);
+        input.addEventListener('change', function () { setWeeklySpecial(day.id, f.key, input.value); });
+        body.appendChild(input);
+      });
+      card.appendChild(body);
+
+      card.addEventListener('dragover', function (ev) { ev.preventDefault(); card.classList.add('drag-over'); });
+      card.addEventListener('dragleave', function () { card.classList.remove('drag-over'); });
+      card.addEventListener('drop', function (ev) {
+        ev.preventDefault();
+        card.classList.remove('drag-over');
+        const payload = parseDragPayload(ev);
+        if (!payload) return;
+        const titleVal = payload.kind === 'special' ? payload.title : payload.content;
+        const formatVal = txt(payload.format);
+        setWeeklySpecial(day.id, 'title', titleVal);
+        if (formatVal) setWeeklySpecial(day.id, 'format', formatVal);
+        if (payload.kind === 'special') {
+          setWeeklySpecial(day.id, 'hook', txt(payload.hook));
+          setWeeklySpecial(day.id, 'development', txt(payload.development));
+          setWeeklySpecial(day.id, 'cta', txt(payload.cta));
+        }
+        renderWeekPlanner();
+        toast('Contenido asignado a ' + txt(day.dayLabel));
+      });
+    } else {
+      const cells = day.cells || {};
+      WEEK_NETWORKS.forEach(function (net) {
+        const c = cells[net.key] || {};
+        const row = el('div', 'week-net-row');
+        row.appendChild(el('span', 'week-net-lbl', net.label));
+
+        const fmtInput = document.createElement('input');
+        fmtInput.className = 'week-cell-input';
+        fmtInput.placeholder = 'Formato';
+        fmtInput.value = txt(c.format);
+        fmtInput.addEventListener('change', function () { setWeeklyCell(day.id, net.key, 'format', fmtInput.value); });
+
+        const contentInput = document.createElement('input');
+        contentInput.className = 'week-cell-input';
+        contentInput.placeholder = 'Contenido';
+        contentInput.value = txt(c.content);
+        contentInput.addEventListener('change', function () { setWeeklyCell(day.id, net.key, 'content', contentInput.value); });
+
+        const copyInput = document.createElement('textarea');
+        copyInput.className = 'week-cell-textarea';
+        copyInput.placeholder = 'Copy';
+        copyInput.value = txt(c.copy);
+        copyInput.addEventListener('change', function () { setWeeklyCell(day.id, net.key, 'copy', copyInput.value); });
+
+        row.appendChild(fmtInput);
+        row.appendChild(contentInput);
+        row.appendChild(copyInput);
+
+        row.addEventListener('dragover', function (ev) { ev.preventDefault(); row.classList.add('drag-over'); });
+        row.addEventListener('dragleave', function () { row.classList.remove('drag-over'); });
+        row.addEventListener('drop', function (ev) {
+          ev.preventDefault();
+          row.classList.remove('drag-over');
+          const payload = parseDragPayload(ev);
+          if (!payload) return;
+          contentInput.value = txt(payload.content || payload.title);
+          if (payload.format) fmtInput.value = txt(payload.format);
+          setWeeklyCell(day.id, net.key, 'content', contentInput.value);
+          if (payload.format) setWeeklyCell(day.id, net.key, 'format', fmtInput.value);
+          toast('Idea asignada a ' + net.label + ' · ' + txt(day.dayLabel));
+        });
+
+        card.appendChild(row);
+      });
+    }
+    daysWrap.appendChild(card);
+  });
+}
+
 function renderSymbols() {
   const grid = $('symbolGrid');
   grid.innerHTML = '';
@@ -2728,23 +3518,6 @@ function renderSymbols() {
   });
 }
 
-function renderWeekly() {
-  const strip = $('weekStrip');
-  strip.innerHTML = '';
-  const weekly = sortDocs(state.weekly);
-  if (!weekly.length) {
-    strip.appendChild(el('div', 'empty', 'Sin piezas semanales cargadas todavía.'));
-    return;
-  }
-  weekly.forEach(function (w) {
-    strip.appendChild(el('div', 'week-card',
-      '<span class="week-day">' + txt(w.day) + '</span>' +
-      '<h4>' + txt(w.title) + '</h4>' +
-      '<span class="week-fmt">' + txt(w.format) + '</span>' +
-      '<p class="week-obj">' + txt(w.objective) + '</p>' +
-      (txt(w.time).trim() ? '<span class="week-time">' + txt(w.time) + '</span>' : '')));
-  });
-}
 
 function renderSpecials() {
   const list = $('specialsList');
@@ -2755,7 +3528,7 @@ function renderSpecials() {
     return;
   }
   specials.forEach(function (s) {
-    list.appendChild(el('div', 'special-card',
+    const card = el('div', 'special-card draggable-card',
       '<div class="special-top">' +
         '<div><h4>' + txt(s.title) + '</h4><p class="theme">' + txt(s.theme) + '</p></div>' +
         '<div class="special-badges">' +
@@ -2767,7 +3540,21 @@ function renderSpecials() {
         '<div class="script-part"><span class="k">Gancho</span><p>' + txt(s.hook) + '</p></div>' +
         '<div class="script-part"><span class="k">Desarrollo</span><p>' + txt(s.development) + '</p></div>' +
         '<div class="script-part"><span class="k">CTA</span><p>' + txt(s.cta) + '</p></div>' +
-      '</div>'));
+      '</div>');
+    card.draggable = true;
+    card.title = 'Arrastra este especial a la plantilla del domingo';
+    card.addEventListener('dragstart', function (ev) {
+      ev.dataTransfer.effectAllowed = 'copy';
+      ev.dataTransfer.setData('text/plain', JSON.stringify({
+        kind: 'special',
+        title: txt(s.title),
+        format: txt(s.format),
+        hook: txt(s.hook),
+        development: txt(s.development),
+        cta: txt(s.cta)
+      }));
+    });
+    list.appendChild(card);
   });
 }
 
@@ -3235,8 +4022,9 @@ document.addEventListener('keydown', function (e) {
      meta/main            (documento único)
      pillars/{1..5}
      symbols/{1..2}
-     weekly/{miercoles..domingo}
-     specials/{1..3}
+     weekly/{miercoles..domingo}    (legado, sin uso -- reemplazado por weeklyPlan)
+     weeklyPlan/{sep-1..dic-5}      (planificador semanal arrastrable, 4 meses x 5 dias)
+     specials/{1..4}
      phases/{1..3}
      kpiWeekly/{1..4}
      kpiSpecial/{1..3}
@@ -3307,8 +4095,8 @@ function attachListeners() {
 
   watchCollection('pillars', 'pillars', function () { renderPillars(); renderIdeaBank(); });
   watchCollection('symbols', 'symbols', function () { renderSymbols(); });
-  watchCollection('weekly', 'weekly', function () { renderWeekly(); });
-  watchCollection('specials', 'specials', function () { renderSpecials(); });
+  watchCollection('specials', 'specials', function () { renderSpecials(); renderWeekPlanner(); });
+  watchCollection('weeklyPlan', 'weeklyPlan', function () { renderWeekPlanner(); });
   watchCollection('phases', 'phases', function () { renderPhases(); });
   watchCollection('kpiWeekly', 'kpiWeekly', function () { renderKpis(); });
   watchCollection('kpiSpecial', 'kpiSpecial', function () { renderKpis(); });
@@ -3395,6 +4183,7 @@ async function seedFirestore() {
   DEFAULT_DATA.pillars.forEach(function (p) { const d = clone(p); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'pillars', p.id), d)); });
   DEFAULT_DATA.symbols.forEach(function (s) { const d = clone(s); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'symbols', s.id), d)); });
   DEFAULT_DATA.weekly.forEach(function (w) { const d = clone(w); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'weekly', w.id), d)); });
+  DEFAULT_DATA.weeklyPlan.forEach(function (w) { const d = clone(w); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'weeklyPlan', w.id), d)); });
   DEFAULT_DATA.specials.forEach(function (s) { const d = clone(s); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'specials', s.id), d)); });
   DEFAULT_DATA.phases.forEach(function (p) { const d = clone(p); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'phases', p.id), d)); });
   DEFAULT_DATA.kpiWeekly.forEach(function (k) { const d = clone(k); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'kpiWeekly', k.id), d)); });
@@ -3495,8 +4284,8 @@ function renderAllFromState() {
   renderPillars();
   renderIdeaBank();
   renderSymbols();
-  renderWeekly();
   renderSpecials();
+  renderWeekPlanner();
   renderPhases();
   renderKpis();
   renderChecklist();
