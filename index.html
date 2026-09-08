@@ -149,6 +149,47 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
   font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:6px 10px;border-radius:100px;cursor:pointer;
 }
 .admin-upload-btn:hover{border-color:var(--emerald-core);}
+
+/* Barra lateral rediseñada: bloques de color sólido (FUNDESTA) */
+.sidebar{background:#4f97f0 !important;}
+.brand{
+  background:linear-gradient(180deg,var(--emerald-deep) 0%,var(--black) 130%);
+  margin:-26px -16px 0;padding:20px 24px 22px;border-radius:0 0 14px 14px;
+}
+.navlist2{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;}
+.navbtn2{
+  display:block;width:100%;text-align:center;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:14.5px;font-weight:700;color:#fff;
+  padding:14px 12px;letter-spacing:.2px;transition:filter .15s ease,box-shadow .15s ease;
+}
+.navbtn2:hover{filter:brightness(1.08);}
+.navbtn2.active{box-shadow:inset 4px 0 0 #fff;}
+.nb-blue{background:#1616a8;}
+.nb-gray{background:#a8a8a8;color:#2a2a2a;}
+.nb-red{background:#ee3124;}
+.nb-dark{background:#4d4d4d;}
+
+/* Placeholder de imagen genérico para piezas publicadas */
+.content-img-ph{
+  width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;
+  background:linear-gradient(180deg,#cfe4f7 0%,#cfe4f7 55%,#8fbf5f 55%,#8fbf5f 100%);
+  position:relative;
+}
+.content-img-ph::before{
+  content:'';position:absolute;top:22%;left:20%;width:34%;height:26%;
+  background:#fff;border-radius:100px;box-shadow:14px 4px 0 -2px #fff,-10px 6px 0 -4px #fff;
+}
+.content-img-ph img{width:100%;height:100%;object-fit:cover;display:block;}
+.content-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:10px;box-shadow:var(--shadow);}
+.content-card .cc-title{font-size:12px;font-weight:700;margin:8px 0 2px;}
+.content-card .cc-fmt{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--gray);}
+.content-card .cc-fmt svg{width:13px;height:13px;flex-shrink:0;}
+.admin-mode .editable-field{display:inline-block;min-width:50px;min-height:1.3em;vertical-align:bottom;}
+.content-card .cc-field{border:none;background:transparent;font-family:'Inter',sans-serif;width:100%;padding:1px 2px;border-radius:3px;}
+.social-icon-row{display:flex;gap:10px;align-items:center;}
+.social-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;}
+.social-icon svg{width:24px;height:24px;}
+.empty-panel-note{font-size:13px;color:var(--gray);padding:24px 0;}
 .kbd{
   display:inline-block;
   font-family:'IBM Plex Mono',monospace;
@@ -997,26 +1038,120 @@ html.gate-unlocked .gate-overlay{display:none !important;}
       <p class="period" id="brandPeriod">24 ago — 11 nov 2026</p>
     </div>
 
-    <ul class="navlist" id="navlist">
+    <ul class="navlist2" id="navlist">
+      <li><button type="button" class="navbtn2 nb-blue active" data-target="inicio">Inicio</button></li>
+      <li><button type="button" class="navbtn2 nb-gray" data-target="redes-monitoreo">Redes Sociales Monitoreo</button></li>
+      <li><button type="button" class="navbtn2 nb-blue" data-target="contenidos">Contenidos</button></li>
+      <li><button type="button" class="navbtn2 nb-gray" data-target="ideabank">Banco de Ideas</button></li>
+      <li><button type="button" class="navbtn2 nb-blue" data-target="marca-info">Marca Información General</button></li>
+      <li><button type="button" class="navbtn2 nb-gray" data-target="sugerido">Sugerido</button></li>
+      <li><button type="button" class="navbtn2 nb-red" data-target="contexto">Contexto</button></li>
+      <li><button type="button" class="navbtn2 nb-dark" id="adminToggleBtn" aria-pressed="false">Administrador</button></li>
     </ul>
 
     <div class="sidebar-foot">
       <button type="button" class="conn" id="connBadge" title="Estado de la conexión con Firebase Firestore">
         <span class="led"></span><span id="connTxt">Modo local</span>
       </button>
-      <div style="margin-top:12px;">
-        <b>Documento de trabajo interno · Confidencial</b><br>
-        Para evaluación del equipo estratégico
-      </div>
-      <button type="button" class="admin-toggle-btn" id="adminToggleBtn" aria-pressed="false">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
-        <span id="adminToggleTxt">Administrador</span>
-      </button>
     </div>
   </aside>
 
   <!-- ================= MAIN ================= -->
   <main class="main">
+
+    <!-- ============ INICIO ============ -->
+    <section class="panel active" id="inicio">
+      <div class="topline"><div><h2>Inicio</h2></div></div>
+      <p class="empty-panel-note">Sección en construcción -- disponible próximamente.</p>
+    </section>
+
+    <!-- ============ REDES SOCIALES MONITOREO ============ -->
+    <section class="panel" id="redes-monitoreo">
+      <div class="topline"><div><h2>Redes Sociales Monitoreo</h2></div></div>
+      <p class="empty-panel-note">Sección en construcción -- disponible próximamente.</p>
+    </section>
+
+    <!-- ============ CONTENIDOS ============ -->
+    <section class="panel" id="contenidos">
+      <div class="topline">
+        <div>
+          <h2>Redes Sociales</h2>
+          <div class="social-icon-row" style="margin-top:10px;">
+            <span class="social-icon" style="background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></span>
+            <span class="social-icon" style="background:#000;"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M16.5 2c.3 2.1 1.7 3.6 4 3.9v3.1c-1.4 0-2.7-.4-4-1.3v6.6c0 3.6-2.6 6.1-5.9 6.1-3.3 0-5.9-2.5-5.9-5.9 0-3.4 2.7-5.9 6-5.8v3.2c-1.5-.2-2.7.9-2.7 2.5 0 1.5 1.2 2.6 2.6 2.6 1.5 0 2.7-1.1 2.7-2.6V2h3.2Z"/></svg></span>
+            <span class="social-icon" style="background:#1877F2;"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M15 8.5h2V5.4c-.3 0-1.5-.1-2.9-.1-2.8 0-4.8 1.8-4.8 5v2.6H6.5v3.5h2.8V21h3.5v-4.6h2.7l.4-3.5h-3.1v-2.3c0-1 .3-1.6 1.2-1.6Z"/></svg></span>
+            <span class="social-icon" style="background:#000;"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M13.6 10.8 19.7 4h-1.5l-5.3 5.9L8.7 4H4l6.4 9.1L4 20.4h1.5l5.6-6.2 4.5 6.2H20l-6.4-9.4Zm-2 2.2-.6-.9L5.9 5.1h2.2l4.2 5.9.6.9 5.4 7.6h-2.2l-4.5-6.3Z"/></svg></span>
+          </div>
+        </div>
+      </div>
+      <div class="section-title first-title"><h3>Contenidos publicados</h3><span class="num">4 piezas por red -- editable en modo Administrador</span></div>
+      <div id="publishedContentList"></div>
+    </section>
+
+    <!-- ============ BANCO DE IDEAS ============ -->
+        <section class="panel" id="ideabank">
+      <div class="topline">
+        <div>
+          <h2>Banco de ideas de contenido</h2>
+          <p class="sub">Planificador semanal, publicaciones especiales y las 104 ideas de los 5 pilares -- todo en un solo lugar.</p>
+        </div>
+      </div>
+
+      <!-- ---- Planificador semanal (arrastra ideas desde el banco de abajo) ---- -->
+      <div class="section-title first-title"><h3>Plan semanal · miércoles a domingo</h3><span class="num">arrastra una idea a cada casilla</span></div>
+      <p class="sub" style="margin:-6px 0 14px;">Una semana tipo por mes (Septiembre, Octubre, Noviembre y Diciembre 2026). Arrastra una tarjeta del banco de ideas o del banco de especiales a la red social del día que quieras planificar; formato, contenido y copy quedan editables. El domingo de cada semana es la plantilla de contenido especial.</p>
+      <div class="week-planner-tabs" id="weekPlannerTabs"></div>
+      <div id="weekPlannerDays"></div>
+
+      <!-- ---- Banco de contenidos especiales ---- -->
+      <div class="section-title"><h3>Banco de contenidos especiales</h3><span class="num">arrastrables a la plantilla del domingo</span></div>
+      <p class="sub" style="margin:-6px 0 14px;">Reels de mayor producción que crean hitos de visibilidad en cada fase. No reemplazan la grilla semanal fija.</p>
+      <div id="specialsList"></div>
+
+      <div class="note">
+        <b>Fechas conmemorativas verificadas</b> (fuente: "Planificación de Contenidos por Pilar", 7 sept. 2026 -- solo se listan fechas verificables): <b>12 de octubre</b> -- Día de la Resistencia Indígena, feriado oficial confirmado, buen encaje con Pilar 1 y Pilar 3 (histórico). <b>1 de noviembre</b> -- Día de Todos los Santos, tradición religiosa (no confirmada como feriado no laborable), tono de fe y memoria familiar, Pilar 1. <b>2 de noviembre</b> -- Día de los Fieles Difuntos, tradición religiosa, tono sobrio de memoria y tradición andina, Pilar 1. <b>27 de septiembre</b> -- Día Mundial del Turismo, efeméride internacional, gancho para rutas de páramo y patrimonio, Pilar 3 y Pilar 5. Verificar con el calendario oficial vigente antes de publicar si se requiere precisión de feriado laborable.
+      </div>
+      <div class="note">
+        <b>Piezas insignia adicionales pendientes de desarrollo</b> (mismo documento, sección 3.2 -- solo existe el concepto, sin guion): alianza cultural con un cronista, escritor o historiador tachirense (BATT) -- pieza de lanzamiento presentando la alianza y adelantando contenido de archivo/patrimonio exclusivo; reportaje especial de conservación -- cobertura de una jornada real de reforestación, limpieza de páramo o restauración patrimonial, de principio a fin (Pilar 3, formato largo); pieza integradora de cierre de tramo -- recorrido del Pino Lazo que una los 5 pilares en una sola narrativa, sin fecha fija; especial "Municipio del mes" -- pieza ampliada del Pilar 4 con recorrido más largo que el resto del banco regular.
+      </div>
+
+      <!-- ---- Banco de ideas de contenido (buscador) ---- -->
+      <div class="section-title"><h3>Banco de ideas de contenido</h3><span class="num">104 ideas · arrastrables al plan semanal</span></div>
+      <div class="idea-search-bar">
+        <div class="idea-search-input-wrap">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="ideaSearchInput" placeholder="Buscar por palabra clave, pilar, protagonista o código (ej. REEL-R1)...">
+        </div>
+        <div class="idea-format-chips" id="ideaFormatChips">
+          <button type="button" class="format-chip active" data-format="all">Todos</button>
+          <button type="button" class="format-chip" data-format="FOTO">Foto</button>
+          <button type="button" class="format-chip" data-format="FLY">Flyer</button>
+          <button type="button" class="format-chip" data-format="REEL">Reel</button>
+          <button type="button" class="format-chip" data-format="CARR">Carrusel</button>
+        </div>
+      </div>
+      <p class="idea-search-count" id="ideaSearchCount"></p>
+      <div id="ideaBankList"></div>
+    </section>
+
+    <!-- ============ MARCA INFORMACIÓN GENERAL ============ -->
+    <section class="panel" id="marca-info">
+      <div class="topline"><div><h2>Marca Información General</h2></div></div>
+      <p class="empty-panel-note">Sección en construcción -- disponible próximamente.</p>
+    </section>
+
+    <!-- ============ SUGERIDO ============ -->
+    <section class="panel" id="sugerido">
+      <div class="topline"><div><h2>Sugerido</h2></div></div>
+      <p class="empty-panel-note">Sección en construcción -- disponible próximamente.</p>
+    </section>
+
+    <!-- ============ CONTEXTO ============ -->
+    <section class="panel" id="contexto">
+      <div class="topline"><div><h2>Contexto</h2></div></div>
+      <p class="empty-panel-note">Sección en construcción -- disponible próximamente.</p>
+    </section>
+
   </main>
 </div>
 
@@ -1759,6 +1894,136 @@ const DEFAULT_DATA = {
       "tag": "Mascota de extensión de marca",
       "name": "El Oso Frontino",
       "description": "Tremarctos ornatus, el oso andino que habita el paramo tachirense. Personaje ilustrado, cercano y amigable -- distinto y complementario al Pino Lazo (que es el símbolo institucional formal). Se usa en contenido juvenil y familiar, gamificación (Pilar 4), turismo y diáspora (Pilar 5), merchandising y activaciones presenciales, y contenido educativo y de conservación del paramo.",
+      "imageUrl": ""
+    }
+  ],
+  "publishedContent": [
+    {
+      "id": "instagram-1",
+      "order": 1,
+      "network": "instagram",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "instagram-2",
+      "order": 2,
+      "network": "instagram",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "instagram-3",
+      "order": 3,
+      "network": "instagram",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "instagram-4",
+      "order": 4,
+      "network": "instagram",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "tiktok-1",
+      "order": 5,
+      "network": "tiktok",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "tiktok-2",
+      "order": 6,
+      "network": "tiktok",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "tiktok-3",
+      "order": 7,
+      "network": "tiktok",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "tiktok-4",
+      "order": 8,
+      "network": "tiktok",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "facebook-1",
+      "order": 9,
+      "network": "facebook",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "facebook-2",
+      "order": 10,
+      "network": "facebook",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "facebook-3",
+      "order": 11,
+      "network": "facebook",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "facebook-4",
+      "order": 12,
+      "network": "facebook",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "x-1",
+      "order": 13,
+      "network": "x",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "x-2",
+      "order": 14,
+      "network": "x",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "x-3",
+      "order": 15,
+      "network": "x",
+      "title": "",
+      "format": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "x-4",
+      "order": 16,
+      "network": "x",
+      "title": "",
+      "format": "",
       "imageUrl": ""
     }
   ],
@@ -2691,6 +2956,7 @@ const state = {
   meta: clone(DEFAULT_DATA.meta),
   pillars: clone(DEFAULT_DATA.pillars),
   symbols: clone(DEFAULT_DATA.symbols),
+  publishedContent: clone(DEFAULT_DATA.publishedContent),
   weekly: clone(DEFAULT_DATA.weekly),
   weeklyPlan: clone(DEFAULT_DATA.weeklyPlan),
   specials: clone(DEFAULT_DATA.specials),
@@ -2714,6 +2980,8 @@ let localChecks = safeStorage.get(LS_PREFIX + 'checklist_v1') || {};
   if (Array.isArray(s) && s.length === state.specials.length) state.specials = s;
   const sy = safeStorage.get(LS_PREFIX + 'symbols_v1');
   if (Array.isArray(sy) && sy.length === state.symbols.length) state.symbols = sy;
+  const pc = safeStorage.get(LS_PREFIX + 'publishedContent_v1');
+  if (Array.isArray(pc) && pc.length === state.publishedContent.length) state.publishedContent = pc;
 })();
 
 const openPillars = new Set(['1']); // primer pilar abierto por defecto
@@ -3275,17 +3543,42 @@ function saveSymbolField(symbolId, field, value) {
   }
 }
 
+function saveContentField(contentId, field, value) {
+  const c = state.publishedContent.filter(function (x) { return txt(x.id) === txt(contentId); })[0];
+  if (!c) return;
+  const prevVal = c[field];
+  if (prevVal === value) return;
+  c[field] = value;
+  if (fb.live) {
+    const patch = {};
+    patch[field] = value;
+    fb.api.setDoc(fb.api.doc(fb.db, BRAND_SLUG, 'plan', 'publishedContent', txt(contentId)), patch, { merge: true })
+      .then(function () { toast('Pieza actualizada.'); renderPublishedContent(); })
+      .catch(function (err) {
+        c[field] = prevVal;
+        renderPublishedContent();
+        toast('No se pudo guardar en Firestore: ' + (err && err.code ? err.code : 'error'));
+      });
+  } else {
+    safeStorage.set(LS_PREFIX + 'publishedContent_v1', state.publishedContent);
+    renderPublishedContent();
+    toast('Pieza actualizada en este equipo.');
+  }
+}
+
 function setAdminMode(on) {
   adminMode = on;
   document.body.classList.toggle('admin-mode', on);
   const btn = $('adminToggleBtn');
-  if (btn) btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-  const txtEl = $('adminToggleTxt');
-  if (txtEl) txtEl.textContent = on ? 'Administrador (activo)' : 'Administrador';
-  toast(on ? 'Modo administrador activado: edita ideas, especiales y símbolos.' : 'Modo administrador desactivado. Los cambios quedan fijos.');
+  if (btn) {
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.textContent = on ? 'Administrador (activo)' : 'Administrador';
+  }
+  toast(on ? 'Modo administrador activado: edita ideas, especiales, símbolos y contenidos.' : 'Modo administrador desactivado. Los cambios quedan fijos.');
   renderIdeaBank();
   renderSpecials();
   renderSymbols();
+  renderPublishedContent();
 }
 
 function wireAdmin() {
@@ -3340,6 +3633,62 @@ function renderSymbols() {
   });
 }
 
+/* ============ 4e · CONTENIDOS PUBLICADOS (monitoreo) ============
+   Registro de piezas ya publicadas por red -- plantilla en blanco, se
+   llena con el modo Administrador (título, formato y foto real de la
+   pieza publicada). No representa contenido planificado -- eso vive en
+   el Banco de ideas / plan semanal. */
+const CONTENT_NETWORKS = [
+  { key: 'instagram', label: 'Instagram', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#e1306c" stroke="none"/></svg>' },
+  { key: 'tiktok', label: 'TikTok', icon: '<svg viewBox="0 0 24 24" fill="#000" stroke="none"><path d="M16.5 2c.3 2.1 1.7 3.6 4 3.9v3.1c-1.4 0-2.7-.4-4-1.3v6.6c0 3.6-2.6 6.1-5.9 6.1-3.3 0-5.9-2.5-5.9-5.9 0-3.4 2.7-5.9 6-5.8v3.2c-1.5-.2-2.7.9-2.7 2.5 0 1.5 1.2 2.6 2.6 2.6 1.5 0 2.7-1.1 2.7-2.6V2h3.2Z"/></svg>' },
+  { key: 'facebook', label: 'Facebook', icon: '<svg viewBox="0 0 24 24" fill="#1877F2" stroke="none"><path d="M15 8.5h2V5.4c-.3 0-1.5-.1-2.9-.1-2.8 0-4.8 1.8-4.8 5v2.6H6.5v3.5h2.8V21h3.5v-4.6h2.7l.4-3.5h-3.1v-2.3c0-1 .3-1.6 1.2-1.6Z"/></svg>' },
+  { key: 'x', label: 'X', icon: '<svg viewBox="0 0 24 24" fill="#000" stroke="none"><path d="M13.6 10.8 19.7 4h-1.5l-5.3 5.9L8.7 4H4l6.4 9.1L4 20.4h1.5l5.6-6.2 4.5 6.2H20l-6.4-9.4Zm-2 2.2-.6-.9L5.9 5.1h2.2l4.2 5.9.6.9 5.4 7.6h-2.2l-4.5-6.3Z"/></svg>' }
+];
+
+function renderPublishedContent() {
+  const wrap = $('publishedContentList');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const ce = adminMode ? 'true' : 'false';
+  CONTENT_NETWORKS.forEach(function (net) {
+    const items = sortDocs(state.publishedContent.filter(function (c) { return txt(c.network) === net.key; }));
+    wrap.appendChild(el('div', 'section-title', '<h3>' + net.label + '</h3>'));
+    const grid = el('div', 'grid grid-4');
+    items.forEach(function (c) {
+      const url = safeUrl(c.imageUrl);
+      const imgBox = url
+        ? '<div class="content-img-ph"><img src="' + url + '" alt="' + txt(c.title).replace(/"/g, '&quot;') + '" loading="lazy"></div>'
+        : '<div class="content-img-ph"></div>';
+      const card = el('div', 'content-card',
+        imgBox +
+        (adminMode ? '<button type="button" class="admin-upload-btn admin-only" style="display:inline-flex;margin-top:6px;width:100%;justify-content:center;" data-content-id="' + txt(c.id) + '">📷 Subir imagen</button><input type="file" accept="image/*" class="content-file-input" data-content-id="' + txt(c.id) + '" style="display:none;">' : '') +
+        '<p class="cc-title">Título: <span class="editable-field" contenteditable="' + ce + '" data-content-id="' + txt(c.id) + '" data-field="title">' + txt(c.title) + '</span></p>' +
+        '<p class="cc-fmt">' + net.icon + '<span>Formato: <span class="editable-field" contenteditable="' + ce + '" data-content-id="' + txt(c.id) + '" data-field="format">' + txt(c.format) + '</span></span></p>');
+      if (adminMode) {
+        Array.prototype.slice.call(card.querySelectorAll('.editable-field')).forEach(function (elField) {
+          elField.addEventListener('blur', function () {
+            saveContentField(elField.dataset.contentId, elField.dataset.field, elField.textContent.trim());
+          });
+        });
+        const uploadBtn = card.querySelector('.admin-upload-btn');
+        const fileInput = card.querySelector('.content-file-input');
+        if (uploadBtn && fileInput) {
+          uploadBtn.addEventListener('click', function () { fileInput.click(); });
+          fileInput.addEventListener('change', function () {
+            const file = fileInput.files && fileInput.files[0];
+            if (!file) return;
+            if (file.size > 900 * 1024) { toast('Imagen muy pesada (máx. ~900 KB). Usa una versión comprimida.'); return; }
+            const reader = new FileReader();
+            reader.onload = function () { saveContentField(txt(c.id), 'imageUrl', reader.result); };
+            reader.readAsDataURL(file);
+          });
+        }
+      }
+      grid.appendChild(card);
+    });
+    wrap.appendChild(grid);
+  });
+}
 
 function renderSpecials() {
   const list = $('specialsList');
@@ -3671,7 +4020,7 @@ function printReport() {
 }
 
 /* ============ 8 · NAVEGACIÓN Y ATAJOS ============ */
-const navBtns = Array.prototype.slice.call(document.querySelectorAll('.navbtn'));
+const navBtns = Array.prototype.slice.call(document.querySelectorAll('.navbtn2[data-target]'));
 
 function goToSection(index, focus) {
   if (index < 0 || index >= navBtns.length) return;
@@ -3785,6 +4134,7 @@ function attachListeners() {
 
   watchCollection('pillars', 'pillars', function () { renderPillars(); renderIdeaBank(); });
   watchCollection('symbols', 'symbols', function () { renderSymbols(); });
+  watchCollection('publishedContent', 'publishedContent', function () { renderPublishedContent(); });
   watchCollection('specials', 'specials', function () { renderSpecials(); renderWeekPlanner(); });
   watchCollection('weeklyPlan', 'weeklyPlan', function () { renderWeekPlanner(); });
   watchCollection('phases', 'phases', function () { renderPhases(); });
@@ -3871,6 +4221,7 @@ async function seedFirestore() {
   ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'meta', 'main'), DEFAULT_DATA.meta));
   DEFAULT_DATA.pillars.forEach(function (p) { const d = clone(p); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'pillars', p.id), d)); });
   DEFAULT_DATA.symbols.forEach(function (s) { const d = clone(s); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'symbols', s.id), d)); });
+  DEFAULT_DATA.publishedContent.forEach(function (c) { const d = clone(c); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'publishedContent', c.id), d)); });
   DEFAULT_DATA.weekly.forEach(function (w) { const d = clone(w); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'weekly', w.id), d)); });
   DEFAULT_DATA.weeklyPlan.forEach(function (w) { const d = clone(w); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'weeklyPlan', w.id), d)); });
   DEFAULT_DATA.specials.forEach(function (s) { const d = clone(s); delete d.id; ops.push(api.setDoc(api.doc(db, BRAND_SLUG, 'plan', 'specials', s.id), d)); });
@@ -3973,6 +4324,7 @@ function renderAllFromState() {
   renderPillars();
   renderIdeaBank();
   renderSymbols();
+  renderPublishedContent();
   renderSpecials();
   renderWeekPlanner();
   renderPhases();
