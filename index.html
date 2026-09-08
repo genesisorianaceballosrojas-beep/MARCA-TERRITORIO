@@ -38,6 +38,20 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
 
 /* ---------- Layout shell ---------- */
 .shell{display:flex;min-height:100vh;}
+.shell.sidebar-collapsed .sidebar{margin-left:-250px;}
+
+/* ---------- Botón hamburguesa (colapsar barra lateral) ---------- */
+.sidebar-toggle-btn{
+  position:fixed;top:18px;left:18px;z-index:50;
+  width:40px;height:40px;border-radius:10px;border:1px solid var(--border);
+  background:var(--white);box-shadow:var(--shadow);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:var(--black);
+  transition:left .25s ease;
+}
+.sidebar-toggle-btn:hover{background:var(--paper-2);}
+.shell.sidebar-collapsed .sidebar-toggle-btn{left:18px;}
+.shell:not(.sidebar-collapsed) .sidebar-toggle-btn{left:266px;}
+@media(max-width:640px){.shell:not(.sidebar-collapsed) .sidebar-toggle-btn{left:18px;}}
 
 /* ---------- Sidebar ---------- */
 .sidebar{
@@ -46,6 +60,9 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
   background:linear-gradient(180deg,var(--emerald-deep) 0%,var(--black) 130%);
   color:var(--white);
   padding:26px 16px 20px;
+  transition:margin-left .25s ease;
+  overflow-x:hidden;
+  overflow-y:auto;
   display:flex;
   flex-direction:column;
   gap:22px;
@@ -203,7 +220,7 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
 }
 
 /* ---------- Main ---------- */
-.main{flex:1;min-width:0;padding:28px 34px 60px;max-width:1180px;}
+.main{flex:1;min-width:0;padding:76px 34px 60px;max-width:1180px;}
 .topline{
   display:flex;
   justify-content:space-between;
@@ -1029,7 +1046,10 @@ html.gate-unlocked .gate-overlay{display:none !important;}
   </div>
 </div>
 
-<div class="shell">
+<div class="shell" id="shell">
+  <button type="button" class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Mostrar u ocultar la barra lateral" title="Mostrar/ocultar barra lateral">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
   <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar">
     <div class="brand">
@@ -3586,6 +3606,17 @@ function wireAdmin() {
   if (btn) btn.addEventListener('click', function () { setAdminMode(!adminMode); });
 }
 
+function wireSidebarToggle() {
+  const shell = $('shell');
+  const btn = $('sidebarToggleBtn');
+  if (!shell || !btn) return;
+  if (safeStorage.get(LS_PREFIX + 'sidebarCollapsed_v1') === true) shell.classList.add('sidebar-collapsed');
+  btn.addEventListener('click', function () {
+    const collapsed = shell.classList.toggle('sidebar-collapsed');
+    safeStorage.set(LS_PREFIX + 'sidebarCollapsed_v1', collapsed);
+  });
+}
+
 function renderSymbols() {
   const grid = $('symbolGrid');
   if (!grid) return;
@@ -4393,6 +4424,7 @@ async function boot() {
   wireStaticButtons();
   wireIdeaBank();
   wireAdmin();
+  wireSidebarToggle();
   wireFbDialog();
   wireGate();
 
