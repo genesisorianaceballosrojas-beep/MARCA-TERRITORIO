@@ -1082,7 +1082,8 @@ html.gate-unlocked .gate-overlay{display:none !important;}
     <!-- ============ INICIO ============ -->
     <section class="panel active" id="inicio">
       <div class="topline"><div><h2>Inicio</h2></div></div>
-      <p class="empty-panel-note">Sección en construcción -- disponible próximamente.</p>
+      <div class="section-title first-title"><h3>Recientes</h3><span class="num">última pieza publicada por cuenta</span></div>
+      <div id="recentContentList"></div>
     </section>
 
     <!-- ============ REDES SOCIALES MONITOREO ============ -->
@@ -3573,15 +3574,17 @@ function saveContentField(contentId, field, value) {
     const patch = {};
     patch[field] = value;
     fb.api.setDoc(fb.api.doc(fb.db, BRAND_SLUG, 'plan', 'publishedContent', txt(contentId)), patch, { merge: true })
-      .then(function () { toast('Pieza actualizada.'); renderPublishedContent(); })
+      .then(function () { toast('Pieza actualizada.'); renderPublishedContent(); renderRecentContent(); })
       .catch(function (err) {
         c[field] = prevVal;
         renderPublishedContent();
+        renderRecentContent();
         toast('No se pudo guardar en Firestore: ' + (err && err.code ? err.code : 'error'));
       });
   } else {
     safeStorage.set(LS_PREFIX + 'publishedContent_v1', state.publishedContent);
     renderPublishedContent();
+    renderRecentContent();
     toast('Pieza actualizada en este equipo.');
   }
 }
@@ -3599,6 +3602,7 @@ function setAdminMode(on) {
   renderSpecials();
   renderSymbols();
   renderPublishedContent();
+  renderRecentContent();
 }
 
 function wireAdmin() {
@@ -3676,49 +3680,66 @@ const CONTENT_NETWORKS = [
   { key: 'x', label: 'X', icon: '<svg viewBox="0 0 24 24" fill="#000" stroke="none"><path d="M13.6 10.8 19.7 4h-1.5l-5.3 5.9L8.7 4H4l6.4 9.1L4 20.4h1.5l5.6-6.2 4.5 6.2H20l-6.4-9.4Zm-2 2.2-.6-.9L5.9 5.1h2.2l4.2 5.9.6.9 5.4 7.6h-2.2l-4.5-6.3Z"/></svg>' }
 ];
 
+function buildContentCard(c, net) {
+  const ce = adminMode ? 'true' : 'false';
+  const url = safeUrl(c.imageUrl);
+  const imgBox = url
+    ? '<div class="content-img-ph"><img src="' + url + '" alt="' + txt(c.title).replace(/"/g, '&quot;') + '" loading="lazy"></div>'
+    : '<div class="content-img-ph"></div>';
+  const card = el('div', 'content-card',
+    imgBox +
+    (adminMode ? '<button type="button" class="admin-upload-btn admin-only" style="display:inline-flex;margin-top:6px;width:100%;justify-content:center;" data-content-id="' + txt(c.id) + '">📷 Subir imagen</button><input type="file" accept="image/*" class="content-file-input" data-content-id="' + txt(c.id) + '" style="display:none;">' : '') +
+    '<p class="cc-title">Título: <span class="editable-field" contenteditable="' + ce + '" data-content-id="' + txt(c.id) + '" data-field="title">' + txt(c.title) + '</span></p>' +
+    '<p class="cc-fmt">' + net.icon + '<span>Formato: <span class="editable-field" contenteditable="' + ce + '" data-content-id="' + txt(c.id) + '" data-field="format">' + txt(c.format) + '</span></span></p>');
+  if (adminMode) {
+    Array.prototype.slice.call(card.querySelectorAll('.editable-field')).forEach(function (elField) {
+      elField.addEventListener('blur', function () {
+        saveContentField(elField.dataset.contentId, elField.dataset.field, elField.textContent.trim());
+      });
+    });
+    const uploadBtn = card.querySelector('.admin-upload-btn');
+    const fileInput = card.querySelector('.content-file-input');
+    if (uploadBtn && fileInput) {
+      uploadBtn.addEventListener('click', function () { fileInput.click(); });
+      fileInput.addEventListener('change', function () {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+        if (file.size > 900 * 1024) { toast('Imagen muy pesada (máx. ~900 KB). Usa una versión comprimida.'); return; }
+        const reader = new FileReader();
+        reader.onload = function () { saveContentField(txt(c.id), 'imageUrl', reader.result); };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+  return card;
+}
+
 function renderPublishedContent() {
   const wrap = $('publishedContentList');
   if (!wrap) return;
   wrap.innerHTML = '';
-  const ce = adminMode ? 'true' : 'false';
   CONTENT_NETWORKS.forEach(function (net) {
     const items = sortDocs(state.publishedContent.filter(function (c) { return txt(c.network) === net.key; }));
     wrap.appendChild(el('div', 'section-title', '<h3>' + net.label + '</h3>'));
     const grid = el('div', 'grid grid-4');
-    items.forEach(function (c) {
-      const url = safeUrl(c.imageUrl);
-      const imgBox = url
-        ? '<div class="content-img-ph"><img src="' + url + '" alt="' + txt(c.title).replace(/"/g, '&quot;') + '" loading="lazy"></div>'
-        : '<div class="content-img-ph"></div>';
-      const card = el('div', 'content-card',
-        imgBox +
-        (adminMode ? '<button type="button" class="admin-upload-btn admin-only" style="display:inline-flex;margin-top:6px;width:100%;justify-content:center;" data-content-id="' + txt(c.id) + '">📷 Subir imagen</button><input type="file" accept="image/*" class="content-file-input" data-content-id="' + txt(c.id) + '" style="display:none;">' : '') +
-        '<p class="cc-title">Título: <span class="editable-field" contenteditable="' + ce + '" data-content-id="' + txt(c.id) + '" data-field="title">' + txt(c.title) + '</span></p>' +
-        '<p class="cc-fmt">' + net.icon + '<span>Formato: <span class="editable-field" contenteditable="' + ce + '" data-content-id="' + txt(c.id) + '" data-field="format">' + txt(c.format) + '</span></span></p>');
-      if (adminMode) {
-        Array.prototype.slice.call(card.querySelectorAll('.editable-field')).forEach(function (elField) {
-          elField.addEventListener('blur', function () {
-            saveContentField(elField.dataset.contentId, elField.dataset.field, elField.textContent.trim());
-          });
-        });
-        const uploadBtn = card.querySelector('.admin-upload-btn');
-        const fileInput = card.querySelector('.content-file-input');
-        if (uploadBtn && fileInput) {
-          uploadBtn.addEventListener('click', function () { fileInput.click(); });
-          fileInput.addEventListener('change', function () {
-            const file = fileInput.files && fileInput.files[0];
-            if (!file) return;
-            if (file.size > 900 * 1024) { toast('Imagen muy pesada (máx. ~900 KB). Usa una versión comprimida.'); return; }
-            const reader = new FileReader();
-            reader.onload = function () { saveContentField(txt(c.id), 'imageUrl', reader.result); };
-            reader.readAsDataURL(file);
-          });
-        }
-      }
-      grid.appendChild(card);
-    });
+    items.forEach(function (c) { grid.appendChild(buildContentCard(c, net)); });
     wrap.appendChild(grid);
   });
+}
+
+/* Página de Inicio: pestaña "Recientes" -- vista previa de lo último
+   publicado en cada cuenta (1 pieza por red), en vez de dejar la página
+   en blanco. Comparte los mismos datos y edición que "Contenidos". */
+function renderRecentContent() {
+  const wrap = $('recentContentList');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const grid = el('div', 'grid grid-4');
+  CONTENT_NETWORKS.forEach(function (net) {
+    const items = sortDocs(state.publishedContent.filter(function (c) { return txt(c.network) === net.key; }));
+    if (items.length) grid.appendChild(buildContentCard(items[0], net));
+  });
+  wrap.appendChild(grid);
 }
 
 function renderSpecials() {
@@ -4165,7 +4186,7 @@ function attachListeners() {
 
   watchCollection('pillars', 'pillars', function () { renderPillars(); renderIdeaBank(); });
   watchCollection('symbols', 'symbols', function () { renderSymbols(); });
-  watchCollection('publishedContent', 'publishedContent', function () { renderPublishedContent(); });
+  watchCollection('publishedContent', 'publishedContent', function () { renderPublishedContent(); renderRecentContent(); });
   watchCollection('specials', 'specials', function () { renderSpecials(); renderWeekPlanner(); });
   watchCollection('weeklyPlan', 'weeklyPlan', function () { renderWeekPlanner(); });
   watchCollection('phases', 'phases', function () { renderPhases(); });
@@ -4356,6 +4377,7 @@ function renderAllFromState() {
   renderIdeaBank();
   renderSymbols();
   renderPublishedContent();
+  renderRecentContent();
   renderSpecials();
   renderWeekPlanner();
   renderPhases();
